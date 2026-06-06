@@ -1,0 +1,85 @@
+/* Container */
+.contact-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px 25px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(126, 91, 239, 0.15);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Heading */
+.contact-container h1 {
+  text-align: center;
+  color: #7E5BEF;
+  margin-bottom: 25px;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+/* Form Elements */
+.contact-container label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.contact-container input[type="text"],
+.contact-container input[type="email"],
+.contact-container textarea {
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 18px;
+  border: 1.8px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.contact-container input[type="text"]:focus,
+.contact-container input[type="email"]:focus,
+.contact-container textarea:focus {
+  outline: none;
+  border-color: #7E5BEF;
+  box-shadow: 0 0 8px rgba(126, 91, 239, 0.4);
+}
+
+/* Button */
+.contact-container button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background: #7E5BEF;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-container button[type="submit"]:hover {
+  background: #5a3dcf;
+}
+
+/* Success Message */
+#successMessage {
+  text-align: center;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .contact-container {
+    margin: 20px;
+    padding: 20px;
+  }
+}
+

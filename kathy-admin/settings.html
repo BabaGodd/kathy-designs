@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kathy Designs – Admin Settings</title>
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="settings.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="admin-sidebar">
+  <div class="admin-logo">
+    <span class="logo-icon">✦</span>
+    <span>Kathy Admin</span>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+      <li><a href="products.html"><i class="fas fa-box"></i> Products</a></li>
+      <li><a href="orders.html"><i class="fas fa-shopping-bag"></i> Orders</a></li>
+      <li><a href="messages.html"><i class="fas fa-envelope"></i> Messages</a></li>
+      <li><a href="customers.html"><i class="fas fa-users"></i> Customers</a></li>
+      <li class="active"><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<!-- Main Content -->
+<main class="admin-main">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Settings</h1>
+      <p class="page-subtitle">Manage your store and admin preferences</p>
+    </div>
+  </div>
+
+  <!-- Settings Layout -->
+  <div class="settings-layout">
+
+    <!-- Left Nav (section tabs) -->
+    <nav class="settings-nav">
+      <button class="settings-nav-btn active" data-section="store">
+        <i class="fas fa-store"></i> Store Info
+      </button>
+      <button class="settings-nav-btn" data-section="admin">
+        <i class="fas fa-user-shield"></i> Admin Profile
+      </button>
+      <button class="settings-nav-btn" data-section="notifications">
+        <i class="fas fa-bell"></i> Notifications
+      </button>
+      <button class="settings-nav-btn" data-section="danger">
+        <i class="fas fa-exclamation-triangle"></i> Danger Zone
+      </button>
+    </nav>
+
+    <!-- Right Content (sections) -->
+    <div class="settings-content">
+
+      <!-- ========== STORE INFO ========== -->
+      <section class="settings-section active" id="section-store">
+        <div class="section-header">
+          <h2><i class="fas fa-store"></i> Store Information</h2>
+          <p>Details about your store that appear on receipts and the storefront.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="storeName">Store Name</label>
+          <input type="text" id="storeName" placeholder="e.g. Kathy Designs" />
+        </div>
+
+        <div class="form-group">
+          <label for="storeTagline">Tagline</label>
+          <input type="text" id="storeTagline" placeholder="e.g. Authentic African Fashion" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="storeEmail">Contact Email</label>
+            <input type="email" id="storeEmail" placeholder="store@example.com" />
+          </div>
+          <div class="form-group">
+            <label for="storePhone">Contact Phone</label>
+            <input type="tel" id="storePhone" placeholder="e.g. 0244123456" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="storeAddress">Store Address</label>
+          <input type="text" id="storeAddress" placeholder="e.g. East Legon, Accra, Ghana" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="storeCurrency">Currency</label>
+            <select id="storeCurrency">
+              <option value="GHC">GHC – Ghanaian Cedi</option>
+              <option value="USD">USD – US Dollar</option>
+              <option value="GBP">GBP – British Pound</option>
+              <option value="EUR">EUR – Euro</option>
+              <option value="NGN">NGN – Nigerian Naira</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="storeDeliveryFee">Default Delivery Fee (GHC)</label>
+            <input type="number" id="storeDeliveryFee" placeholder="e.g. 20" min="0" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="storeSocial">Instagram Handle</label>
+          <div class="input-prefix-wrap">
+            <span class="input-prefix">@</span>
+            <input type="text" id="storeSocial" placeholder="kathydesigns" />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-save" id="saveStoreBtn">
+            <i class="fas fa-save"></i> Save Store Info
+          </button>
+        </div>
+      </section>
+
+      <!-- ========== ADMIN PROFILE ========== -->
+      <section class="settings-section" id="section-admin">
+        <div class="section-header">
+          <h2><i class="fas fa-user-shield"></i> Admin Profile</h2>
+          <p>Your personal admin account details.</p>
+        </div>
+
+        <!-- Avatar -->
+        <div class="avatar-row">
+          <div class="admin-avatar" id="adminAvatarDisplay">KD</div>
+          <div>
+            <p class="avatar-name" id="avatarNameDisplay">Admin</p>
+            <p class="avatar-role" id="avatarRoleDisplay">Administrator</p>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="adminName">Full Name</label>
+            <input type="text" id="adminName" placeholder="e.g. Kathy Asante" />
+          </div>
+          <div class="form-group">
+            <label for="adminRole">Role</label>
+            <select id="adminRole">
+              <option value="Admin">Admin</option>
+              <option value="Manager">Manager</option>
+              <option value="Staff">Staff</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="adminEmail">Email Address</label>
+          <input type="email" id="adminEmail" placeholder="admin@kathydesigns.com" />
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section-header">
+          <h3>Change Password</h3>
+          <p>Leave blank if you don't want to change your password.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="currentPassword">Current Password</label>
+          <div class="input-password-wrap">
+            <input type="password" id="currentPassword" placeholder="Enter current password" />
+            <button type="button" class="toggle-password" data-target="currentPassword">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="newPassword">New Password</label>
+            <div class="input-password-wrap">
+              <input type="password" id="newPassword" placeholder="Min. 8 characters" />
+              <button type="button" class="toggle-password" data-target="newPassword">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm New Password</label>
+            <div class="input-password-wrap">
+              <input type="password" id="confirmPassword" placeholder="Repeat new password" />
+              <button type="button" class="toggle-password" data-target="confirmPassword">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-save" id="saveAdminBtn">
+            <i class="fas fa-save"></i> Save Profile
+          </button>
+        </div>
+      </section>
+
+      <!-- ========== NOTIFICATIONS ========== -->
+      <section class="settings-section" id="section-notifications">
+        <div class="section-header">
+          <h2><i class="fas fa-bell"></i> Notification Preferences</h2>
+          <p>Choose what activity you want to be notified about.</p>
+        </div>
+
+        <div class="toggle-list">
+
+          <div class="toggle-item">
+            <div class="toggle-info">
+              <span class="toggle-label">New Orders</span>
+              <span class="toggle-desc">Get notified when a customer places a new order</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="notifOrders" checked />
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="toggle-item">
+            <div class="toggle-info">
+              <span class="toggle-label">New Messages</span>
+              <span class="toggle-desc">Get notified when a customer sends a message</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="notifMessages" checked />
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="toggle-item">
+            <div class="toggle-info">
+              <span class="toggle-label">Low Stock Alerts</span>
+              <span class="toggle-desc">Alert when a product stock falls below 5 units</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="notifStock" checked />
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="toggle-item">
+            <div class="toggle-info">
+              <span class="toggle-label">Order Status Updates</span>
+              <span class="toggle-desc">Notify customers when their order status changes</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="notifStatusUpdates" />
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="toggle-item">
+            <div class="toggle-info">
+              <span class="toggle-label">Weekly Sales Summary</span>
+              <span class="toggle-desc">Receive a weekly email summary of sales performance</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="notifWeeklySummary" />
+              <span class="slider"></span>
+            </label>
+          </div>
+
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-save" id="saveNotifBtn">
+            <i class="fas fa-save"></i> Save Preferences
+          </button>
+        </div>
+      </section>
+
+      <!-- ========== DANGER ZONE ========== -->
+      <section class="settings-section" id="section-danger">
+        <div class="section-header">
+          <h2><i class="fas fa-exclamation-triangle"></i> Danger Zone</h2>
+          <p>These actions are irreversible. Use with caution — especially before going live.</p>
+        </div>
+
+        <div class="danger-cards">
+
+          <div class="danger-card">
+            <div class="danger-card-info">
+              <span class="danger-card-title">Clear All Orders</span>
+              <span class="danger-card-desc">Permanently delete all orders from localStorage. Useful for resetting demo data.</span>
+            </div>
+            <button class="btn-danger" data-action="clearOrders">
+              <i class="fas fa-trash"></i> Clear Orders
+            </button>
+          </div>
+
+          <div class="danger-card">
+            <div class="danger-card-info">
+              <span class="danger-card-title">Clear All Messages</span>
+              <span class="danger-card-desc">Permanently delete all customer messages from localStorage.</span>
+            </div>
+            <button class="btn-danger" data-action="clearMessages">
+              <i class="fas fa-trash"></i> Clear Messages
+            </button>
+          </div>
+
+          <div class="danger-card">
+            <div class="danger-card-info">
+              <span class="danger-card-title">Clear All Products</span>
+              <span class="danger-card-desc">Permanently delete all products from localStorage.</span>
+            </div>
+            <button class="btn-danger" data-action="clearProducts">
+              <i class="fas fa-trash"></i> Clear Products
+            </button>
+          </div>
+
+          <div class="danger-card">
+            <div class="danger-card-info">
+              <span class="danger-card-title">Reset All Data</span>
+              <span class="danger-card-desc">Wipe everything — orders, messages, products, and settings. Full factory reset.</span>
+            </div>
+            <button class="btn-danger btn-danger-full" data-action="resetAll">
+              <i class="fas fa-bomb"></i> Reset Everything
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+    </div><!-- end settings-content -->
+  </div><!-- end settings-layout -->
+
+</main>
+
+<!-- Confirm Modal -->
+<div id="confirmModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box confirm-box">
+    <div class="confirm-icon"><i class="fas fa-exclamation-triangle"></i></div>
+    <h3 id="confirmTitle">Are you sure?</h3>
+    <p id="confirmText">This action cannot be undone.</p>
+    <div class="confirm-actions">
+      <button id="cancelConfirmBtn" class="btn-cancel">Cancel</button>
+      <button id="proceedConfirmBtn" class="btn-confirm-delete">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="settings.js"></script>
+</body>
+</html>

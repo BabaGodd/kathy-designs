@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout – Kathy Designs</title>
+  <meta name="description" content="Complete your order at Kathy Designs.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>(function(){ emailjs.init("X1MjWsal0ycZUKCRs"); })();</script>
+  <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#DC143C">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<link rel="icon" type="image/png" href="/icons/icon-32.png">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="site-logo">
+      <div class="logo-circle"><img src="banners/headers/1.jpg" alt="Kathy Designs"></div>
+      <span class="logo-text">Kathy Designs</span>
+    </a>
+    <nav class="site-nav" id="siteNav">
+      <ul>
+        <li><a href="index.html">Women</a></li>
+        <li><a href="men.html">Men</a></li>
+        <li><a href="children.html">Children</a></li>
+        <li><a href="bags-shoes.html">Bags &amp; Shoes</a></li>
+        <li><a href="fabrics.html">Fabrics</a></li>
+        <li><a href="accessories.html">Accessories</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="cart.html" class="cart-link" aria-label="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-badge" id="cart-count">0</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="toast-notification" id="notification"></div>
+
+<main class="checkout-main">
+  <div class="checkout-page-header">
+    <a href="cart.html" class="checkout-back-link"><i class="fas fa-arrow-left"></i> Back to Cart</a>
+    <h1 class="checkout-page-title">Checkout</h1>
+  </div>
+
+  <div class="cart-steps">
+    <div class="cart-step">
+      <div class="step-circle"><i class="fas fa-shopping-bag"></i></div>
+      <span>Cart</span>
+    </div>
+    <div class="step-line active-line"></div>
+    <div class="cart-step active">
+      <div class="step-circle"><i class="fas fa-user"></i></div>
+      <span>Details</span>
+    </div>
+    <div class="step-line"></div>
+    <div class="cart-step">
+      <div class="step-circle"><i class="fas fa-check"></i></div>
+      <span>Confirm</span>
+    </div>
+  </div>
+
+  <div class="checkout-layout">
+    <div class="checkout-form-col">
+      <div class="checkout-section-card">
+        <h2 class="checkout-section-title">
+          <span class="checkout-step-num">1</span> Contact Information
+        </h2>
+        <form id="kathy-checkout-form" class="checkout-form" novalidate>
+          <div class="checkout-form-row">
+            <div class="kathy-form-group">
+              <label for="fullName">Full Name <span class="required">*</span></label>
+              <input type="text" id="fullName" name="fullName" placeholder="e.g. Akosua Mensah" required>
+            </div>
+            <div class="kathy-form-group">
+              <label for="phone">Phone Number <span class="required">*</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="e.g. 0244123456" required>
+            </div>
+          </div>
+          <div class="kathy-form-group">
+            <label for="email">Email Address <span class="required">*</span></label>
+            <input type="email" id="email" name="email" placeholder="e.g. akosua@mail.com" required>
+          </div>
+          <div class="kathy-form-group">
+            <label for="address">Delivery Address <span class="required">*</span></label>
+            <textarea id="address" name="address" rows="3" placeholder="Street name, area, city" required></textarea>
+          </div>
+          <h2 class="checkout-section-title" style="margin-top:1.5rem;">
+            <span class="checkout-step-num">2</span> Delivery &amp; Payment
+          </h2>
+          <div class="kathy-form-group">
+            <label for="delivery">Delivery Method <span class="required">*</span></label>
+            <select id="delivery" name="delivery" required>
+              <option value="">Select delivery method…</option>
+              <option value="Delivery">Home Delivery (GHC 20)</option>
+              <option value="Pickup">Store Pickup (Free)</option>
+            </select>
+          </div>
+          <div class="kathy-form-group">
+            <label for="payment">Payment Method <span class="required">*</span></label>
+            <select id="payment" name="payment" required>
+              <option value="">Select payment method…</option>
+              <option value="Mobile Money">Mobile Money</option>
+              <option value="Cash on Delivery">Cash on Delivery</option>
+              <option value="Debit/Credit Card">Debit/Credit Card</option>
+            </select>
+          </div>
+          <div class="kathy-form-group" id="mmNumberGroup" style="display:none;">
+            <label for="mmNumber">Mobile Money Number <span class="required">*</span></label>
+            <input type="tel" id="mmNumber" name="mmNumber" placeholder="e.g. 0244123456">
+            <small class="form-hint">We will send a payment prompt to this number.</small>
+          </div>
+          <div class="kathy-form-group">
+            <label for="notes">Order Notes <span class="optional">(optional)</span></label>
+            <textarea id="notes" name="notes" rows="2" placeholder="Any special instructions?"></textarea>
+          </div>
+          <button type="submit" class="checkout-submit-btn" id="submitBtn">
+            <i class="fas fa-lock"></i> Place Order
+          </button>
+          <p class="checkout-secure-note">
+            <i class="fas fa-shield-alt"></i> Your information is secure.
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <div class="checkout-summary-col">
+      <div class="checkout-summary-box">
+        <h2 class="checkout-summary-title">Order Summary</h2>
+        <div id="checkout-summary" class="checkout-items-list"></div>
+        <div class="checkout-totals">
+          <div class="checkout-total-row">
+            <span>Subtotal</span>
+            <span>GHC <span id="checkout-subtotal">0.00</span></span>
+          </div>
+          <div class="checkout-total-row">
+            <span>Delivery Fee</span>
+            <span id="checkout-delivery-display">GHC 20.00</span>
+          </div>
+          <div class="checkout-total-row checkout-grand-total">
+            <span>Total</span>
+            <span>GHC <span id="checkout-total">0.00</span></span>
+          </div>
+        </div>
+        <div class="cart-trust" style="margin-top:1rem;padding-top:1rem;border-top:1px solid #f0f0f0;">
+          <div class="trust-item"><i class="fas fa-shield-alt"></i><span>Secure</span></div>
+          <div class="trust-item"><i class="fas fa-undo"></i><span>Returns</span></div>
+          <div class="trust-item"><i class="fas fa-truck"></i><span>Fast Delivery</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>Store Hours</h4>
+      <ul>
+        <li>Mon–Fri: 9AM – 6PM</li>
+        <li>Saturday: 10AM – 4PM</li>
+        <li>Sunday: Closed</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><i class="fas fa-phone"></i> +233 244 510 810</li>
+        <li><i class="fas fa-phone"></i> +233 244 506 796</li>
+        <li><i class="fas fa-envelope"></i> kathydesigns@gmail.com</li>
+        <li><i class="fas fa-map-marker-alt"></i> 40 SOS Street, Tema</li>
+        <li><a href="https://wa.me/233244510810" class="whatsapp-link" target="_blank"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns &amp; Exchanges</a></li>
+        <li><a href="wishlist.html">My Wishlist</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+      </div>
+      <div class="newsletter-wrap">
+        <p>Get exclusive deals in your inbox</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Your email address" id="newsletterEmail">
+          <button id="newsletterBtn">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Kathy Designs. All rights reserved.</p>
+    <p>Built by <strong>KyKal Technologies</strong></p>
+  </div>
+</footer>
+
+<a href="https://wa.me/233244510810" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+  <span class="whatsapp-tooltip">Chat with us</span>
+</a>
+
+<script src="supabase.js"></script>
+<script src="js/cart.js"></script>
+<script src="checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kathy Designs – Admin Orders</title>
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="orders.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="admin-sidebar">
+  <div class="admin-logo">
+    <span class="logo-icon">✦</span>
+    <span>Kathy Admin</span>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+      <li><a href="products.html"><i class="fas fa-box"></i> Products</a></li>
+      <li class="active"><a href="orders.html"><i class="fas fa-shopping-bag"></i> Orders</a></li>
+      <li><a href="messages.html"><i class="fas fa-envelope"></i> Messages</a></li>
+      <li><a href="customers.html"><i class="fas fa-users"></i> Customers</a></li>
+      <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<!-- Main Content -->
+<main class="admin-main">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Orders</h1>
+      <p class="page-subtitle">Track, manage and update all customer orders</p>
+    </div>
+    <button class="btn-export" id="exportBtn">
+      <i class="fas fa-download"></i> Export CSV
+    </button>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="orders-summary">
+    <div class="summary-card">
+      <div class="summary-icon icon-total"><i class="fas fa-shopping-bag"></i></div>
+      <div class="summary-info">
+        <span class="summary-label">Total Orders</span>
+        <span class="summary-value" id="statTotal">0</span>
+      </div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-icon icon-pending"><i class="fas fa-clock"></i></div>
+      <div class="summary-info">
+        <span class="summary-label">Pending</span>
+        <span class="summary-value" id="statPending">0</span>
+      </div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-icon icon-shipped"><i class="fas fa-truck"></i></div>
+      <div class="summary-info">
+        <span class="summary-label">Shipped</span>
+        <span class="summary-value" id="statShipped">0</span>
+      </div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-icon icon-completed"><i class="fas fa-check-circle"></i></div>
+      <div class="summary-info">
+        <span class="summary-label">Completed</span>
+        <span class="summary-value" id="statCompleted">0</span>
+      </div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-icon icon-revenue"><i class="fas fa-coins"></i></div>
+      <div class="summary-info">
+        <span class="summary-label">Total Revenue</span>
+        <span class="summary-value" id="statRevenue">GHC 0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="orders-controls">
+    <div class="search-wrap">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" id="searchInput" placeholder="Search by Order ID or Customer Name…" />
+    </div>
+    <div class="filter-group">
+      <select id="statusFilter">
+        <option value="all">All Statuses</option>
+        <option value="Pending">Pending</option>
+        <option value="Shipped">Shipped</option>
+        <option value="Completed">Completed</option>
+        <option value="Cancelled">Cancelled</option>
+      </select>
+      <select id="dateFilter">
+        <option value="all">All Time</option>
+        <option value="today">Today</option>
+        <option value="week">This Week</option>
+        <option value="month">This Month</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Orders Count -->
+  <p class="results-count"><span id="resultsCount">0</span> orders found</p>
+
+  <!-- Table Wrapper -->
+  <div class="table-wrapper">
+    <table id="ordersTable">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Customer</th>
+          <th>Phone</th>
+          <th>Items</th>
+          <th>Total (GHC)</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="ordersTableBody"></tbody>
+    </table>
+
+    <!-- Empty State -->
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <div class="empty-icon"><i class="fas fa-box-open"></i></div>
+      <h3>No orders found</h3>
+      <p>Try adjusting your search or filters, or wait for new orders to come in.</p>
+    </div>
+  </div>
+
+</main>
+
+<!-- ===================== ORDER DETAILS MODAL ===================== -->
+<div id="orderDetailsModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+
+    <div class="modal-header">
+      <div>
+        <h2 class="modal-title">Order <span id="modalOrderID"></span></h2>
+        <p class="modal-date">Placed on <span id="modalOrderDate"></span></p>
+      </div>
+      <button class="modal-close-btn" id="closeOrderModalBtn"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- Customer Info -->
+      <div class="modal-section">
+        <h3 class="modal-section-title"><i class="fas fa-user"></i> Customer Details</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Name</span>
+            <span class="info-value" id="modalCustomerName"></span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Phone</span>
+            <span class="info-value" id="modalCustomerPhone"></span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Email</span>
+            <span class="info-value" id="modalCustomerEmail">—</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Address</span>
+            <span class="info-value" id="modalCustomerAddress">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Status -->
+      <div class="modal-section">
+        <h3 class="modal-section-title"><i class="fas fa-info-circle"></i> Order Status</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Current Status</span>
+            <span class="info-value" id="modalStatusBadge"></span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Payment Method</span>
+            <span class="info-value" id="modalPayment">—</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Delivery Method</span>
+            <span class="info-value" id="modalDelivery">—</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Notes</span>
+            <span class="info-value" id="modalNotes">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Items -->
+      <div class="modal-section">
+        <h3 class="modal-section-title"><i class="fas fa-list"></i> Items Ordered</h3>
+        <div class="modal-items-list" id="modalOrderItems"></div>
+      </div>
+
+      <!-- Total -->
+      <div class="modal-total-row">
+        <span>Order Total</span>
+        <span class="modal-total-value">GHC <span id="modalOrderTotal"></span></span>
+      </div>
+
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="modal-footer">
+      <div class="modal-status-update">
+        <label for="modalStatusSelect">Update Status:</label>
+        <select id="modalStatusSelect">
+          <option value="Pending">Pending</option>
+          <option value="Shipped">Shipped</option>
+          <option value="Completed">Completed</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+        <button id="saveStatusBtn" class="btn-save-status">
+          <i class="fas fa-check"></i> Save
+        </button>
+      </div>
+      <button id="deleteOrderBtn" class="btn-delete-order">
+        <i class="fas fa-trash"></i> Delete Order
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div id="deleteConfirmModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box confirm-box">
+    <div class="confirm-icon"><i class="fas fa-exclamation-triangle"></i></div>
+    <h3>Delete this order?</h3>
+    <p>This action cannot be undone. The order will be permanently removed.</p>
+    <div class="confirm-actions">
+      <button id="cancelDeleteBtn" class="btn-cancel-delete">Cancel</button>
+      <button id="confirmDeleteBtn" class="btn-confirm-delete">Yes, Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="orders.js"></script>
+</body>
+</html>

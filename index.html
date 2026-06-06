@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Women's Collection – Kathy Designs</title>
+  <meta name="description" content="Kathy Designs – Authentic African fashion for women. Shop kente, ankara, fabrics and accessories in Ghana.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#DC143C">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<link rel="icon" type="image/png" href="/icons/icon-32.png">
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+
+    <!-- Logo -->
+    <a href="index.html" class="site-logo">
+      <div class="logo-circle">
+        <img src="banners/headers/1.jpg" alt="Kathy Designs">
+      </div>
+      <span class="logo-text">Kathy Designs</span>
+    </a>
+
+    <!-- Nav -->
+    <nav class="site-nav" id="siteNav">
+      <ul>
+        <li><a href="index.html" class="active">Women</a></li>
+        <li><a href="men.html">Men</a></li>
+        <li><a href="children.html">Children</a></li>
+        <li><a href="bags-shoes.html">Bags &amp; Shoes</a></li>
+        <li><a href="fabrics.html">Fabrics</a></li>
+        <li><a href="accessories.html">Accessories</a></li>
+      </ul>
+    </nav>
+
+    <!-- Right actions -->
+    <div class="header-actions">
+      <!-- Search -->
+      <div class="search-wrap" id="searchWrap">
+        <input type="text" id="searchInput" placeholder="Search products…" autocomplete="off">
+        <button id="searchBtn" aria-label="Search"><i class="fas fa-search"></i></button>
+        <div class="search-results" id="searchResults"></div>
+      </div>
+
+      <!-- Cart -->
+      <a href="cart.html" class="cart-link" aria-label="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-badge" id="cart-count">0</span>
+      </a>
+
+      <!-- Hamburger -->
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<!-- Toast notification -->
+<div class="toast-notification" id="notification"></div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" style="background-image:url('banners/headers/african ladies3.jpg');">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">New Arrivals 2025</p>
+    <h1>Women's Collection</h1>
+    <p class="hero-sub">Discover Fashion, Discover Yourself</p>
+    <a href="#products" class="btn-primary">Shop Now <i class="fas fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<!-- ===================== FEATURED CAROUSEL ===================== -->
+<section class="featured-section">
+  <div class="section-header-row">
+    <h2 class="section-title">Featured Products</h2>
+    <div class="carousel-arrows">
+      <button class="carousel-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+      <button class="carousel-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+  <div class="carousel-viewport">
+    <div class="carousel-track" id="featuredTrack">
+      <div class="feat-card">
+        <img src="productImages/bags4.PNG" alt="Luxury Bag">
+        <div class="feat-card-info">
+          <h3>Luxury Bag</h3>
+          <p class="feat-price">GHC 250</p>
+        </div>
+      </div>
+      <div class="feat-card">
+        <img src="productImages/fabrics4.png" alt="Premium Fabric">
+        <div class="feat-card-info">
+          <h3>Premium Fabric</h3>
+          <p class="feat-price">GHC 350</p>
+        </div>
+      </div>
+      <div class="feat-card">
+        <img src="productImages/mens6.PNG" alt="Men's Outfit">
+        <div class="feat-card-info">
+          <h3>Men's Outfit</h3>
+          <p class="feat-price">GHC 450</p>
+        </div>
+      </div>
+      <div class="feat-card">
+        <img src="productImages/fabrics7.png" alt="Silk Fabric">
+        <div class="feat-card-info">
+          <h3>Silk Fabric</h3>
+          <p class="feat-price">GHC 180</p>
+        </div>
+      </div>
+      <div class="feat-card">
+        <img src="productImages/women4_1194.PNG" alt="Women's Dress">
+        <div class="feat-card-info">
+          <h3>Ankara Dress</h3>
+          <p class="feat-price">GHC 310</p>
+        </div>
+      </div>
+      <div class="feat-card">
+        <img src="productImages/bags12.PNG" alt="Designer Bag">
+        <div class="feat-card-info">
+          <h3>Designer Bag</h3>
+          <p class="feat-price">GHC 220</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MAIN CONTENT ===================== -->
+<div class="main-container">
+
+  <!-- Top Picks Sidebar -->
+  <aside class="top-picks-sidebar">
+    <h3 class="sidebar-heading"><i class="fas fa-star"></i> Top Picks</h3>
+
+    <div class="shop-product-card">
+      <div class="qe-product-image-wrapper">
+        <img src="productImages/bags10.PNG" class="shop-product-image" alt="Kente Bag">
+        <div class="qe-product-overlay">
+          <button class="qe-wishlist-btn" data-id="aside01"><i class="fas fa-heart"></i></button>
+          <button class="qe-quickview-btn" data-id="aside01"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <h3 class="shop-product-name">Kente Bag</h3>
+      <p class="shop-price">GHC 250</p>
+      <div class="shop-product-actions">
+        <button class="shop-add-to-cart" data-id="aside01" data-name="Kente Bag" data-price="250" data-image="productImages/bags10.PNG">
+          <i class="fas fa-shopping-bag"></i> Buy
+        </button>
+      </div>
+    </div>
+
+    <div class="shop-product-card">
+      <div class="qe-product-image-wrapper">
+        <img src="productImages/fabric1.png" class="shop-product-image" alt="Ankara Fabric">
+        <div class="qe-product-overlay">
+          <button class="qe-wishlist-btn" data-id="aside02"><i class="fas fa-heart"></i></button>
+          <button class="qe-quickview-btn" data-id="aside02"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <h3 class="shop-product-name">Ankara Fabric</h3>
+      <p class="shop-price">GHC 180</p>
+      <div class="shop-product-actions">
+        <button class="shop-add-to-cart" data-id="aside02" data-name="Ankara Fabric" data-price="180" data-image="productImages/fabric1.png">
+          <i class="fas fa-shopping-bag"></i> Buy
+        </button>
+      </div>
+    </div>
+
+    <div class="shop-product-card">
+      <div class="qe-product-image-wrapper">
+        <img src="productImages/WomensBAG1.PNG" class="shop-product-image" alt="Women's Bag">
+        <div class="qe-product-overlay">
+          <button class="qe-wishlist-btn" data-id="aside03"><i class="fas fa-heart"></i></button>
+          <button class="qe-quickview-btn" data-id="aside03"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <h3 class="shop-product-name">Women's Bag</h3>
+      <p class="shop-price">GHC 320</p>
+      <div class="shop-product-actions">
+        <button class="shop-add-to-cart" data-id="aside03" data-name="Women's Bag" data-price="320" data-image="productImages/WomensBAG1.PNG">
+          <i class="fas fa-shopping-bag"></i> Buy
+        </button>
+      </div>
+    </div>
+
+    <div class="shop-product-card">
+      <div class="qe-product-image-wrapper">
+        <img src="productImages/WomensBAG3.PNG" class="shop-product-image" alt="Leather Tote">
+        <div class="qe-product-overlay">
+          <button class="qe-wishlist-btn" data-id="aside04"><i class="fas fa-heart"></i></button>
+          <button class="qe-quickview-btn" data-id="aside04"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <h3 class="shop-product-name">Leather Tote</h3>
+      <p class="shop-price">GHC 290</p>
+      <div class="shop-product-actions">
+        <button class="shop-add-to-cart" data-id="aside04" data-name="Leather Tote" data-price="290" data-image="productImages/WomensBAG3.PNG">
+          <i class="fas fa-shopping-bag"></i> Buy
+        </button>
+      </div>
+    </div>
+
+    <div class="shop-product-card">
+      <div class="qe-product-image-wrapper">
+        <img src="productImages/fabrics11.png" class="shop-product-image" alt="Kente Fabric">
+        <div class="qe-product-overlay">
+          <button class="qe-wishlist-btn" data-id="aside05"><i class="fas fa-heart"></i></button>
+          <button class="qe-quickview-btn" data-id="aside05"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <h3 class="shop-product-name">Kente Fabric</h3>
+      <p class="shop-price">GHC 150</p>
+      <div class="shop-product-actions">
+        <button class="shop-add-to-cart" data-id="aside05" data-name="Kente Fabric" data-price="150" data-image="productImages/fabrics11.png">
+          <i class="fas fa-shopping-bag"></i> Buy
+        </button>
+      </div>
+    </div>
+
+    <div class="shop-product-card">
+      <div class="qe-product-image-wrapper">
+        <img src="productImages/bags18.PNG" class="shop-product-image" alt="Evening Bag">
+        <div class="qe-product-overlay">
+          <button class="qe-wishlist-btn" data-id="aside06"><i class="fas fa-heart"></i></button>
+          <button class="qe-quickview-btn" data-id="aside06"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <h3 class="shop-product-name">Evening Bag</h3>
+      <p class="shop-price">GHC 210</p>
+      <div class="shop-product-actions">
+        <button class="shop-add-to-cart" data-id="aside06" data-name="Evening Bag" data-price="210" data-image="productImages/bags18.PNG">
+          <i class="fas fa-shopping-bag"></i> Buy
+        </button>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- Product Grid -->
+  <main class="content-area" id="products">
+
+    <div class="products-header-row">
+      <h2 class="section-title">Women's Collection</h2>
+      <div class="products-filter">
+        <select id="sortSelect">
+          <option value="default">Sort: Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+
+      <div class="shop-product-card" data-name="Elegant Kente Dress" data-price="250">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women1_1186.PNG" class="shop-product-image" alt="Elegant Kente Dress">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod01"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod01"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="product-badge">New</span>
+        </div>
+        <h3 class="shop-product-name">Elegant Kente Dress</h3>
+        <p class="shop-price">GHC 250</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod01" data-name="Elegant Kente Dress" data-price="250" data-image="productImages/women1_1186.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Ankara Wrap Dress" data-price="280">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women2_1192.PNG" class="shop-product-image" alt="Ankara Wrap Dress">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod02"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod02"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Ankara Wrap Dress</h3>
+        <p class="shop-price">GHC 280</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod02" data-name="Ankara Wrap Dress" data-price="280" data-image="productImages/women2_1192.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Kaba & Slit Set" data-price="320">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women3_1193.PNG" class="shop-product-image" alt="Kaba & Slit Set">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod03"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod03"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="product-badge badge-hot">Hot</span>
+        </div>
+        <h3 class="shop-product-name">Kaba &amp; Slit Set</h3>
+        <p class="shop-price">GHC 320</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod03" data-name="Kaba & Slit Set" data-price="320" data-image="productImages/women3_1193.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="African Print Jumpsuit" data-price="290">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women4_1194.PNG" class="shop-product-image" alt="African Print Jumpsuit">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod04"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod04"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">African Print Jumpsuit</h3>
+        <p class="shop-price">GHC 290</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod04" data-name="African Print Jumpsuit" data-price="290" data-image="productImages/women4_1194.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Batik Maxi Dress" data-price="270">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women5_1471.PNG" class="shop-product-image" alt="Batik Maxi Dress">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod05"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod05"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Batik Maxi Dress</h3>
+        <p class="shop-price">GHC 270</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod05" data-name="Batik Maxi Dress" data-price="270" data-image="productImages/women5_1471.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Kente Midi Dress" data-price="300">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women6_1473.PNG" class="shop-product-image" alt="Kente Midi Dress">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod06"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod06"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Kente Midi Dress</h3>
+        <p class="shop-price">GHC 300</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod06" data-name="Kente Midi Dress" data-price="300" data-image="productImages/women6_1473.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Ankara Off-Shoulder" data-price="260">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women7_1474.PNG" class="shop-product-image" alt="Ankara Off-Shoulder">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod07"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod07"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Ankara Off-Shoulder</h3>
+        <p class="shop-price">GHC 260</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod07" data-name="Ankara Off-Shoulder" data-price="260" data-image="productImages/women7_1474.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="African Peplum Top" data-price="180">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women8_1513.PNG" class="shop-product-image" alt="African Peplum Top">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod08"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod08"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">African Peplum Top</h3>
+        <p class="shop-price">GHC 180</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod08" data-name="African Peplum Top" data-price="180" data-image="productImages/women8_1513.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Dashiki Dress" data-price="240">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women9_1514.PNG" class="shop-product-image" alt="Dashiki Dress">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod09"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod09"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Dashiki Dress</h3>
+        <p class="shop-price">GHC 240</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod09" data-name="Dashiki Dress" data-price="240" data-image="productImages/women9_1514.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Kente Two-Piece" data-price="350">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women10_1515.PNG" class="shop-product-image" alt="Kente Two-Piece">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod10"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod10"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="product-badge badge-hot">Hot</span>
+        </div>
+        <h3 class="shop-product-name">Kente Two-Piece</h3>
+        <p class="shop-price">GHC 350</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod10" data-name="Kente Two-Piece" data-price="350" data-image="productImages/women10_1515.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Ankara Shirt Dress" data-price="230">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women11_1523.PNG" class="shop-product-image" alt="Ankara Shirt Dress">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod11"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod11"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Ankara Shirt Dress</h3>
+        <p class="shop-price">GHC 230</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod11" data-name="Ankara Shirt Dress" data-price="230" data-image="productImages/women11_1523.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="African Bodycon Dress" data-price="210">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women12_1521.PNG" class="shop-product-image" alt="African Bodycon Dress">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod12"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod12"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">African Bodycon Dress</h3>
+        <p class="shop-price">GHC 210</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod12" data-name="African Bodycon Dress" data-price="210" data-image="productImages/women12_1521.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Kente Evening Gown" data-price="450">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women13_1394.PNG" class="shop-product-image" alt="Kente Evening Gown">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod13"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod13"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="product-badge">New</span>
+        </div>
+        <h3 class="shop-product-name">Kente Evening Gown</h3>
+        <p class="shop-price">GHC 450</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod13" data-name="Kente Evening Gown" data-price="450" data-image="productImages/women13_1394.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Ankara Trouser Suit" data-price="380">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women14_1516 (1).PNG" class="shop-product-image" alt="Ankara Trouser Suit">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod14"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod14"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Ankara Trouser Suit</h3>
+        <p class="shop-price">GHC 380</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod14" data-name="Ankara Trouser Suit" data-price="380" data-image="productImages/women14_1516 (1).PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Batik Skirt Set" data-price="260">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women15_1522.PNG" class="shop-product-image" alt="Batik Skirt Set">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod15"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod15"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Batik Skirt Set</h3>
+        <p class="shop-price">GHC 260</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod15" data-name="Batik Skirt Set" data-price="260" data-image="productImages/women15_1522.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="African Print Blouse" data-price="150">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women16.153.JPG" class="shop-product-image" alt="African Print Blouse">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod16"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod16"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">African Print Blouse</h3>
+        <p class="shop-price">GHC 150</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod16" data-name="African Print Blouse" data-price="150" data-image="productImages/women16.153.JPG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Kente Wrap Skirt" data-price="190">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women17.png" class="shop-product-image" alt="Kente Wrap Skirt">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod17"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod17"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Kente Wrap Skirt</h3>
+        <p class="shop-price">GHC 190</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod17" data-name="Kente Wrap Skirt" data-price="190" data-image="productImages/women17.png">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Ankara Midi Skirt" data-price="170">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/womens18.png" class="shop-product-image" alt="Ankara Midi Skirt">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod18"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod18"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Ankara Midi Skirt</h3>
+        <p class="shop-price">GHC 170</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod18" data-name="Ankara Midi Skirt" data-price="170" data-image="productImages/womens18.png">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="GTP Print Dress" data-price="220">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/womens19.png" class="shop-product-image" alt="GTP Print Dress">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod19"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod19"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">GTP Print Dress</h3>
+        <p class="shop-price">GHC 220</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod19" data-name="GTP Print Dress" data-price="220" data-image="productImages/womens19.png">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="African Lace Dress" data-price="390">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/womens20.PNG" class="shop-product-image" alt="African Lace Dress">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod20"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod20"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="product-badge">New</span>
+        </div>
+        <h3 class="shop-product-name">African Lace Dress</h3>
+        <p class="shop-price">GHC 390</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod20" data-name="African Lace Dress" data-price="390" data-image="productImages/womens20.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Kente Trouser Set" data-price="340">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/mens21.PNG" class="shop-product-image" alt="Kente Trouser Set">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod21"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod21"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Kente Trouser Set</h3>
+        <p class="shop-price">GHC 340</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod21" data-name="Kente Trouser Set" data-price="340" data-image="productImages/mens21.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+       <div class="shop-product-card" data-name="African Bodycon Dress" data-price="210">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women12_1521.PNG" class="shop-product-image" alt="African Bodycon Dress">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod12"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod12"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">African Bodycon Dress</h3>
+        <p class="shop-price">GHC 210</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod12" data-name="African Bodycon Dress" data-price="210" data-image="productImages/women12_1521.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+       <div class="shop-product-card" data-name="African Bodycon Dress" data-price="210">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women12_1521.PNG" class="shop-product-image" alt="African Bodycon Dress">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod12"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod12"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">African Bodycon Dress</h3>
+        <p class="shop-price">GHC 210</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod12" data-name="African Bodycon Dress" data-price="210" data-image="productImages/women12_1521.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+       <div class="shop-product-card" data-name="African Bodycon Dress" data-price="210">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women12_1521.PNG" class="shop-product-image" alt="African Bodycon Dress">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="prod12"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="prod12"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">African Bodycon Dress</h3>
+        <p class="shop-price">GHC 210</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="prod12" data-name="African Bodycon Dress" data-price="210" data-image="productImages/women12_1521.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+    </div><!-- end product-grid -->
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+      <h2 class="section-title">What Our Customers Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"Absolutely love the outfit I bought from Kathy Designs. The quality is top-notch and delivery was quick!"</p>
+          <div class="testimonial-profile">
+            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Ama Koomson">
+            <span>Ama Koomson</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"I always shop here for special events. Their designs are always trending and stylish."</p>
+          <div class="testimonial-profile">
+            <img src="https://randomuser.me/api/portraits/men/35.jpg" alt="Kwame Appiah">
+            <span>Kwame Appiah</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"The kente fabric selection is unmatched. I got my wedding outfit here and everyone loved it!"</p>
+          <div class="testimonial-profile">
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Akosua Mensah">
+            <span>Akosua Mensah</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ===================== BRAND CAROUSEL ===================== -->
+<section class="brands-section">
+  <h2 class="section-title" style="text-align:center;margin-bottom:2rem;">Our Designers &amp; Partners</h2>
+  <div class="brands-track-wrap">
+    <div class="brands-track">
+      <img src="brands/armaniLogo.png" alt="Armani">
+      <img src="brands/balenciagaLogo.png" alt="Balenciaga">
+      <img src="brands/burberyLogo.jpg" alt="Burberry">
+      <img src="brands/chanleLogo.png" alt="Chanel">
+      <img src="brands/diorLogo.png" alt="Dior">
+      <img src="brands/fendiLogo.png" alt="Fendi">
+      <img src="brands/GTPlogo.jpg" alt="GTP">
+      <img src="brands/guccilogo.png" alt="Gucci">
+      <img src="brands/kenteLogo.png" alt="Kente">
+      <img src="brands/savilleLogo.png" alt="Saville">
+      <!-- Duplicated for seamless loop -->
+      <img src="brands/armaniLogo.png" alt="Armani">
+      <img src="brands/balenciagaLogo.png" alt="Balenciaga">
+      <img src="brands/burberyLogo.jpg" alt="Burberry">
+      <img src="brands/chanleLogo.png" alt="Chanel">
+      <img src="brands/diorLogo.png" alt="Dior">
+      <img src="brands/fendiLogo.png" alt="Fendi">
+      <img src="brands/GTPlogo.jpg" alt="GTP">
+      <img src="brands/guccilogo.png" alt="Gucci">
+      <img src="brands/kenteLogo.png" alt="Kente">
+      <img src="brands/savilleLogo.png" alt="Saville">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-col">
+      <h4>Store Hours</h4>
+      <ul>
+        <li>Mon–Fri: 9AM – 6PM</li>
+        <li>Saturday: 10AM – 4PM</li>
+        <li>Sunday: Closed</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><i class="fas fa-phone"></i> +233 244 510 810</li>
+        <li><i class="fas fa-phone"></i> +233 244 506 796</li>
+        <li><i class="fas fa-envelope"></i> kathydesigns@gmail.com</li>
+        <li><i class="fas fa-map-marker-alt"></i> 40 SOS Street, Tema</li>
+        <li>
+          <a href="https://wa.me/233244510810" class="whatsapp-link" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="wishlist.html">My Wishlist</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns &amp; Exchanges</a></li>
+        
+        <li><a href="kathy-order.html">Track My Order</a></li>
+        <li><a href="kathy-admin/dashboard.html">Admin Panel</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+      </div>
+      <div class="newsletter-wrap">
+        <p>Get exclusive deals in your inbox</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Your email address" id="newsletterEmail">
+          <button id="newsletterBtn">Subscribe</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Kathy Designs. All rights reserved.</p>
+    <p>Built by <strong>KyKal Technologies</strong></p>
+  </div>
+</footer>
+
+<!-- ===================== QUICK VIEW PANEL ===================== -->
+<div class="qe-quickview-overlay"></div>
+<div class="qe-quickview-panel">
+  <button class="qe-close-btn" aria-label="Close">&times;</button>
+  <img src="" alt="" class="qe-quickview-image">
+  <h2 class="qe-quickview-title"></h2>
+  <p class="qe-quickview-price"></p>
+  <div class="qe-quickview-section">
+    <h4>Available Sizes</h4>
+    <div class="qe-sizes">
+      <span>XS</span><span>S</span><span>M</span><span>L</span><span>XL</span><span>XXL</span>
+    </div>
+  </div>
+  <div class="qe-quickview-section">
+    <h4>Available Colors</h4>
+    <div class="qe-colors">
+      <span style="background:#e63946;" title="Red"></span>
+      <span style="background:#457b9d;" title="Blue"></span>
+      <span style="background:#1d1d1d;" title="Black"></span>
+      <span style="background:#f4a261;" title="Orange"></span>
+    </div>
+  </div>
+  <button class="shop-add-to-cart qe-add-cart-btn">
+    <i class="fas fa-shopping-bag"></i> Add to Cart
+  </button>
+</div>
+
+<!-- Back to top -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<script src="products-data.js"></script>
+<script src="js/cart.js"></script>
+<script src="script.js"></script>
+<script src="search.js"></script>
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/233244510810" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+  <span class="whatsapp-tooltip">Chat with us</span>
+</a>
+
+</body>
+</html>

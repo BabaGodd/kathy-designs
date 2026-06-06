@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart – Kathy Designs</title>
+  <meta name="description" content="Review your cart and proceed to checkout at Kathy Designs.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+
+    <a href="index.html" class="site-logo">
+      <div class="logo-circle">
+        <img src="banners/headers/1.jpg" alt="Kathy Designs">
+      </div>
+      <span class="logo-text">Kathy Designs</span>
+    </a>
+
+    <nav class="site-nav" id="siteNav">
+      <ul>
+        <li><a href="index.html">Women</a></li>
+        <li><a href="men.html">Men</a></li>
+        <li><a href="children.html">Children</a></li>
+        <li><a href="bags-shoes.html">Bags &amp; Shoes</a></li>
+        <li><a href="fabrics.html">Fabrics</a></li>
+        <li><a href="accessories.html">Accessories</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a href="cart.html" class="cart-link" aria-label="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-badge" id="cart-count">0</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<div class="toast-notification" id="notification"></div>
+
+<!-- ===================== CART PAGE ===================== -->
+<main class="cart-page-main">
+
+  <!-- Page Header -->
+  <div class="cart-page-header">
+    <h1 class="cart-page-title">Your Shopping Cart</h1>
+    <a href="index.html" class="cart-continue-link">
+      <i class="fas fa-arrow-left"></i> Continue Shopping
+    </a>
+  </div>
+
+  <!-- Progress Steps -->
+  <div class="cart-steps">
+    <div class="cart-step active">
+      <div class="step-circle"><i class="fas fa-shopping-bag"></i></div>
+      <span>Cart</span>
+    </div>
+    <div class="step-line"></div>
+    <div class="cart-step">
+      <div class="step-circle"><i class="fas fa-user"></i></div>
+      <span>Details</span>
+    </div>
+    <div class="step-line"></div>
+    <div class="cart-step">
+      <div class="step-circle"><i class="fas fa-check"></i></div>
+      <span>Confirm</span>
+    </div>
+  </div>
+
+  <!-- Cart Layout -->
+  <div class="cart-layout">
+
+    <!-- Cart Items -->
+    <div class="cart-items-col">
+      <div id="kathy-cart-items" class="kathy-cart-items"></div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="cart-summary-col">
+      <div class="cart-summary-box">
+        <h2 class="cart-summary-title">Order Summary</h2>
+
+        <div class="cart-summary-row">
+          <span>Subtotal</span>
+          <span>GHC <span id="kathy-cart-subtotal">0.00</span></span>
+        </div>
+        <div class="cart-summary-row">
+          <span>Delivery Fee</span>
+          <span id="cart-delivery-fee">GHC 20.00</span>
+        </div>
+        <div class="cart-summary-row cart-summary-total">
+          <span>Total</span>
+          <span>GHC <span id="kathy-cart-total">0.00</span></span>
+        </div>
+
+        <!-- Promo Code -->
+        <div class="cart-promo">
+          <input type="text" id="promoInput" placeholder="Promo code (optional)">
+          <button id="promoBtn">Apply</button>
+        </div>
+
+        <!-- Action Buttons -->
+        <button id="kathy-checkout-btn" class="cart-checkout-btn">
+          <i class="fas fa-lock"></i> Proceed to Checkout
+        </button>
+        <button id="kathy-clear-cart" class="cart-clear-btn">
+          <i class="fas fa-trash"></i> Clear Cart
+        </button>
+
+        <!-- Trust Badges -->
+        <div class="cart-trust">
+          <div class="trust-item">
+            <i class="fas fa-shield-alt"></i>
+            <span>Secure Checkout</span>
+          </div>
+          <div class="trust-item">
+            <i class="fas fa-undo"></i>
+            <span>Easy Returns</span>
+          </div>
+          <div class="trust-item">
+            <i class="fas fa-truck"></i>
+            <span>Fast Delivery</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- You May Also Like -->
+  <div class="cart-also-like">
+    <h2 class="section-title">You May Also Like</h2>
+    <div class="cart-suggestions">
+
+      <div class="shop-product-card" data-name="Kente Clutch Bag" data-price="250">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/bags10.PNG" class="shop-product-image" alt="Kente Clutch Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="sugg01"><i class="fas fa-heart"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Kente Clutch Bag</h3>
+        <p class="shop-price">GHC 250</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="sugg01" data-name="Kente Clutch Bag" data-price="250" data-image="productImages/bags10.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Ankara Wrap Dress" data-price="280">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/women2_1192.PNG" class="shop-product-image" alt="Ankara Wrap Dress">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="sugg02"><i class="fas fa-heart"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Ankara Wrap Dress</h3>
+        <p class="shop-price">GHC 280</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="sugg02" data-name="Ankara Wrap Dress" data-price="280" data-image="productImages/women2_1192.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Beaded Necklace" data-price="85">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/access1.PNG" class="shop-product-image" alt="Beaded Necklace">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="sugg03"><i class="fas fa-heart"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Beaded Necklace</h3>
+        <p class="shop-price">GHC 85</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="sugg03" data-name="Beaded Necklace" data-price="85" data-image="productImages/access1.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Ankara Senator Suit" data-price="420">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/mens1.PNG" class="shop-product-image" alt="Ankara Senator Suit">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="sugg04"><i class="fas fa-heart"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Ankara Senator Suit</h3>
+        <p class="shop-price">GHC 420</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="sugg04" data-name="Ankara Senator Suit" data-price="420" data-image="productImages/mens1.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- ===================== BRAND CAROUSEL ===================== -->
+<section class="brands-section">
+  <h2 class="section-title" style="text-align:center;margin-bottom:2rem;">Our Designers &amp; Partners</h2>
+  <div class="brands-track-wrap">
+    <div class="brands-track">
+      <img src="brands/armaniLogo.png" alt="Armani">
+      <img src="brands/balenciagaLogo.png" alt="Balenciaga">
+      <img src="brands/burberyLogo.jpg" alt="Burberry">
+      <img src="brands/chanleLogo.png" alt="Chanel">
+      <img src="brands/diorLogo.png" alt="Dior">
+      <img src="brands/fendiLogo.png" alt="Fendi">
+      <img src="brands/GTPlogo.jpg" alt="GTP">
+      <img src="brands/guccilogo.png" alt="Gucci">
+      <img src="brands/kenteLogo.png" alt="Kente">
+      <img src="brands/savilleLogo.png" alt="Saville">
+      <img src="brands/armaniLogo.png" alt="Armani">
+      <img src="brands/balenciagaLogo.png" alt="Balenciaga">
+      <img src="brands/burberyLogo.jpg" alt="Burberry">
+      <img src="brands/chanleLogo.png" alt="Chanel">
+      <img src="brands/diorLogo.png" alt="Dior">
+      <img src="brands/fendiLogo.png" alt="Fendi">
+      <img src="brands/GTPlogo.jpg" alt="GTP">
+      <img src="brands/guccilogo.png" alt="Gucci">
+      <img src="brands/kenteLogo.png" alt="Kente">
+      <img src="brands/savilleLogo.png" alt="Saville">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>Store Hours</h4>
+      <ul>
+        <li>Mon–Fri: 9AM – 6PM</li>
+        <li>Saturday: 10AM – 4PM</li>
+        <li>Sunday: Closed</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><i class="fas fa-phone"></i> +233 244 510 810</li>
+        <li><i class="fas fa-phone"></i> +233 244 506 796</li>
+        <li><i class="fas fa-envelope"></i> kathydesigns@gmail.com</li>
+        <li><i class="fas fa-map-marker-alt"></i> 40 SOS Street, Tema</li>
+        <li>
+          <a href="https://wa.me/233244510810" class="whatsapp-link" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns &amp; Exchanges</a></li>
+        
+        <li><a href="kathy-order.html">Track My Order</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+      </div>
+      <div class="newsletter-wrap">
+        <p>Get exclusive deals in your inbox</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Your email address" id="newsletterEmail">
+          <button id="newsletterBtn">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Kathy Designs. All rights reserved.</p>
+    <p>Built by <strong>KyKal Technologies</strong></p>
+  </div>
+</footer>
+
+<script src="js/cart.js"></script>
+<script src="cart-page.js"></script>
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/233244510810" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+  <span class="whatsapp-tooltip">Chat with us</span>
+</a>
+
+</body>
+</html>

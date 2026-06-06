@@ -1,0 +1,643 @@
+/* =============================================
+   SETTINGS PAGE — settings.css
+   Kathy Designs Admin Panel
+   Accent: #FF8C00 | Sidebar: #1e1e2d
+   ============================================= */
+
+/* ---------- Page Header ---------- */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.page-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e1e2d;
+  margin: 0;
+}
+
+.page-subtitle {
+  color: #888;
+  font-size: 0.92rem;
+  margin: 0.2rem 0 0;
+}
+
+/* ---------- Settings Layout ---------- */
+.settings-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* ---------- Left Nav ---------- */
+.settings-nav {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 1rem;
+}
+
+.settings-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.1rem;
+  background: none;
+  border: none;
+  border-left: 3px solid transparent;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  width: 100%;
+}
+
+.settings-nav-btn:hover {
+  background: #fff8f0;
+  color: #FF8C00;
+}
+
+.settings-nav-btn.active {
+  background: #fff3e0;
+  color: #FF8C00;
+  border-left-color: #FF8C00;
+}
+
+.settings-nav-btn i {
+  width: 16px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+/* Danger nav button */
+.settings-nav-btn[data-section="danger"] {
+  color: #e53935;
+  margin-top: auto;
+  border-top: 1px solid #f5f5f5;
+}
+
+.settings-nav-btn[data-section="danger"]:hover,
+.settings-nav-btn[data-section="danger"].active {
+  background: #fce4ec;
+  color: #c62828;
+  border-left-color: #e53935;
+}
+
+/* ---------- Settings Content ---------- */
+.settings-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ---------- Each Section ---------- */
+.settings-section {
+  display: none;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 1.8rem;
+}
+
+.settings-section.active {
+  display: block;
+}
+
+.section-header {
+  margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1e1e2d;
+  margin: 0 0 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-header h2 i {
+  color: #FF8C00;
+}
+
+.section-header h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e1e2d;
+  margin: 0 0 0.3rem;
+}
+
+.section-header p {
+  font-size: 0.86rem;
+  color: #aaa;
+  margin: 0;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #f0f0f0;
+  margin: 1.5rem 0;
+}
+
+/* ---------- Form Elements ---------- */
+.form-group {
+  margin-bottom: 1.1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 0.4rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  color: #333;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #FF8C00;
+  box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.08);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Input with prefix (@) */
+.input-prefix-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.input-prefix-wrap:focus-within {
+  border-color: #FF8C00;
+  box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.08);
+}
+
+.input-prefix {
+  padding: 0.6rem 0.8rem;
+  background: #f5f5f5;
+  color: #999;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-right: 1px solid #e0e0e0;
+  flex-shrink: 0;
+}
+
+.input-prefix-wrap input {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  flex: 1;
+}
+
+.input-prefix-wrap input:focus {
+  border: none;
+  box-shadow: none;
+}
+
+/* Password toggle */
+.input-password-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.input-password-wrap:focus-within {
+  border-color: #FF8C00;
+  box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.08);
+}
+
+.input-password-wrap input {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  flex: 1;
+}
+
+.input-password-wrap input:focus {
+  border: none;
+  box-shadow: none;
+}
+
+.toggle-password {
+  background: none;
+  border: none;
+  padding: 0 0.8rem;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 0.88rem;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.toggle-password:hover {
+  color: #FF8C00;
+}
+
+/* ---------- Admin Avatar ---------- */
+.avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #fafafa;
+  border-radius: 10px;
+  border: 1px solid #f0f0f0;
+}
+
+.admin-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #FF8C00;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatar-name {
+  font-weight: 700;
+  color: #1e1e2d;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.avatar-role {
+  font-size: 0.82rem;
+  color: #aaa;
+  margin: 0.1rem 0 0;
+}
+
+/* ---------- Save Button ---------- */
+.form-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-save {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #FF8C00;
+  color: white;
+  border: none;
+  padding: 0.65rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-save:hover {
+  background: #e07b00;
+}
+
+/* ---------- Toggle Switches (Notifications) ---------- */
+.toggle-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.toggle-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid #f5f5f5;
+  gap: 1rem;
+}
+
+.toggle-item:last-child {
+  border-bottom: none;
+}
+
+.toggle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.toggle-label {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #1e1e2d;
+}
+
+.toggle-desc {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #ddd;
+  border-radius: 24px;
+  transition: background 0.2s;
+}
+
+.slider::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  top: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.switch input:checked + .slider {
+  background: #FF8C00;
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(20px);
+}
+
+/* ---------- Danger Zone ---------- */
+.danger-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.danger-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.2rem;
+  background: #fff5f5;
+  border: 1px solid #fecdd3;
+  border-radius: 10px;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.danger-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+}
+
+.danger-card-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #b91c1c;
+}
+
+.danger-card-desc {
+  font-size: 0.8rem;
+  color: #999;
+}
+
+.btn-danger {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  color: #e53935;
+  border: 1px solid #e53935;
+  padding: 0.5rem 1rem;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-danger:hover {
+  background: #e53935;
+  color: white;
+}
+
+.btn-danger-full {
+  background: #e53935;
+  color: white;
+}
+
+.btn-danger-full:hover {
+  background: #c62828;
+  border-color: #c62828;
+}
+
+/* ---------- Confirm Modal ---------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-box {
+  background: #fff;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+
+.confirm-box {
+  text-align: center;
+  padding: 2.2rem 2rem;
+}
+
+.confirm-icon {
+  font-size: 2.5rem;
+  color: #f59e0b;
+  margin-bottom: 0.8rem;
+}
+
+.confirm-box h3 {
+  font-size: 1.15rem;
+  color: #1e1e2d;
+  margin: 0 0 0.5rem;
+}
+
+.confirm-box p {
+  font-size: 0.88rem;
+  color: #888;
+  margin-bottom: 1.5rem;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.btn-cancel {
+  background: #f5f5f5;
+  color: #555;
+  border: none;
+  padding: 0.55rem 1.3rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-cancel:hover {
+  background: #e8e8e8;
+}
+
+.btn-confirm-delete {
+  background: #e53935;
+  color: white;
+  border: none;
+  padding: 0.55rem 1.3rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-confirm-delete:hover {
+  background: #c62828;
+}
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed;
+  bottom: 1.8rem;
+  right: 1.8rem;
+  background: #1e1e2d;
+  color: white;
+  padding: 0.75rem 1.4rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.toast.show    { opacity: 1; transform: translateY(0); }
+.toast.success { border-left: 4px solid #4caf50; }
+.toast.error   { border-left: 4px solid #e53935; }
+.toast.info    { border-left: 4px solid #FF8C00; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .settings-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: static;
+  }
+
+  .settings-nav-btn {
+    flex: 1;
+    min-width: 120px;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    justify-content: center;
+    font-size: 0.8rem;
+  }
+
+  .settings-nav-btn.active {
+    border-left: none;
+    border-bottom-color: #FF8C00;
+  }
+
+  .settings-nav-btn[data-section="danger"] {
+    border-top: none;
+    margin-top: 0;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .danger-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-danger {
+    width: 100%;
+    justify-content: center;
+  }
+}

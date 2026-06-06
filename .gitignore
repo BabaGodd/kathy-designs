@@ -1,0 +1,9 @@
+# Windows system files
+Thumbs.db
+Desktop.ini
+
+# OS X system files
+.DS_Store
+
+# Logs and local data
+*.log

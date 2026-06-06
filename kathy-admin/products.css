@@ -1,0 +1,522 @@
+/* ======== General Layout ======== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background-color: #f8f9fc;
+  color: #333;
+  display: flex;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 220px;
+  background: #1f2937;
+  color: #fff;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.admin-logo {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+
+.admin-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-sidebar li {
+  margin-bottom: 15px;
+}
+
+.admin-sidebar a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-sidebar a:hover,
+.admin-sidebar .active a {
+  color: #fff;
+}
+
+/* ======== Main Area ======== */
+.admin-main {
+  flex: 1;
+  padding: 20px;
+}
+
+.admin-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.admin-header h1 {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.actions input,
+.actions select,
+.actions button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+}
+
+.actions input {
+  width: 200px;
+}
+
+.actions button {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.actions button:hover {
+  background: #1d4ed8;
+}
+
+/* ======== Category Titles ======== */
+.category-title {
+  font-size: 1.3rem;
+  color: #111827;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 5px;
+}
+
+/* ======== Product Grid ======== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+  padding: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
+}
+
+.product-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.product-card h3 {
+  font-size: 1rem;
+  margin: 0 0 5px;
+  color: #111827;
+}
+
+.price {
+  color: #2563eb;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.stock {
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.in-stock {
+  color: #059669;
+}
+
+.low-stock {
+  color: #d97706;
+}
+
+.out-of-stock {
+  color: #dc2626;
+}
+
+/* ======== Card Actions ======== */
+.card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.card-actions button {
+  border: none;
+  padding: 6px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.card-actions .edit {
+  background: #10b981;
+  color: #fff;
+}
+
+.card-actions .edit:hover {
+  background: #059669;
+}
+
+.card-actions .delete {
+  background: #ef4444;
+  color: #fff;
+}
+
+.card-actions .delete:hover {
+  background: #dc2626;
+}
+
+/* ======== Responsive ======== */
+@media (max-width: 768px) {
+  .admin-sidebar {
+    display: none; /* Can be toggled with JS later */
+  }
+  
+  .admin-main {
+    padding: 10px;
+  }
+
+  .actions input {
+    width: 100%;
+  }
+}
+
+/* ======== General Layout ======== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background-color: #f8f9fc;
+  color: #333;
+  display: flex;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 220px;
+  background: #1f2937;
+  color: #fff;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.admin-logo {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+
+.admin-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-sidebar li {
+  margin-bottom: 15px;
+}
+
+.admin-sidebar a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-sidebar a:hover,
+.admin-sidebar .active a {
+  color: #fff;
+}
+
+/* ======== Main Area ======== */
+.admin-main {
+  flex: 1;
+  padding: 20px;
+}
+
+.admin-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.admin-header h1 {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.actions input,
+.actions select,
+.actions button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+}
+
+.actions input {
+  width: 200px;
+}
+
+.actions button {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.actions button:hover {
+  background: #1d4ed8;
+}
+
+/* ======== Category Titles ======== */
+.category-title {
+  font-size: 1.3rem;
+  color: #111827;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 5px;
+}
+
+/* ======== Product Grid ======== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+  padding: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
+}
+
+.product-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.product-card h3 {
+  font-size: 1rem;
+  margin: 0 0 5px;
+  color: #111827;
+}
+
+.price {
+  color: #2563eb;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.stock {
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.in-stock {
+  color: #059669;
+}
+
+.low-stock {
+  color: #d97706;
+}
+
+.out-of-stock {
+  color: #dc2626;
+}
+
+/* ======== Card Actions ======== */
+.card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.card-actions button {
+  border: none;
+  padding: 6px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.card-actions .edit {
+  background: #10b981;
+  color: #fff;
+}
+
+.card-actions .edit:hover {
+  background: #059669;
+}
+
+.card-actions .delete {
+  background: #ef4444;
+  color: #fff;
+}
+
+.card-actions .delete:hover {
+  background: #dc2626;
+}
+
+/* ======== Responsive ======== */
+@media (max-width: 768px) {
+  .admin-sidebar {
+    display: none; /* Can be toggled with JS later */
+  }
+  
+  .admin-main {
+    padding: 10px;
+  }
+
+  .actions input {
+    width: 100%;
+  }
+}
+
+
+
+
+/* ===== MODAL STYLING ===== */
+.modal {
+  display: none; /* hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  overflow: auto;
+}
+
+.modal-content {
+  background: #fff;
+  margin: 5% auto;
+  padding: 20px;
+  width: 400px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.close-btn {
+  float: right;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #888;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+#productForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#productForm label {
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+#productForm input,
+#productForm select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.save-btn {
+  margin-top: 15px;
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background: #0056b3;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+
+.kathy-quickview-thumbnails {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.kathy-quickview-thumb {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 5px;
+}
+
+.kathy-quickview-thumb:hover {
+  border: 2px solid #2563eb; /* match your blue accent */
+}
+
+
+@media(max-width: 768px) {
+  .kathy-quickview-main-image img {
+    width: 100%;
+  }
+
+  .kathy-quickview-thumbnails {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kathy Designs – Admin Customers</title>
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="customers.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="admin-sidebar">
+  <div class="admin-logo">
+    <span class="logo-icon">✦</span>
+    <span>Kathy Admin</span>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+      <li><a href="products.html"><i class="fas fa-box"></i> Products</a></li>
+      <li><a href="orders.html"><i class="fas fa-shopping-bag"></i> Orders</a></li>
+      <li><a href="messages.html"><i class="fas fa-envelope"></i> Messages</a></li>
+      <li class="active"><a href="customers.html"><i class="fas fa-users"></i> Customers</a></li>
+      <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<!-- Main Content -->
+<main class="admin-main">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Customers</h1>
+      <p class="page-subtitle">View and manage all customers derived from order history</p>
+    </div>
+    <button class="btn-export" id="exportBtn">
+      <i class="fas fa-download"></i> Export CSV
+    </button>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="customers-summary">
+    <div class="summary-card">
+      <div class="summary-icon icon-total"><i class="fas fa-users"></i></div>
+      <div class="summary-info">
+        <span class="summary-label">Total Customers</span>
+        <span class="summary-value" id="statTotal">0</span>
+      </div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-icon icon-orders"><i class="fas fa-shopping-bag"></i></div>
+      <div class="summary-info">
+        <span class="summary-label">Total Orders</span>
+        <span class="summary-value" id="statOrders">0</span>
+      </div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-icon icon-revenue"><i class="fas fa-coins"></i></div>
+      <div class="summary-info">
+        <span class="summary-label">Total Revenue</span>
+        <span class="summary-value" id="statRevenue">GHC 0</span>
+      </div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-icon icon-top"><i class="fas fa-star"></i></div>
+      <div class="summary-info">
+        <span class="summary-label">Top Spender</span>
+        <span class="summary-value" id="statTopSpender">—</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="customers-controls">
+    <div class="search-wrap">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" id="searchInput" placeholder="Search by name, email or phone…" />
+    </div>
+    <div class="filter-group">
+      <select id="sortFilter">
+        <option value="name">Sort: Name A–Z</option>
+        <option value="orders">Sort: Most Orders</option>
+        <option value="spent">Sort: Highest Spend</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Results Count -->
+  <p class="results-count"><span id="resultsCount">0</span> customers found</p>
+
+  <!-- Table -->
+  <div class="table-wrapper">
+    <table id="customersTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Customer</th>
+          <th>Phone</th>
+          <th>Location</th>
+          <th>Total Orders</th>
+          <th>Total Spent</th>
+          <th>Last Order</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="customersTableBody"></tbody>
+    </table>
+
+    <!-- Empty State -->
+    <div class="empty-state" id="emptyState" style="display:none;">
+      <div class="empty-icon"><i class="fas fa-users-slash"></i></div>
+      <h3>No customers found</h3>
+      <p>Customers are built from order data. Once orders come in, they'll appear here.</p>
+    </div>
+  </div>
+
+</main>
+
+<!-- ===================== CUSTOMER PROFILE MODAL ===================== -->
+<div id="customerModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <div class="modal-customer-avatar" id="modalAvatar"></div>
+      <div>
+        <h2 class="modal-title" id="modalCustomerName"></h2>
+        <p class="modal-subtitle" id="modalCustomerEmail"></p>
+      </div>
+      <button class="modal-close-btn" id="closeCustomerModal"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- Customer Info -->
+      <div class="modal-section">
+        <h3 class="modal-section-title"><i class="fas fa-user"></i> Contact Details</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">Phone</span>
+            <span class="info-value" id="modalPhone"></span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Email</span>
+            <span class="info-value" id="modalEmail"></span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Location</span>
+            <span class="info-value" id="modalLocation"></span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Customer Since</span>
+            <span class="info-value" id="modalSince"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="modal-section">
+        <h3 class="modal-section-title"><i class="fas fa-chart-bar"></i> Purchase Summary</h3>
+        <div class="modal-stats-row">
+          <div class="modal-stat">
+            <span class="modal-stat-value" id="modalTotalOrders">0</span>
+            <span class="modal-stat-label">Orders</span>
+          </div>
+          <div class="modal-stat">
+            <span class="modal-stat-value" id="modalTotalSpent">GHC 0</span>
+            <span class="modal-stat-label">Total Spent</span>
+          </div>
+          <div class="modal-stat">
+            <span class="modal-stat-value" id="modalAvgOrder">GHC 0</span>
+            <span class="modal-stat-label">Avg. Order</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order History -->
+      <div class="modal-section">
+        <h3 class="modal-section-title"><i class="fas fa-list"></i> Order History</h3>
+        <div class="modal-orders-list" id="modalOrdersList"></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="customers.js"></script>
+</body>
+</html>

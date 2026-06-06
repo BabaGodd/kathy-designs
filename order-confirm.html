@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmed – Kathy Designs</title>
+  <meta name="description" content="Your order has been placed successfully at Kathy Designs.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#DC143C">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<link rel="icon" type="image/png" href="/icons/icon-32.png">
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+
+    <a href="index.html" class="site-logo">
+      <div class="logo-circle">
+        <img src="banners/headers/1.jpg" alt="Kathy Designs">
+      </div>
+      <span class="logo-text">Kathy Designs</span>
+    </a>
+
+    <nav class="site-nav" id="siteNav">
+      <ul>
+        <li><a href="index.html">Women</a></li>
+        <li><a href="men.html">Men</a></li>
+        <li><a href="children.html">Children</a></li>
+        <li><a href="bags-shoes.html">Bags &amp; Shoes</a></li>
+        <li><a href="fabrics.html">Fabrics</a></li>
+        <li><a href="accessories.html">Accessories</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a href="cart.html" class="cart-link" aria-label="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-badge" id="cart-count">0</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<!-- ===================== CONFIRMATION PAGE ===================== -->
+<main class="confirm-main">
+
+  <!-- Progress Steps — all complete -->
+  <div class="cart-steps" style="margin-bottom:2.5rem;">
+    <div class="cart-step active">
+      <div class="step-circle"><i class="fas fa-shopping-bag"></i></div>
+      <span>Cart</span>
+    </div>
+    <div class="step-line active-line"></div>
+    <div class="cart-step active">
+      <div class="step-circle"><i class="fas fa-user"></i></div>
+      <span>Details</span>
+    </div>
+    <div class="step-line active-line"></div>
+    <div class="cart-step active">
+      <div class="step-circle"><i class="fas fa-check"></i></div>
+      <span>Confirmed</span>
+    </div>
+  </div>
+
+  <!-- Success Banner -->
+  <div class="confirm-banner">
+    <div class="confirm-check-circle">
+      <i class="fas fa-check"></i>
+    </div>
+    <h1 class="confirm-title">Order Placed Successfully!</h1>
+    <p class="confirm-subtitle">Thank you for shopping at Kathy Designs. We've received your order and will be in touch shortly.</p>
+    <div class="confirm-order-id">
+      Order ID: <strong id="kathy-order-id"></strong>
+    </div>
+  </div>
+
+  <!-- Confirmation Details -->
+  <div class="confirm-layout">
+
+    <!-- Customer Info -->
+    <div class="confirm-card">
+      <h2 class="confirm-card-title">
+        <i class="fas fa-user"></i> Customer Details
+      </h2>
+      <div class="confirm-info-grid">
+        <div class="confirm-info-item">
+          <span class="confirm-info-label">Name</span>
+          <span class="confirm-info-value" id="kathy-customer-name"></span>
+        </div>
+        <div class="confirm-info-item">
+          <span class="confirm-info-label">Email</span>
+          <span class="confirm-info-value" id="kathy-customer-email"></span>
+        </div>
+        <div class="confirm-info-item">
+          <span class="confirm-info-label">Phone</span>
+          <span class="confirm-info-value" id="kathy-customer-phone"></span>
+        </div>
+        <div class="confirm-info-item">
+          <span class="confirm-info-label">Address</span>
+          <span class="confirm-info-value" id="kathy-customer-address"></span>
+        </div>
+        <div class="confirm-info-item">
+          <span class="confirm-info-label">Payment</span>
+          <span class="confirm-info-value" id="kathy-payment-method"></span>
+        </div>
+        <div class="confirm-info-item">
+          <span class="confirm-info-label">Delivery</span>
+          <span class="confirm-info-value" id="kathy-delivery-method"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Items -->
+    <div class="confirm-card">
+      <h2 class="confirm-card-title">
+        <i class="fas fa-list"></i> Items Ordered
+      </h2>
+      <ul id="kathy-order-items" class="confirm-items-list"></ul>
+
+      <div class="confirm-totals">
+        <div class="confirm-total-row">
+          <span>Subtotal</span>
+          <span>GHC <span id="kathy-order-subtotal">0.00</span></span>
+        </div>
+        <div class="confirm-total-row">
+          <span>Delivery Fee</span>
+          <span id="kathy-delivery-fee">GHC 0.00</span>
+        </div>
+        <div class="confirm-total-row confirm-grand-total">
+          <span>Total Paid</span>
+          <span>GHC <span id="kathy-order-total"></span></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- What Happens Next -->
+  <div class="confirm-next-steps">
+    <h2 class="confirm-next-title">What Happens Next?</h2>
+    <div class="confirm-steps-grid">
+      <div class="confirm-next-card">
+        <div class="confirm-next-icon"><i class="fas fa-phone"></i></div>
+        <h3>We'll Call You</h3>
+        <p>Our team will call you shortly to confirm your order details and arrange delivery or pickup.</p>
+      </div>
+      <div class="confirm-next-card">
+        <div class="confirm-next-icon"><i class="fas fa-box"></i></div>
+        <h3>Order Prepared</h3>
+        <p>Your items will be carefully packaged and prepared for delivery or store pickup.</p>
+      </div>
+      <div class="confirm-next-card">
+        <div class="confirm-next-icon"><i class="fas fa-truck"></i></div>
+        <h3>Delivered to You</h3>
+        <p>Your order will be delivered to your address or ready for pickup at our Tema store.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="confirm-actions">
+    <a href="index.html" class="confirm-home-btn">
+      <i class="fas fa-shopping-bag"></i> Continue Shopping
+    </a>
+    <a href="https://wa.me/233244510810" target="_blank" class="confirm-whatsapp-btn">
+      <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+    </a>
+  </div>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>Store Hours</h4>
+      <ul>
+        <li>Mon–Fri: 9AM – 6PM</li>
+        <li>Saturday: 10AM – 4PM</li>
+        <li>Sunday: Closed</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><i class="fas fa-phone"></i> +233 244 510 810</li>
+        <li><i class="fas fa-phone"></i> +233 244 506 796</li>
+        <li><i class="fas fa-envelope"></i> kathydesigns@gmail.com</li>
+        <li><i class="fas fa-map-marker-alt"></i> 40 SOS Street, Tema</li>
+        <li>
+          <a href="https://wa.me/233244510810" class="whatsapp-link" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns &amp; Exchanges</a></li>
+        
+        <li><a href="kathy-order.html">Track My Order</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+      </div>
+      <div class="newsletter-wrap">
+        <p>Get exclusive deals in your inbox</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Your email address" id="newsletterEmail">
+          <button id="newsletterBtn">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Kathy Designs. All rights reserved.</p>
+    <p>Built by <strong>KyKal Technologies</strong></p>
+  </div>
+</footer>
+
+<script src="order-confirm.js"></script>
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/233244510810" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+  <span class="whatsapp-tooltip">Chat with us</span>
+</a>
+
+</body>
+</html>

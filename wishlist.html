@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Wishlist – Kathy Designs</title>
+  <meta name="description" content="Your saved wishlist items at Kathy Designs.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#DC143C">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<link rel="icon" type="image/png" href="/icons/icon-32.png">
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+
+    <a href="index.html" class="site-logo">
+      <div class="logo-circle">
+        <img src="banners/headers/1.jpg" alt="Kathy Designs">
+      </div>
+      <span class="logo-text">Kathy Designs</span>
+    </a>
+
+    <nav class="site-nav" id="siteNav">
+      <ul>
+        <li><a href="index.html">Women</a></li>
+        <li><a href="men.html">Men</a></li>
+        <li><a href="children.html">Children</a></li>
+        <li><a href="bags-shoes.html">Bags &amp; Shoes</a></li>
+        <li><a href="fabrics.html">Fabrics</a></li>
+        <li><a href="accessories.html">Accessories</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a href="cart.html" class="cart-link" aria-label="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-badge" id="cart-count">0</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<div class="toast-notification" id="notification"></div>
+
+<!-- ===================== WISHLIST PAGE ===================== -->
+<main class="wishlist-main">
+
+  <!-- Page Header -->
+  <div class="wishlist-page-header">
+    <div>
+      <h1 class="wishlist-title">My Wishlist <span class="wishlist-count-badge" id="wishlistCount">0</span></h1>
+      <p class="wishlist-subtitle">Items you've saved for later</p>
+    </div>
+    <div class="wishlist-header-actions">
+      <button class="wishlist-clear-btn" id="clearWishlistBtn">
+        <i class="fas fa-trash"></i> Clear All
+      </button>
+      <a href="index.html" class="wishlist-shop-btn">
+        <i class="fas fa-shopping-bag"></i> Continue Shopping
+      </a>
+    </div>
+  </div>
+
+  <!-- Wishlist Grid -->
+  <div class="wishlist-grid" id="wishlistGrid"></div>
+
+  <!-- Empty State -->
+  <div class="wishlist-empty" id="wishlistEmpty" style="display:none;">
+    <div class="wishlist-empty-icon"><i class="fas fa-heart"></i></div>
+    <h2>Your wishlist is empty</h2>
+    <p>Browse our collections and tap the <i class="fas fa-heart" style="color:#FF8C00;"></i> icon on any product to save it here.</p>
+    <div class="wishlist-empty-links">
+      <a href="index.html">Women</a>
+      <a href="men.html">Men</a>
+      <a href="children.html">Children</a>
+      <a href="bags-shoes.html">Bags &amp; Shoes</a>
+      <a href="fabrics.html">Fabrics</a>
+      <a href="accessories.html">Accessories</a>
+    </div>
+  </div>
+
+  <!-- Add All to Cart -->
+  <div class="wishlist-footer" id="wishlistFooter" style="display:none;">
+    <button class="wishlist-add-all-btn" id="addAllToCartBtn">
+      <i class="fas fa-shopping-bag"></i> Add All to Cart
+    </button>
+  </div>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>Store Hours</h4>
+      <ul>
+        <li>Mon–Fri: 9AM – 6PM</li>
+        <li>Saturday: 10AM – 4PM</li>
+        <li>Sunday: Closed</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><i class="fas fa-phone"></i> +233 244 510 810</li>
+        <li><i class="fas fa-phone"></i> +233 244 506 796</li>
+        <li><i class="fas fa-envelope"></i> kathydesigns@gmail.com</li>
+        <li><i class="fas fa-map-marker-alt"></i> 40 SOS Street, Tema</li>
+        <li>
+          <a href="https://wa.me/233244510810" class="whatsapp-link" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="wishlist.html">My Wishlist</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns &amp; Exchanges</a></li>
+        <li><a href="kathy-order.html">Track My Order</a></li>
+        <li><a href="wishlist.html">My Wishlist</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+      </div>
+      <div class="newsletter-wrap">
+        <p>Get exclusive deals in your inbox</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Your email address" id="newsletterEmail">
+          <button id="newsletterBtn">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Kathy Designs. All rights reserved.</p>
+    <p>Built by <strong>KyKal Technologies</strong></p>
+  </div>
+</footer>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/233244510810" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+  <span class="whatsapp-tooltip">Chat with us</span>
+</a>
+
+<script src="js/cart.js"></script>
+<script src="wishlist.js"></script>
+</body>
+</html>

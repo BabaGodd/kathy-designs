@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bags &amp; Shoes – Kathy Designs</title>
+  <meta name="description" content="Kathy Designs – Premium bags and shoes in Ghana. Shop designer handbags, heels, loafers and more.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#DC143C">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<link rel="icon" type="image/png" href="/icons/icon-32.png">
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+
+    <a href="index.html" class="site-logo">
+      <div class="logo-circle">
+        <img src="banners/headers/1.jpg" alt="Kathy Designs">
+      </div>
+      <span class="logo-text">Kathy Designs</span>
+    </a>
+
+    <nav class="site-nav" id="siteNav">
+      <ul>
+        <li><a href="index.html">Women</a></li>
+        <li><a href="men.html">Men</a></li>
+        <li><a href="children.html">Children</a></li>
+        <li><a href="bags-shoes.html" class="active">Bags &amp; Shoes</a></li>
+        <li><a href="fabrics.html">Fabrics</a></li>
+        <li><a href="accessories.html">Accessories</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <div class="search-wrap" id="searchWrap">
+        <input type="text" id="searchInput" placeholder="Search products…" autocomplete="off">
+        <button id="searchBtn" aria-label="Search"><i class="fas fa-search"></i></button>
+        <div class="search-results" id="searchResults"></div>
+      </div>
+      <a href="cart.html" class="cart-link" aria-label="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-badge" id="cart-count">0</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<div class="toast-notification" id="notification"></div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" style="background-image:url('banners/headers/accessories1.jpg');">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">New Arrivals 2025</p>
+    <h1>Bags &amp; Shoes</h1>
+    <p class="hero-sub">Step Up Your Style Game</p>
+    <a href="#products" class="btn-primary">Shop Now <i class="fas fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<!-- ===================== FEATURED CAROUSEL ===================== -->
+<section class="featured-section">
+  <div class="section-header-row">
+    <h2 class="section-title">Featured Products</h2>
+    <div class="carousel-arrows">
+      <button class="carousel-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+      <button class="carousel-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+  <div class="carousel-viewport">
+    <div class="carousel-track" id="featuredTrack">
+      <div class="feat-card">
+        <img src="productImages/WomensBAG1.PNG" alt="Designer Tote Bag">
+        <div class="feat-card-info"><h3>Designer Tote Bag</h3><p class="feat-price">GHC 320</p></div>
+      </div>
+      <div class="feat-card">
+        <img src="productImages/bags4.PNG" alt="Leather Handbag">
+        <div class="feat-card-info"><h3>Leather Handbag</h3><p class="feat-price">GHC 280</p></div>
+      </div>
+      <div class="feat-card">
+        <img src="productImages/bags10.PNG" alt="Kente Bag">
+        <div class="feat-card-info"><h3>Kente Bag</h3><p class="feat-price">GHC 250</p></div>
+      </div>
+      <div class="feat-card">
+        <img src="productImages/Zebra-shoe.jpg" alt="Zebra Print Heels">
+        <div class="feat-card-info"><h3>Zebra Print Heels</h3><p class="feat-price">GHC 340</p></div>
+      </div>
+      <div class="feat-card">
+        <img src="productImages/clark-shoes.jpg" alt="Clark Loafers">
+        <div class="feat-card-info"><h3>Clark Loafers</h3><p class="feat-price">GHC 290</p></div>
+      </div>
+      <div class="feat-card">
+        <img src="productImages/Brown-Bag.JPG" alt="Brown Leather Bag">
+        <div class="feat-card-info"><h3>Brown Leather Bag</h3><p class="feat-price">GHC 310</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MAIN CONTENT ===================== -->
+<div class="main-container">
+
+  <!-- Top Picks Sidebar -->
+  <aside class="top-picks-sidebar">
+    <h3 class="sidebar-heading"><i class="fas fa-star"></i> Top Picks</h3>
+
+    <div class="shop-product-card">
+      <div class="qe-product-image-wrapper">
+        <img src="productImages/WomensBAG1.PNG" class="shop-product-image" alt="Designer Tote Bag">
+        <div class="qe-product-overlay">
+          <button class="qe-wishlist-btn" data-id="bs-aside01"><i class="fas fa-heart"></i></button>
+          <button class="qe-quickview-btn" data-id="bs-aside01"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <h3 class="shop-product-name">Designer Tote Bag</h3>
+      <p class="shop-price">GHC 320</p>
+      <div class="shop-product-actions">
+        <button class="shop-add-to-cart" data-id="bs-aside01" data-name="Designer Tote Bag" data-price="320" data-image="productImages/WomensBAG1.PNG">
+          <i class="fas fa-shopping-bag"></i> Buy
+        </button>
+      </div>
+    </div>
+
+    <div class="shop-product-card">
+      <div class="qe-product-image-wrapper">
+        <img src="productImages/WomensBAG3.PNG" class="shop-product-image" alt="Leather Shoulder Bag">
+        <div class="qe-product-overlay">
+          <button class="qe-wishlist-btn" data-id="bs-aside02"><i class="fas fa-heart"></i></button>
+          <button class="qe-quickview-btn" data-id="bs-aside02"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <h3 class="shop-product-name">Leather Shoulder Bag</h3>
+      <p class="shop-price">GHC 290</p>
+      <div class="shop-product-actions">
+        <button class="shop-add-to-cart" data-id="bs-aside02" data-name="Leather Shoulder Bag" data-price="290" data-image="productImages/WomensBAG3.PNG">
+          <i class="fas fa-shopping-bag"></i> Buy
+        </button>
+      </div>
+    </div>
+
+    <div class="shop-product-card">
+      <div class="qe-product-image-wrapper">
+        <img src="productImages/Zebra-shoe.jpg" class="shop-product-image" alt="Zebra Print Heels">
+        <div class="qe-product-overlay">
+          <button class="qe-wishlist-btn" data-id="bs-aside03"><i class="fas fa-heart"></i></button>
+          <button class="qe-quickview-btn" data-id="bs-aside03"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <h3 class="shop-product-name">Zebra Print Heels</h3>
+      <p class="shop-price">GHC 340</p>
+      <div class="shop-product-actions">
+        <button class="shop-add-to-cart" data-id="bs-aside03" data-name="Zebra Print Heels" data-price="340" data-image="productImages/Zebra-shoe.jpg">
+          <i class="fas fa-shopping-bag"></i> Buy
+        </button>
+      </div>
+    </div>
+
+    <div class="shop-product-card">
+      <div class="qe-product-image-wrapper">
+        <img src="productImages/bags10.PNG" class="shop-product-image" alt="Kente Clutch Bag">
+        <div class="qe-product-overlay">
+          <button class="qe-wishlist-btn" data-id="bs-aside04"><i class="fas fa-heart"></i></button>
+          <button class="qe-quickview-btn" data-id="bs-aside04"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <h3 class="shop-product-name">Kente Clutch Bag</h3>
+      <p class="shop-price">GHC 250</p>
+      <div class="shop-product-actions">
+        <button class="shop-add-to-cart" data-id="bs-aside04" data-name="Kente Clutch Bag" data-price="250" data-image="productImages/bags10.PNG">
+          <i class="fas fa-shopping-bag"></i> Buy
+        </button>
+      </div>
+    </div>
+
+    <div class="shop-product-card">
+      <div class="qe-product-image-wrapper">
+        <img src="productImages/clark-shoes.jpg" class="shop-product-image" alt="Clark Loafers">
+        <div class="qe-product-overlay">
+          <button class="qe-wishlist-btn" data-id="bs-aside05"><i class="fas fa-heart"></i></button>
+          <button class="qe-quickview-btn" data-id="bs-aside05"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <h3 class="shop-product-name">Clark Loafers</h3>
+      <p class="shop-price">GHC 290</p>
+      <div class="shop-product-actions">
+        <button class="shop-add-to-cart" data-id="bs-aside05" data-name="Clark Loafers" data-price="290" data-image="productImages/clark-shoes.jpg">
+          <i class="fas fa-shopping-bag"></i> Buy
+        </button>
+      </div>
+    </div>
+
+    <div class="shop-product-card">
+      <div class="qe-product-image-wrapper">
+        <img src="productImages/Brown-Bag.JPG" class="shop-product-image" alt="Brown Leather Bag">
+        <div class="qe-product-overlay">
+          <button class="qe-wishlist-btn" data-id="bs-aside06"><i class="fas fa-heart"></i></button>
+          <button class="qe-quickview-btn" data-id="bs-aside06"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <h3 class="shop-product-name">Brown Leather Bag</h3>
+      <p class="shop-price">GHC 310</p>
+      <div class="shop-product-actions">
+        <button class="shop-add-to-cart" data-id="bs-aside06" data-name="Brown Leather Bag" data-price="310" data-image="productImages/Brown-Bag.JPG">
+          <i class="fas fa-shopping-bag"></i> Buy
+        </button>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- Product Grid -->
+  <main class="content-area" id="products">
+
+    <div class="products-header-row">
+      <h2 class="section-title">Bags &amp; Shoes</h2>
+      <div class="products-filter">
+        <select id="sortSelect">
+          <option value="default">Sort: Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+
+      <div class="shop-product-card" data-name="Designer Tote Bag" data-price="320">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/WomensBAG1.PNG" class="shop-product-image" alt="Designer Tote Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod01"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod01"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="product-badge">New</span>
+        </div>
+        <h3 class="shop-product-name">Designer Tote Bag</h3>
+        <p class="shop-price">GHC 320</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod01" data-name="Designer Tote Bag" data-price="320" data-image="productImages/WomensBAG1.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Leather Shoulder Bag" data-price="290">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/WomensBAG2.PNG" class="shop-product-image" alt="Leather Shoulder Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod02"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod02"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Leather Shoulder Bag</h3>
+        <p class="shop-price">GHC 290</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod02" data-name="Leather Shoulder Bag" data-price="290" data-image="productImages/WomensBAG2.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Ankara Print Bag" data-price="270">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/WomensBAG3.PNG" class="shop-product-image" alt="Ankara Print Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod03"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod03"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="product-badge badge-hot">Hot</span>
+        </div>
+        <h3 class="shop-product-name">Ankara Print Bag</h3>
+        <p class="shop-price">GHC 270</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod03" data-name="Ankara Print Bag" data-price="270" data-image="productImages/WomensBAG3.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Luxury Handbag" data-price="380">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/bags4.PNG" class="shop-product-image" alt="Luxury Handbag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod04"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod04"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Luxury Handbag</h3>
+        <p class="shop-price">GHC 380</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod04" data-name="Luxury Handbag" data-price="380" data-image="productImages/bags4.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Croc Print Bag" data-price="310">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/bags5.PNG" class="shop-product-image" alt="Croc Print Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod05"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod05"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Croc Print Bag</h3>
+        <p class="shop-price">GHC 310</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod05" data-name="Croc Print Bag" data-price="310" data-image="productImages/bags5.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Mini Crossbody Bag" data-price="220">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/bags6.PNG" class="shop-product-image" alt="Mini Crossbody Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod06"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod06"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Mini Crossbody Bag</h3>
+        <p class="shop-price">GHC 220</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod06" data-name="Mini Crossbody Bag" data-price="220" data-image="productImages/bags6.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Evening Clutch" data-price="180">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/bags7.PNG" class="shop-product-image" alt="Evening Clutch">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod07"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod07"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="product-badge">New</span>
+        </div>
+        <h3 class="shop-product-name">Evening Clutch</h3>
+        <p class="shop-price">GHC 180</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod07" data-name="Evening Clutch" data-price="180" data-image="productImages/bags7.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Woven Basket Bag" data-price="200">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/bags8.PNG" class="shop-product-image" alt="Woven Basket Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod08"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod08"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Woven Basket Bag</h3>
+        <p class="shop-price">GHC 200</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod08" data-name="Woven Basket Bag" data-price="200" data-image="productImages/bags8.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Suede Bucket Bag" data-price="260">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/bags9.PNG" class="shop-product-image" alt="Suede Bucket Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod09"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod09"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Suede Bucket Bag</h3>
+        <p class="shop-price">GHC 260</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod09" data-name="Suede Bucket Bag" data-price="260" data-image="productImages/bags9.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Kente Clutch Bag" data-price="250">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/bags10.PNG" class="shop-product-image" alt="Kente Clutch Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod10"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod10"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="product-badge badge-hot">Hot</span>
+        </div>
+        <h3 class="shop-product-name">Kente Clutch Bag</h3>
+        <p class="shop-price">GHC 250</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod10" data-name="Kente Clutch Bag" data-price="250" data-image="productImages/bags10.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Chain Strap Bag" data-price="230">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/bags11.PNG" class="shop-product-image" alt="Chain Strap Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod11"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod11"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Chain Strap Bag</h3>
+        <p class="shop-price">GHC 230</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod11" data-name="Chain Strap Bag" data-price="230" data-image="productImages/bags11.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Leopard Print Bag" data-price="270">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/bags12.PNG" class="shop-product-image" alt="Leopard Print Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod12"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod12"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Leopard Print Bag</h3>
+        <p class="shop-price">GHC 270</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod12" data-name="Leopard Print Bag" data-price="270" data-image="productImages/bags12.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Structured Work Bag" data-price="350">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/bags13.PNG" class="shop-product-image" alt="Structured Work Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod13"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod13"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Structured Work Bag</h3>
+        <p class="shop-price">GHC 350</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod13" data-name="Structured Work Bag" data-price="350" data-image="productImages/bags13.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Fendi Style Bag" data-price="420">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/bags14.PNG" class="shop-product-image" alt="Fendi Style Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod14"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod14"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="product-badge badge-hot">Hot</span>
+        </div>
+        <h3 class="shop-product-name">Fendi Style Bag</h3>
+        <p class="shop-price">GHC 420</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod14" data-name="Fendi Style Bag" data-price="420" data-image="productImages/bags14.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Quilted Flap Bag" data-price="300">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/bags15.PNG" class="shop-product-image" alt="Quilted Flap Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod15"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod15"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Quilted Flap Bag</h3>
+        <p class="shop-price">GHC 300</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod15" data-name="Quilted Flap Bag" data-price="300" data-image="productImages/bags15.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Satchel Bag" data-price="280">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/bags16.PNG" class="shop-product-image" alt="Satchel Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod16"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod16"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Satchel Bag</h3>
+        <p class="shop-price">GHC 280</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod16" data-name="Satchel Bag" data-price="280" data-image="productImages/bags16.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Envelope Clutch" data-price="160">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/bags17.PNG" class="shop-product-image" alt="Envelope Clutch">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod17"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod17"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Envelope Clutch</h3>
+        <p class="shop-price">GHC 160</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod17" data-name="Envelope Clutch" data-price="160" data-image="productImages/bags17.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Metallic Evening Bag" data-price="240">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/bags18.PNG" class="shop-product-image" alt="Metallic Evening Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod18"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod18"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="product-badge">New</span>
+        </div>
+        <h3 class="shop-product-name">Metallic Evening Bag</h3>
+        <p class="shop-price">GHC 240</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod18" data-name="Metallic Evening Bag" data-price="240" data-image="productImages/bags18.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Brown Laced Shoes" data-price="280">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/brownLaced-shoes.jpg" class="shop-product-image" alt="Brown Laced Shoes">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod19"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod19"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Brown Laced Shoes</h3>
+        <p class="shop-price">GHC 280</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod19" data-name="Brown Laced Shoes" data-price="280" data-image="productImages/brownLaced-shoes.jpg">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Clark Comfort Shoes" data-price="290">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/clark-shoes.jpg" class="shop-product-image" alt="Clark Comfort Shoes">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod20"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod20"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Clark Comfort Shoes</h3>
+        <p class="shop-price">GHC 290</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod20" data-name="Clark Comfort Shoes" data-price="290" data-image="productImages/clark-shoes.jpg">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Brown Leather Bag" data-price="310">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/Brown-Bag.JPG" class="shop-product-image" alt="Brown Leather Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod21"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod21"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Brown Leather Bag</h3>
+        <p class="shop-price">GHC 310</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod21" data-name="Brown Leather Bag" data-price="310" data-image="productImages/Brown-Bag.JPG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+       <div class="shop-product-card" data-name="Brown Leather Bag" data-price="310">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/Brown-Bag.JPG" class="shop-product-image" alt="Brown Leather Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod21"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod21"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Brown Leather Bag</h3>
+        <p class="shop-price">GHC 310</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod21" data-name="Brown Leather Bag" data-price="310" data-image="productImages/Brown-Bag.JPG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+       <div class="shop-product-card" data-name="Brown Leather Bag" data-price="310">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/Brown-Bag.JPG" class="shop-product-image" alt="Brown Leather Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod21"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod21"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Brown Leather Bag</h3>
+        <p class="shop-price">GHC 310</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod21" data-name="Brown Leather Bag" data-price="310" data-image="productImages/Brown-Bag.JPG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+       <div class="shop-product-card" data-name="Brown Leather Bag" data-price="310">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/Brown-Bag.JPG" class="shop-product-image" alt="Brown Leather Bag">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="bsprod21"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="bsprod21"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Brown Leather Bag</h3>
+        <p class="shop-price">GHC 310</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="bsprod21" data-name="Brown Leather Bag" data-price="310" data-image="productImages/Brown-Bag.JPG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+    </div><!-- end product-grid -->
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+      <h2 class="section-title">What Our Customers Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"The bags from Kathy Designs are absolutely stunning. I get compliments every time I carry mine. Great quality and fast delivery!"</p>
+          <div class="testimonial-profile">
+            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Ama Koomson">
+            <span>Ama Koomson</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"Bought the Clark shoes for my husband and he hasn't taken them off since! Very comfortable and true to size."</p>
+          <div class="testimonial-profile">
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Akosua Mensah">
+            <span>Akosua Mensah</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"The Kente clutch I bought was perfect for my wedding. Everyone wanted to know where I got it. Kathy Designs never disappoints!"</p>
+          <div class="testimonial-profile">
+            <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Efua Darko">
+            <span>Efua Darko</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ===================== BRAND CAROUSEL ===================== -->
+<section class="brands-section">
+  <h2 class="section-title" style="text-align:center;margin-bottom:2rem;">Our Designers &amp; Partners</h2>
+  <div class="brands-track-wrap">
+    <div class="brands-track">
+      <img src="brands/armaniLogo.png" alt="Armani">
+      <img src="brands/balenciagaLogo.png" alt="Balenciaga">
+      <img src="brands/burberyLogo.jpg" alt="Burberry">
+      <img src="brands/chanleLogo.png" alt="Chanel">
+      <img src="brands/diorLogo.png" alt="Dior">
+      <img src="brands/fendiLogo.png" alt="Fendi">
+      <img src="brands/GTPlogo.jpg" alt="GTP">
+      <img src="brands/guccilogo.png" alt="Gucci">
+      <img src="brands/kenteLogo.png" alt="Kente">
+      <img src="brands/savilleLogo.png" alt="Saville">
+      <img src="brands/armaniLogo.png" alt="Armani">
+      <img src="brands/balenciagaLogo.png" alt="Balenciaga">
+      <img src="brands/burberyLogo.jpg" alt="Burberry">
+      <img src="brands/chanleLogo.png" alt="Chanel">
+      <img src="brands/diorLogo.png" alt="Dior">
+      <img src="brands/fendiLogo.png" alt="Fendi">
+      <img src="brands/GTPlogo.jpg" alt="GTP">
+      <img src="brands/guccilogo.png" alt="Gucci">
+      <img src="brands/kenteLogo.png" alt="Kente">
+      <img src="brands/savilleLogo.png" alt="Saville">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>Store Hours</h4>
+      <ul>
+        <li>Mon–Fri: 9AM – 6PM</li>
+        <li>Saturday: 10AM – 4PM</li>
+        <li>Sunday: Closed</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><i class="fas fa-phone"></i> +233 244 510 810</li>
+        <li><i class="fas fa-phone"></i> +233 244 506 796</li>
+        <li><i class="fas fa-envelope"></i> kathydesigns@gmail.com</li>
+        <li><i class="fas fa-map-marker-alt"></i> 40 SOS Street, Tema</li>
+        <li>
+          <a href="https://wa.me/233244510810" class="whatsapp-link" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="wishlist.html">My Wishlist</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns &amp; Exchanges</a></li>
+        
+        <li><a href="kathy-order.html">Track My Order</a></li>
+        <li><a href="kathy-admin/dashboard.html">Admin Panel</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+      </div>
+      <div class="newsletter-wrap">
+        <p>Get exclusive deals in your inbox</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Your email address" id="newsletterEmail">
+          <button id="newsletterBtn">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Kathy Designs. All rights reserved.</p>
+    <p>Built by <strong>KyKal Technologies</strong></p>
+  </div>
+</footer>
+
+<!-- ===================== QUICK VIEW PANEL ===================== -->
+<div class="qe-quickview-overlay"></div>
+<div class="qe-quickview-panel">
+  <button class="qe-close-btn" aria-label="Close">&times;</button>
+  <img src="" alt="" class="qe-quickview-image">
+  <h2 class="qe-quickview-title"></h2>
+  <p class="qe-quickview-price"></p>
+  <div class="qe-quickview-section">
+    <h4>Available Sizes</h4>
+    <div class="qe-sizes">
+      <span>36</span><span>37</span><span>38</span><span>39</span><span>40</span><span>41</span><span>42</span>
+    </div>
+  </div>
+  <div class="qe-quickview-section">
+    <h4>Available Colors</h4>
+    <div class="qe-colors">
+      <span style="background:#1d1d1d;" title="Black"></span>
+      <span style="background:#8B4513;" title="Brown"></span>
+      <span style="background:#f4a261;" title="Tan"></span>
+      <span style="background:#e63946;" title="Red"></span>
+    </div>
+  </div>
+  <button class="shop-add-to-cart qe-add-cart-btn">
+    <i class="fas fa-shopping-bag"></i> Add to Cart
+  </button>
+</div>
+
+<!-- Back to top -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<script src="products-data.js"></script>
+<script src="js/cart.js"></script>
+<script src="script.js"></script>
+<script src="search.js"></script>
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/233244510810" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+  <span class="whatsapp-tooltip">Chat with us</span>
+</a>
+
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kathy Designs – Admin Messages</title>
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="messages.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="admin-sidebar">
+  <div class="admin-logo">
+    <span class="logo-icon">✦</span>
+    <span>Kathy Admin</span>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+      <li><a href="products.html"><i class="fas fa-box"></i> Products</a></li>
+      <li><a href="orders.html"><i class="fas fa-shopping-bag"></i> Orders</a></li>
+      <li class="active"><a href="messages.html"><i class="fas fa-envelope"></i> Messages</a></li>
+      <li><a href="customers.html"><i class="fas fa-users"></i> Customers</a></li>
+      <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<!-- Main Content -->
+<main class="admin-main">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Messages</h1>
+      <p class="page-subtitle">Customer enquiries and contact form submissions</p>
+    </div>
+    <button class="btn-mark-all" id="markAllReadBtn">
+      <i class="fas fa-check-double"></i> Mark All Read
+    </button>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="messages-summary">
+    <div class="summary-card">
+      <div class="summary-icon icon-total"><i class="fas fa-envelope"></i></div>
+      <div class="summary-info">
+        <span class="summary-label">Total Messages</span>
+        <span class="summary-value" id="statTotal">0</span>
+      </div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-icon icon-unread"><i class="fas fa-envelope-open"></i></div>
+      <div class="summary-info">
+        <span class="summary-label">Unread</span>
+        <span class="summary-value" id="statUnread">0</span>
+      </div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-icon icon-read"><i class="fas fa-check-circle"></i></div>
+      <div class="summary-info">
+        <span class="summary-label">Read</span>
+        <span class="summary-value" id="statRead">0</span>
+      </div>
+    </div>
+    <div class="summary-card">
+      <div class="summary-icon icon-replied"><i class="fas fa-reply"></i></div>
+      <div class="summary-info">
+        <span class="summary-label">Replied</span>
+        <span class="summary-value" id="statReplied">0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="messages-controls">
+    <div class="search-wrap">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" id="searchInput" placeholder="Search by name, email or subject…" />
+    </div>
+    <div class="filter-group">
+      <select id="statusFilter">
+        <option value="all">All Messages</option>
+        <option value="Unread">Unread</option>
+        <option value="Read">Read</option>
+        <option value="Replied">Replied</option>
+      </select>
+      <select id="sortFilter">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Results Count -->
+  <p class="results-count"><span id="resultsCount">0</span> messages found</p>
+
+  <!-- Messages List -->
+  <div class="messages-list" id="messagesList"></div>
+
+  <!-- Empty State -->
+  <div class="empty-state" id="emptyState" style="display:none;">
+    <div class="empty-icon"><i class="fas fa-inbox"></i></div>
+    <h3>No messages yet</h3>
+    <p>When customers send messages from your store, they'll appear here.</p>
+  </div>
+
+</main>
+
+<!-- ===================== MESSAGE DETAIL MODAL ===================== -->
+<div id="messageModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+
+    <div class="modal-header">
+      <div>
+        <h2 class="modal-title" id="modalSubject"></h2>
+        <p class="modal-date" id="modalDate"></p>
+      </div>
+      <button class="modal-close-btn" id="closeMessageModal"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- Sender Info -->
+      <div class="modal-sender">
+        <div class="sender-avatar" id="modalAvatar"></div>
+        <div class="sender-details">
+          <span class="sender-name" id="modalName"></span>
+          <span class="sender-email" id="modalEmail"></span>
+        </div>
+        <div id="modalStatusBadge"></div>
+      </div>
+
+      <!-- Message Body -->
+      <div class="modal-message-body" id="modalMessage"></div>
+
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="modal-footer">
+      <div class="modal-actions-left">
+        <button class="btn-mark-read" id="modalMarkReadBtn">
+          <i class="fas fa-check"></i> Mark as Read
+        </button>
+        <button class="btn-mark-replied" id="modalMarkRepliedBtn">
+          <i class="fas fa-reply"></i> Mark as Replied
+        </button>
+      </div>
+      <div class="modal-actions-right">
+        <button class="btn-reply-email" id="modalReplyBtn">
+          <i class="fas fa-paper-plane"></i> Reply via Email
+        </button>
+        <button class="btn-delete-msg" id="modalDeleteBtn">
+          <i class="fas fa-trash"></i> Delete
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div id="deleteConfirmModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box confirm-box">
+    <div class="confirm-icon"><i class="fas fa-exclamation-triangle"></i></div>
+    <h3>Delete this message?</h3>
+    <p>This cannot be undone. The message will be permanently removed.</p>
+    <div class="confirm-actions">
+      <button id="cancelDeleteBtn" class="btn-cancel-delete">Cancel</button>
+      <button id="confirmDeleteBtn" class="btn-confirm-delete">Yes, Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="messages.js"></script>
+</body>
+</html>

@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fabrics – Kathy Designs</title>
+  <meta name="description" content="Kathy Designs – Premium African fabrics in Ghana. Shop kente, ankara, GTP, batik and more sold by the yard.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#DC143C">
+<link rel="apple-touch-icon" href="/icons/icon-180.png">
+<link rel="icon" type="image/png" href="/icons/icon-32.png">
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+
+    <a href="index.html" class="site-logo">
+      <div class="logo-circle">
+        <img src="banners/headers/1.jpg" alt="Kathy Designs">
+      </div>
+      <span class="logo-text">Kathy Designs</span>
+    </a>
+
+    <nav class="site-nav" id="siteNav">
+      <ul>
+        <li><a href="index.html">Women</a></li>
+        <li><a href="men.html">Men</a></li>
+        <li><a href="children.html">Children</a></li>
+        <li><a href="bags-shoes.html">Bags &amp; Shoes</a></li>
+        <li><a href="fabrics.html" class="active">Fabrics</a></li>
+        <li><a href="accessories.html">Accessories</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <div class="search-wrap" id="searchWrap">
+        <input type="text" id="searchInput" placeholder="Search products…" autocomplete="off">
+        <button id="searchBtn" aria-label="Search"><i class="fas fa-search"></i></button>
+        <div class="search-results" id="searchResults"></div>
+      </div>
+      <a href="cart.html" class="cart-link" aria-label="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-badge" id="cart-count">0</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<div class="toast-notification" id="notification"></div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" style="background-image:url('banners/headers/fabric2.jpg');">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Premium African Fabrics</p>
+    <h1>Kente &amp; African Fabrics</h1>
+    <p class="hero-sub">Wear Your Culture, Own Your Story</p>
+    <a href="#products" class="btn-primary">Shop Now <i class="fas fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<!-- ===================== FEATURED CAROUSEL ===================== -->
+<section class="featured-section">
+  <div class="section-header-row">
+    <h2 class="section-title">Featured Fabrics</h2>
+    <div class="carousel-arrows">
+      <button class="carousel-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+      <button class="carousel-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+  <div class="carousel-viewport">
+    <div class="carousel-track" id="featuredTrack">
+      <div class="feat-card">
+        <img src="productImages/fabric1.png" alt="Ankara Print Fabric">
+        <div class="feat-card-info"><h3>Ankara Print</h3><p class="feat-price">GHC 85/yd</p></div>
+      </div>
+      <div class="feat-card">
+        <img src="productImages/fabrics4.png" alt="Kente Fabric">
+        <div class="feat-card-info"><h3>Kente Fabric</h3><p class="feat-price">GHC 150/yd</p></div>
+      </div>
+      <div class="feat-card">
+        <img src="productImages/fabrics7.png" alt="GTP Fabric">
+        <div class="feat-card-info"><h3>GTP Fabric</h3><p class="feat-price">GHC 95/yd</p></div>
+      </div>
+      <div class="feat-card">
+        <img src="productImages/fabrics11.png" alt="Batik Fabric">
+        <div class="feat-card-info"><h3>Batik Fabric</h3><p class="feat-price">GHC 75/yd</p></div>
+      </div>
+      <div class="feat-card">
+        <img src="productImages/fabrics18.PNG" alt="Lace Fabric">
+        <div class="feat-card-info"><h3>Lace Fabric</h3><p class="feat-price">GHC 120/yd</p></div>
+      </div>
+      <div class="feat-card">
+        <img src="productImages/fabrics21.PNG" alt="Smock Fabric">
+        <div class="feat-card-info"><h3>Smock Fabric</h3><p class="feat-price">GHC 110/yd</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MAIN CONTENT ===================== -->
+<div class="main-container">
+
+  <!-- Top Picks Sidebar -->
+  <aside class="top-picks-sidebar">
+    <h3 class="sidebar-heading"><i class="fas fa-star"></i> Top Picks</h3>
+
+    <div class="shop-product-card">
+      <div class="qe-product-image-wrapper">
+        <img src="productImages/fabrics22.PNG" class="shop-product-image" alt="Premium Ankara Fabric">
+        <div class="qe-product-overlay">
+          <button class="qe-wishlist-btn" data-id="f-aside01"><i class="fas fa-heart"></i></button>
+          <button class="qe-quickview-btn" data-id="f-aside01"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <h3 class="shop-product-name">Premium Ankara</h3>
+      <p class="shop-price">GHC 90/yd</p>
+      <div class="shop-product-actions">
+        <button class="shop-add-to-cart" data-id="f-aside01" data-name="Premium Ankara Fabric" data-price="90" data-image="productImages/fabrics22.PNG">
+          <i class="fas fa-shopping-bag"></i> Buy
+        </button>
+      </div>
+    </div>
+
+    <div class="shop-product-card">
+      <div class="qe-product-image-wrapper">
+        <img src="productImages/fabrics23.PNG" class="shop-product-image" alt="Kente Strip Fabric">
+        <div class="qe-product-overlay">
+          <button class="qe-wishlist-btn" data-id="f-aside02"><i class="fas fa-heart"></i></button>
+          <button class="qe-quickview-btn" data-id="f-aside02"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <h3 class="shop-product-name">Kente Strip Fabric</h3>
+      <p class="shop-price">GHC 160/yd</p>
+      <div class="shop-product-actions">
+        <button class="shop-add-to-cart" data-id="f-aside02" data-name="Kente Strip Fabric" data-price="160" data-image="productImages/fabrics23.PNG">
+          <i class="fas fa-shopping-bag"></i> Buy
+        </button>
+      </div>
+    </div>
+
+    <div class="shop-product-card">
+      <div class="qe-product-image-wrapper">
+        <img src="productImages/fabrics24.PNG" class="shop-product-image" alt="Batik Print Fabric">
+        <div class="qe-product-overlay">
+          <button class="qe-wishlist-btn" data-id="f-aside03"><i class="fas fa-heart"></i></button>
+          <button class="qe-quickview-btn" data-id="f-aside03"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <h3 class="shop-product-name">Batik Print Fabric</h3>
+      <p class="shop-price">GHC 80/yd</p>
+      <div class="shop-product-actions">
+        <button class="shop-add-to-cart" data-id="f-aside03" data-name="Batik Print Fabric" data-price="80" data-image="productImages/fabrics24.PNG">
+          <i class="fas fa-shopping-bag"></i> Buy
+        </button>
+      </div>
+    </div>
+
+    <div class="shop-product-card">
+      <div class="qe-product-image-wrapper">
+        <img src="productImages/fabrics25.PNG" class="shop-product-image" alt="GTP Wax Print">
+        <div class="qe-product-overlay">
+          <button class="qe-wishlist-btn" data-id="f-aside04"><i class="fas fa-heart"></i></button>
+          <button class="qe-quickview-btn" data-id="f-aside04"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <h3 class="shop-product-name">GTP Wax Print</h3>
+      <p class="shop-price">GHC 95/yd</p>
+      <div class="shop-product-actions">
+        <button class="shop-add-to-cart" data-id="f-aside04" data-name="GTP Wax Print" data-price="95" data-image="productImages/fabrics25.PNG">
+          <i class="fas fa-shopping-bag"></i> Buy
+        </button>
+      </div>
+    </div>
+
+    <div class="shop-product-card">
+      <div class="qe-product-image-wrapper">
+        <img src="productImages/fabrics11.png" class="shop-product-image" alt="Kente Weave Fabric">
+        <div class="qe-product-overlay">
+          <button class="qe-wishlist-btn" data-id="f-aside05"><i class="fas fa-heart"></i></button>
+          <button class="qe-quickview-btn" data-id="f-aside05"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <h3 class="shop-product-name">Kente Weave</h3>
+      <p class="shop-price">GHC 140/yd</p>
+      <div class="shop-product-actions">
+        <button class="shop-add-to-cart" data-id="f-aside05" data-name="Kente Weave Fabric" data-price="140" data-image="productImages/fabrics11.png">
+          <i class="fas fa-shopping-bag"></i> Buy
+        </button>
+      </div>
+    </div>
+
+    <div class="shop-product-card">
+      <div class="qe-product-image-wrapper">
+        <img src="productImages/fabrics18.PNG" class="shop-product-image" alt="African Lace Fabric">
+        <div class="qe-product-overlay">
+          <button class="qe-wishlist-btn" data-id="f-aside06"><i class="fas fa-heart"></i></button>
+          <button class="qe-quickview-btn" data-id="f-aside06"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <h3 class="shop-product-name">African Lace</h3>
+      <p class="shop-price">GHC 120/yd</p>
+      <div class="shop-product-actions">
+        <button class="shop-add-to-cart" data-id="f-aside06" data-name="African Lace Fabric" data-price="120" data-image="productImages/fabrics18.PNG">
+          <i class="fas fa-shopping-bag"></i> Buy
+        </button>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- Product Grid -->
+  <main class="content-area" id="products">
+
+    <div class="products-header-row">
+      <h2 class="section-title">All Fabrics</h2>
+      <div class="products-filter">
+        <select id="sortSelect">
+          <option value="default">Sort: Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+
+      <div class="shop-product-card" data-name="Ankara Wax Print" data-price="85">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabric1.png" class="shop-product-image" alt="Ankara Wax Print">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod01"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod01"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="product-badge">New</span>
+        </div>
+        <h3 class="shop-product-name">Ankara Wax Print</h3>
+        <p class="shop-price">GHC 85/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod01" data-name="Ankara Wax Print" data-price="85" data-image="productImages/fabric1.png">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="GTP Holland Print" data-price="95">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabric2.png" class="shop-product-image" alt="GTP Holland Print">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod02"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod02"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">GTP Holland Print</h3>
+        <p class="shop-price">GHC 95/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod02" data-name="GTP Holland Print" data-price="95" data-image="productImages/fabric2.png">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Batik African Print" data-price="75">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabric3.png" class="shop-product-image" alt="Batik African Print">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod03"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod03"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="product-badge badge-hot">Hot</span>
+        </div>
+        <h3 class="shop-product-name">Batik African Print</h3>
+        <p class="shop-price">GHC 75/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod03" data-name="Batik African Print" data-price="75" data-image="productImages/fabric3.png">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Kente Strip Fabric" data-price="150">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabrics4.png" class="shop-product-image" alt="Kente Strip Fabric">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod04"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod04"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="product-badge badge-hot">Hot</span>
+        </div>
+        <h3 class="shop-product-name">Kente Strip Fabric</h3>
+        <p class="shop-price">GHC 150/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod04" data-name="Kente Strip Fabric" data-price="150" data-image="productImages/fabrics4.png">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Ankara Floral Print" data-price="80">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabric5.png" class="shop-product-image" alt="Ankara Floral Print">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod05"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod05"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Ankara Floral Print</h3>
+        <p class="shop-price">GHC 80/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod05" data-name="Ankara Floral Print" data-price="80" data-image="productImages/fabric5.png">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Adinkra Print Fabric" data-price="100">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabrics6.png" class="shop-product-image" alt="Adinkra Print Fabric">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod06"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod06"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Adinkra Print Fabric</h3>
+        <p class="shop-price">GHC 100/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod06" data-name="Adinkra Print Fabric" data-price="100" data-image="productImages/fabrics6.png">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="GTP Wax Print" data-price="95">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabrics7.png" class="shop-product-image" alt="GTP Wax Print">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod07"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod07"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="product-badge">New</span>
+        </div>
+        <h3 class="shop-product-name">GTP Wax Print</h3>
+        <p class="shop-price">GHC 95/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod07" data-name="GTP Wax Print" data-price="95" data-image="productImages/fabrics7.png">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="African Tie-Dye Fabric" data-price="70">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabrics8.png" class="shop-product-image" alt="African Tie-Dye Fabric">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod08"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod08"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">African Tie-Dye Fabric</h3>
+        <p class="shop-price">GHC 70/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod08" data-name="African Tie-Dye Fabric" data-price="70" data-image="productImages/fabrics8.png">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Dashiki Print Fabric" data-price="85">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabrics9.png" class="shop-product-image" alt="Dashiki Print Fabric">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod09"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod09"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Dashiki Print Fabric</h3>
+        <p class="shop-price">GHC 85/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod09" data-name="Dashiki Print Fabric" data-price="85" data-image="productImages/fabrics9.png">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Mudcloth Fabric" data-price="110">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabrics10.png" class="shop-product-image" alt="Mudcloth Fabric">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod10"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod10"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Mudcloth Fabric</h3>
+        <p class="shop-price">GHC 110/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod10" data-name="Mudcloth Fabric" data-price="110" data-image="productImages/fabrics10.png">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Kente Weave Fabric" data-price="140">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabrics11.png" class="shop-product-image" alt="Kente Weave Fabric">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod11"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod11"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="product-badge badge-hot">Hot</span>
+        </div>
+        <h3 class="shop-product-name">Kente Weave Fabric</h3>
+        <p class="shop-price">GHC 140/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod11" data-name="Kente Weave Fabric" data-price="140" data-image="productImages/fabrics11.png">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Ankara Abstract Print" data-price="88">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabrics12.png" class="shop-product-image" alt="Ankara Abstract Print">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod12"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod12"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Ankara Abstract Print</h3>
+        <p class="shop-price">GHC 88/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod12" data-name="Ankara Abstract Print" data-price="88" data-image="productImages/fabrics12.png">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Kente Silk Blend" data-price="180">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabrics13.png" class="shop-product-image" alt="Kente Silk Blend">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod13"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod13"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="product-badge">New</span>
+        </div>
+        <h3 class="shop-product-name">Kente Silk Blend</h3>
+        <p class="shop-price">GHC 180/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod13" data-name="Kente Silk Blend" data-price="180" data-image="productImages/fabrics13.png">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="African Geometric Print" data-price="90">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabrics14.png" class="shop-product-image" alt="African Geometric Print">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod14"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod14"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">African Geometric Print</h3>
+        <p class="shop-price">GHC 90/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod14" data-name="African Geometric Print" data-price="90" data-image="productImages/fabrics14.png">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="GTP Super Wax" data-price="105">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabrics15.png" class="shop-product-image" alt="GTP Super Wax">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod15"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod15"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">GTP Super Wax</h3>
+        <p class="shop-price">GHC 105/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod15" data-name="GTP Super Wax" data-price="105" data-image="productImages/fabrics15.png">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Kente Cotton Blend" data-price="130">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabric16.png" class="shop-product-image" alt="Kente Cotton Blend">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod16"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod16"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Kente Cotton Blend</h3>
+        <p class="shop-price">GHC 130/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod16" data-name="Kente Cotton Blend" data-price="130" data-image="productImages/fabric16.png">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Smock Northern Fabric" data-price="115">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabrics17.JPG" class="shop-product-image" alt="Smock Northern Fabric">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod17"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod17"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Smock Northern Fabric</h3>
+        <p class="shop-price">GHC 115/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod17" data-name="Smock Northern Fabric" data-price="115" data-image="productImages/fabrics17.JPG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="African Lace Fabric" data-price="120">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabrics18.PNG" class="shop-product-image" alt="African Lace Fabric">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod18"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod18"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="product-badge badge-hot">Hot</span>
+        </div>
+        <h3 class="shop-product-name">African Lace Fabric</h3>
+        <p class="shop-price">GHC 120/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod18" data-name="African Lace Fabric" data-price="120" data-image="productImages/fabrics18.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Ankara Bold Print" data-price="85">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabrics19.PNG" class="shop-product-image" alt="Ankara Bold Print">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod19"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod19"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Ankara Bold Print</h3>
+        <p class="shop-price">GHC 85/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod19" data-name="Ankara Bold Print" data-price="85" data-image="productImages/fabrics19.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Kente Festival Fabric" data-price="160">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabrics20.PNG" class="shop-product-image" alt="Kente Festival Fabric">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod20"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod20"><i class="fas fa-eye"></i></button>
+          </div>
+          <span class="product-badge">New</span>
+        </div>
+        <h3 class="shop-product-name">Kente Festival Fabric</h3>
+        <p class="shop-price">GHC 160/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod20" data-name="Kente Festival Fabric" data-price="160" data-image="productImages/fabrics20.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="shop-product-card" data-name="Smock Embroidered Fabric" data-price="125">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabrics21.PNG" class="shop-product-image" alt="Smock Embroidered Fabric">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod21"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod21"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Smock Embroidered Fabric</h3>
+        <p class="shop-price">GHC 125/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod21" data-name="Smock Embroidered Fabric" data-price="125" data-image="productImages/fabrics21.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+       <div class="shop-product-card" data-name="Smock Embroidered Fabric" data-price="125">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabrics21.PNG" class="shop-product-image" alt="Smock Embroidered Fabric">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod21"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod21"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Smock Embroidered Fabric</h3>
+        <p class="shop-price">GHC 125/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod21" data-name="Smock Embroidered Fabric" data-price="125" data-image="productImages/fabrics21.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+       <div class="shop-product-card" data-name="Smock Embroidered Fabric" data-price="125">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabrics21.PNG" class="shop-product-image" alt="Smock Embroidered Fabric">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod21"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod21"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Smock Embroidered Fabric</h3>
+        <p class="shop-price">GHC 125/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod21" data-name="Smock Embroidered Fabric" data-price="125" data-image="productImages/fabrics21.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+       <div class="shop-product-card" data-name="Smock Embroidered Fabric" data-price="125">
+        <div class="qe-product-image-wrapper">
+          <img src="productImages/fabrics21.PNG" class="shop-product-image" alt="Smock Embroidered Fabric">
+          <div class="qe-product-overlay">
+            <button class="qe-wishlist-btn" data-id="fprod21"><i class="fas fa-heart"></i></button>
+            <button class="qe-quickview-btn" data-id="fprod21"><i class="fas fa-eye"></i></button>
+          </div>
+        </div>
+        <h3 class="shop-product-name">Smock Embroidered Fabric</h3>
+        <p class="shop-price">GHC 125/yd</p>
+        <div class="shop-product-actions">
+          <button class="shop-add-to-cart" data-id="fprod21" data-name="Smock Embroidered Fabric" data-price="125" data-image="productImages/fabrics21.PNG">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+
+    </div><!-- end product-grid -->
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+      <h2 class="section-title">What Our Customers Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"The kente fabric I bought from Kathy Designs was absolutely premium. The colours are rich and the weave is tight. Worth every pesewa!"</p>
+          <div class="testimonial-profile">
+            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Ama Koomson">
+            <span>Ama Koomson</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"Best place to buy GTP fabric in Ghana. The quality is always consistent and they have so many designs to choose from."</p>
+          <div class="testimonial-profile">
+            <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Kofi Mensah">
+            <span>Kofi Mensah</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"I ordered the ankara fabric for my family reunion and it was delivered on time. The print was sharp and the fabric didn't fade after washing."</p>
+          <div class="testimonial-profile">
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Akosua Mensah">
+            <span>Akosua Mensah</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ===================== BRAND CAROUSEL ===================== -->
+<section class="brands-section">
+  <h2 class="section-title" style="text-align:center;margin-bottom:2rem;">Our Designers &amp; Partners</h2>
+  <div class="brands-track-wrap">
+    <div class="brands-track">
+      <img src="brands/armaniLogo.png" alt="Armani">
+      <img src="brands/balenciagaLogo.png" alt="Balenciaga">
+      <img src="brands/burberyLogo.jpg" alt="Burberry">
+      <img src="brands/chanleLogo.png" alt="Chanel">
+      <img src="brands/diorLogo.png" alt="Dior">
+      <img src="brands/fendiLogo.png" alt="Fendi">
+      <img src="brands/GTPlogo.jpg" alt="GTP">
+      <img src="brands/guccilogo.png" alt="Gucci">
+      <img src="brands/kenteLogo.png" alt="Kente">
+      <img src="brands/savilleLogo.png" alt="Saville">
+      <img src="brands/armaniLogo.png" alt="Armani">
+      <img src="brands/balenciagaLogo.png" alt="Balenciaga">
+      <img src="brands/burberyLogo.jpg" alt="Burberry">
+      <img src="brands/chanleLogo.png" alt="Chanel">
+      <img src="brands/diorLogo.png" alt="Dior">
+      <img src="brands/fendiLogo.png" alt="Fendi">
+      <img src="brands/GTPlogo.jpg" alt="GTP">
+      <img src="brands/guccilogo.png" alt="Gucci">
+      <img src="brands/kenteLogo.png" alt="Kente">
+      <img src="brands/savilleLogo.png" alt="Saville">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>Store Hours</h4>
+      <ul>
+        <li>Mon–Fri: 9AM – 6PM</li>
+        <li>Saturday: 10AM – 4PM</li>
+        <li>Sunday: Closed</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><i class="fas fa-phone"></i> +233 244 510 810</li>
+        <li><i class="fas fa-phone"></i> +233 244 506 796</li>
+        <li><i class="fas fa-envelope"></i> kathydesigns@gmail.com</li>
+        <li><i class="fas fa-map-marker-alt"></i> 40 SOS Street, Tema</li>
+        <li>
+          <a href="https://wa.me/233244510810" class="whatsapp-link" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="wishlist.html">My Wishlist</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns &amp; Exchanges</a></li>
+        
+        <li><a href="kathy-order.html">Track My Order</a></li>
+        <li><a href="kathy-admin/dashboard.html">Admin Panel</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+      </div>
+      <div class="newsletter-wrap">
+        <p>Get exclusive deals in your inbox</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Your email address" id="newsletterEmail">
+          <button id="newsletterBtn">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Kathy Designs. All rights reserved.</p>
+    <p>Built by <strong>KyKal Technologies</strong></p>
+  </div>
+</footer>
+
+<!-- ===================== QUICK VIEW PANEL ===================== -->
+<div class="qe-quickview-overlay"></div>
+<div class="qe-quickview-panel">
+  <button class="qe-close-btn" aria-label="Close">&times;</button>
+  <img src="" alt="" class="qe-quickview-image">
+  <h2 class="qe-quickview-title"></h2>
+  <p class="qe-quickview-price"></p>
+  <div class="qe-quickview-section">
+    <h4>Quantity (yards)</h4>
+    <div class="qe-sizes">
+      <span>1 yd</span><span>2 yd</span><span>3 yd</span><span>4 yd</span><span>6 yd</span>
+    </div>
+  </div>
+  <div class="qe-quickview-section">
+    <h4>Available Colors</h4>
+    <div class="qe-colors">
+      <span style="background:#e63946;" title="Red"></span>
+      <span style="background:#457b9d;" title="Blue"></span>
+      <span style="background:#1d1d1d;" title="Black"></span>
+      <span style="background:#f4d35e;" title="Gold"></span>
+      <span style="background:#2d6a4f;" title="Green"></span>
+    </div>
+  </div>
+  <button class="shop-add-to-cart qe-add-cart-btn">
+    <i class="fas fa-shopping-bag"></i> Add to Cart
+  </button>
+</div>
+
+<!-- Back to top -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<script src="products-data.js"></script>
+<script src="js/cart.js"></script>
+<script src="script.js"></script>
+<script src="search.js"></script>
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/233244510810" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+  <span class="whatsapp-tooltip">Chat with us</span>
+</a>
+
+</body>
+</html>

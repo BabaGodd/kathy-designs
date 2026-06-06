@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kathy Admin Dashboard</title>
+  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<!-- Sidebar -->
+  <!-- Sidebar -->
+  <aside class="admin-sidebar">
+    <h2 class="admin-logo">Kathy Designs Admin</h2>
+    <nav>
+      <ul>
+        <li class="active"><a href="index.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+        <li><a href="products.html"><i class="fas fa-box"></i> Products</a></li>
+        <li><a href="orders.html"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+        <li><a href="messages.html"><i class="fas fa-envelope"></i> Messages</a></li>
+        <li><a href="customer.html"><i class="fas fa-users"></i> Customers</a></li>
+        <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Dashboard -->
+  <main class="admin-main">
+    <header class="admin-header">
+      <h1>Dashboard Overview</h1>
+      <div class="admin-user">
+        <span>Welcome, Admin</span>
+        <img src="assets/KD Logo1.jpg" alt="Profile" />
+      </div>
+    </header>
+
+    <section class="admin-cards">
+      <div class="admin-card"><h3>Total Sales</h3><p>GHC 12,500</p></div>
+      <div class="admin-card"><h3>Orders</h3><p>124</p></div>
+      <div class="admin-card"><h3>Products</h3><p>58</p></div>
+      <div class="admin-card"><h3>Customers</h3><p>98</p></div>
+    </section>
+
+    <section class="admin-charts">
+      <div class="admin-chart">
+        <h3>Monthly Sales</h3>
+        <canvas id="salesChart"></canvas>
+      </div>
+      <!-- Smaller Most Purchased Products Card Next to Chart -->
+      <div class="most-purchased-card" style="margin-top: 0;">
+        <h3>👑 Most Purchased</h3>
+        <div class="most-purchased-wrapper">
+          <img src="assets/OrangeBag.JPG" alt="Ankara Maxi Dress" class="product-thumb" />
+          <div class="most-purchased-details">
+            <h4>Ankara Maxi Dress</h4>
+            <p><strong>Category:</strong> Women</p>
+            <p><strong>Orders:</strong> 38 times</p>
+            <p><strong>Price:</strong> GHC 120.00</p>
+          </div>
+        </div>
+
+        <div class="most-purchased-wrapper">
+          <img src="assets/Fendi-black.jpg" alt="Kente Jacket" class="product-thumb" />
+          <div class="most-purchased-details">
+            <h4>Kente Jacket</h4>
+            <p><strong>Category:</strong> Men</p>
+            <p><strong>Orders:</strong> 29 times</p>
+            <p><strong>Price:</strong> GHC 180.00</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Orders Section -->
+    <section class="admin-section">
+      <h2 class="admin-section-title">Recent Orders</h2>
+      <div class="admin-table-container">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer Name</th>
+              <th>Phone</th>
+              <th>Total (GHC)</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="orders-table-body">
+            <!-- JS Populates here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Top Products -->
+    <section class="admin-section">
+      <h2 class="admin-section-title">Top Products</h2>
+      <div class="admin-table-container">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Price (GHC)</th>
+              <th>Stock</th>
+            </tr>
+          </thead>
+          <tbody id="products-table-body">
+            <!-- JS Populates here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Product Management -->
+    <section class="admin-section">
+  <div class="admin-section-header">
+    <h2 class="admin-section-title">Product Management</h2>
+    <button id="addProductBtn" class="admin-add-btn">+ Add Product</button>
+  </div>
+
+  <div class="admin-table-wrapper">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <!-- ✅ ADD THE ID RIGHT HERE -->
+      <tbody id="product-management-body">
+        <tr>
+          <td class="product-info"><img src="assets/OrangeBag.JPG" /><span>Ankara Gown</span></td>
+          <td>Women</td><td>GHC 250.00</td><td>23</td>
+          <td><span class="status active">Active</span></td>
+          <td class="actions"><button class="btn edit">Edit</button><button class="btn delete">Delete</button></td>
+        </tr>
+        <tr>
+          <td class="product-info"><img src="assets/Fendi-black.jpg" /><span>Leather Loafers</span></td>
+          <td>Men</td><td>GHC 180.00</td><td>10</td>
+          <td><span class="status inactive">Hidden</span></td>
+          <td class="actions"><button class="btn edit">Edit</button><button class="btn delete">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+  </main>
+
+  <!-- Product Modal -->
+  <div class="admin-modal-overlay" id="productModal">
+    <div class="admin-modal">
+      <form id="productForm">
+        <h2>Add Product</h2>
+
+        <label for="name">Product Name</label>
+        <input type="text" name="name" required />
+
+        <label for="category">Category</label>
+        <select name="category" required>
+          <option value="">-- Select Category --</option>
+          <option value="Men">Men</option>
+          <option value="Women">Women</option>
+          <option value="Children">Children</option>
+          <option value="Fabrics">Fabrics</option>
+          <option value="Bags & Shoes">Bags & Shoes</option>
+          <option value="Accessories">Accessories</option>
+        </select>
+
+        <label for="price">Price (GHC)</label>
+        <input type="number" name="price" required />
+
+        <label for="stock">Stock</label>
+        <input type="number" name="stock" required />
+
+        <div class="admin-modal-buttons">
+          <button type="submit">Add</button>
+          <button type="button" id="cancelModal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- View Order Modal -->
+<div id="viewOrderModal" class="modal">
+  <div class="modal-content">
+    <span id="closeOrderModal" class="close">&times;</span>
+    <h2>Order Details</h2>
+    <p><strong>Order ID:</strong> <span id="modal-order-id"></span></p>
+    <p><strong>Customer Name:</strong> <span id="modal-customer-name"></span></p>
+    <p><strong>Phone:</strong> <span id="modal-customer-phone"></span></p>
+    <p><strong>Date:</strong> <span id="modal-order-date"></span></p>
+    <p><strong>Total:</strong> <span id="modal-order-total"></span></p>
+    <h3>Items</h3>
+    <ul id="modal-order-items"></ul>
+  </div>
+</div>
+
+<style>
+  .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4); }
+  .modal.show { display: block; }
+  .modal-content { background: #fff; margin: 10% auto; padding: 20px; width: 400px; border-radius: 8px; }
+  .close { float: right; font-size: 24px; cursor: pointer; }
+</style>
+
+
+
+<div id="viewOrderModal" class="modal">
+  <div class="modal-content">
+    <span id="closeOrderModal" class="close">&times;</span>
+    <h2>Order Details</h2>
+    <p><strong>Order ID:</strong> <span id="modal-order-id"></span></p>
+    <p><strong>Customer Name:</strong> <span id="modal-customer-name"></span></p>
+    <p><strong>Phone:</strong> <span id="modal-customer-phone"></span></p>
+    <p><strong>Date:</strong> <span id="modal-order-date"></span></p>
+    <p><strong>Total:</strong> <span id="modal-order-total"></span></p>
+    <h3>Items</h3>
+    <ul id="modal-order-items"></ul>
+  </div>
+</div>
+
+
+  <script src="admin.js"></script>
+</body>
+</html>
+
+

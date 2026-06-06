@@ -1,0 +1,176 @@
+/* ===== Reset & Base ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f9fafb;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+}
+
+/* ===== Sidebar ===== */
+
+/* Sidebar */
+.admin-sidebar {
+  width: 220px;
+  background: #1f2937;
+  color: #fff;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.admin-logo {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+
+.admin-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-sidebar li {
+  margin-bottom: 15px;
+}
+
+.admin-sidebar a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-sidebar a:hover,
+.admin-sidebar .active a {
+  color: #fff;
+}
+
+
+/* ===== Main content ===== */
+.admin-main {
+  margin-left: 220px;
+  padding: 2.5rem 3rem;
+  width: 100%;
+  max-width: 1200px;
+  overflow-y: auto;
+}
+
+/* ===== Headings ===== */
+.admin-main h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #4a4a4a;
+  font-weight: 700;
+}
+
+/* ===== Metrics Cards ===== */
+.metrics-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.8rem;
+  margin-bottom: 3rem;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(126, 91, 239, 0.15);
+  padding: 1.8rem 2rem;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 25px rgba(126, 91, 239, 0.3);
+}
+
+.card h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #7E5BEF;
+  margin-bottom: 1rem;
+}
+
+.card p {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #4a4a4a;
+}
+
+/* ===== Chart Section ===== */
+.chart-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 15px rgba(126, 91, 239, 0.15);
+  margin-bottom: 3rem;
+}
+
+.chart-section h2 {
+  margin-bottom: 1.5rem;
+  color: #4a4a4a;
+  font-weight: 600;
+}
+
+/* ===== Recent Orders Table ===== */
+.recent-orders h2 {
+  margin-bottom: 1rem;
+  color: #4a4a4a;
+  font-weight: 600;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  min-width: 700px;
+}
+
+thead tr {
+  background: #7E5BEF;
+  color: white;
+  text-align: left;
+}
+
+thead tr th {
+  padding: 1rem 1.2rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+tbody tr {
+  border-bottom: 1px solid #eee;
+  transition: background 0.3s ease;
+}
+
+tbody tr:hover {
+  background: #f3eefd;
+}
+
+tbody tr td {
+  padding: 1rem 1.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-main {
+    padding: 1.5rem 1.8rem;
+  }
+  table {
+    font-size: 0.9rem;
+    min-width: 100%;
+  }
+  thead tr th, tbody tr td {
+    padding: 0.8rem 1rem;
+  }
+}
