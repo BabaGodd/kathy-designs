@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us – Kathy Designs</title>
+  <meta name="description" content="Learn about Kathy Designs — Ghana's premier African fashion destination.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .about-hero {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      padding: 5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('banners/headers/african ladies1.jpg') center/cover no-repeat;
+      opacity: 0.2;
+    }
+
+    .about-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .about-hero-eyebrow {
+      display: inline-block;
+      background: rgba(255,140,0,0.15);
+      color: #FF8C00;
+      border: 1px solid rgba(255,140,0,0.3);
+      padding: 0.3rem 1.2rem;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 1rem;
+      line-height: 1.2;
+    }
+
+    .about-hero p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+    }
+
+    .about-main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .about-story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-bottom: 5rem;
+    }
+
+    .about-story-img { position: relative; }
+
+    .about-story-img img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+    }
+
+    .about-img-placeholder {
+      width: 100%;
+      height: 500px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      border: 2px dashed #FF8C00;
+    }
+
+    .about-img-placeholder i {
+      font-size: 3rem;
+      color: #FF8C00;
+      opacity: 0.5;
+    }
+
+    .about-img-placeholder p {
+      font-size: 0.88rem;
+      color: #FF8C00;
+      font-weight: 600;
+      opacity: 0.7;
+    }
+
+    .about-img-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 100px;
+      height: 100px;
+      background: #FF8C00;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      line-height: 1.2;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(255,140,0,0.4);
+    }
+
+    .about-img-badge span:first-child { font-size: 1.6rem; }
+    .about-img-badge span:last-child {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .about-story-text .section-tag {
+      display: inline-block;
+      color: #FF8C00;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
+    }
+
+    .about-story-text h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin: 0 0 1.2rem;
+      line-height: 1.25;
+    }
+
+    .about-story-text h2 span { color: #FF8C00; }
+
+    .about-story-text p {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .about-signature {
+      margin-top: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .about-signature-line {
+      width: 40px;
+      height: 2px;
+      background: #FF8C00;
+    }
+
+    .about-signature-name {
+      font-weight: 800;
+      color: #1a1a1a;
+      font-size: 0.95rem;
+    }
+
+    .about-signature-title {
+      font-size: 0.8rem;
+      color: #999;
+    }
+
+    .about-values { margin-bottom: 5rem; }
+
+    .about-values-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .about-values-header h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+
+    .about-values-header p {
+      color: #888;
+      font-size: 0.92rem;
+    }
+
+    .about-values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .about-value-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border: 1px solid #f0f0f0;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .about-value-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+    }
+
+    .about-value-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #fff3e0;
+      color: #FF8C00;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+    }
+
+    .about-value-card h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin: 0 0 0.6rem;
+    }
+
+    .about-value-card p {
+      font-size: 0.85rem;
+      color: #777;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .about-stats {
+      background: #1a1a1a;
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .about-stat-item {
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .about-stat-item:last-child { border-right: none; }
+
+    .about-stat-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #FF8C00;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .about-stat-label {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .about-cta {
+      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      text-align: center;
+      border: 1px solid #ffe0b2;
+    }
+
+    .about-cta h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 0.6rem;
+    }
+
+    .about-cta p {
+      color: #666;
+      margin-bottom: 1.8rem;
+      font-size: 0.95rem;
+    }
+
+    .about-cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .about-cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 2rem;
+      background: #FF8C00;
+      color: white;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 4px 14px rgba(255,140,0,0.3);
+    }
+
+    .about-cta-primary:hover {
+      background: #e07b00;
+      transform: translateY(-2px);
+    }
+
+    .about-cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 2rem;
+      background: #25D366;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    .about-cta-secondary:hover {
+      background: #128C7E;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 900px) {
+      .about-story { grid-template-columns: 1fr; gap: 2rem; }
+      .about-values-grid { grid-template-columns: 1fr 1fr; }
+      .about-stats { grid-template-columns: repeat(2, 1fr); }
+      .about-stat-item:nth-child(2) { border-right: none; }
+      .about-img-badge { bottom: 10px; right: 10px; }
+    }
+
+    @media (max-width: 600px) {
+      .about-values-grid { grid-template-columns: 1fr; }
+      .about-stats { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="site-logo">
+      <div class="logo-circle">
+        <img src="banners/headers/1.jpg" alt="Kathy Designs">
+      </div>
+      <span class="logo-text">Kathy Designs</span>
+    </a>
+    <nav class="site-nav" id="siteNav">
+      <ul>
+        <li><a href="index.html">Women</a></li>
+        <li><a href="men.html">Men</a></li>
+        <li><a href="children.html">Children</a></li>
+        <li><a href="bags-shoes.html">Bags &amp; Shoes</a></li>
+        <li><a href="fabrics.html">Fabrics</a></li>
+        <li><a href="accessories.html">Accessories</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="cart.html" class="cart-link" aria-label="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-badge" id="cart-count">0</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="toast-notification" id="notification"></div>
+
+<!-- HERO -->
+<section class="about-hero">
+  <div class="about-hero-content">
+    <span class="about-hero-eyebrow">Our Story</span>
+    <h1>Fashion Rooted in African Heritage</h1>
+    <p>We are more than a fashion store. We are a celebration of African culture, craftsmanship and identity — brought to life through every outfit we create.</p>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="about-main">
+
+  <!-- Story -->
+  <div class="about-story">
+    <div class="about-story-img">
+      <!--
+        REPLACE PLACEHOLDER WITH CEO PHOTO AFTER CLIENT VISIT:
+        <img src="images/ceo-photo.jpg" alt="Kathy — Founder of Kathy Designs">
+        Then delete the div.about-img-placeholder below.
+      -->
+      <div class="about-img-placeholder">
+        <i class="fas fa-camera"></i>
+        <p>CEO Photo Goes Here</p>
+      </div>
+      <div class="about-img-badge">
+        <span>10+</span>
+        <span>Years of Excellence</span>
+      </div>
+    </div>
+
+    <div class="about-story-text">
+      <span class="section-tag">Meet the Founder</span>
+      <h2>Built on Passion, <span>Driven by Culture</span></h2>
+      <p>Kathy Designs was born from a deep love for African fashion and a desire to make authentic, high-quality clothing accessible to everyone in Ghana and beyond. What started as a small dream has grown into one of Tema's most trusted fashion destinations.</p>
+      <p>Our founder, Kathy, built this brand from the ground up — with nothing but passion, a sewing machine and an unwavering belief that African fashion deserves to be celebrated at the highest level. Every piece in our collection tells a story of culture, pride and beauty.</p>
+      <p>Today, Kathy Designs serves hundreds of customers across Ghana — from everyday wear to weddings, naming ceremonies, funerals and corporate events. Whatever the occasion, we dress you with confidence.</p>
+      <div class="about-signature">
+        <div><div class="about-signature-line"></div></div>
+        <div>
+          <div class="about-signature-name">Kathy [Surname]</div>
+          <div class="about-signature-title">Founder &amp; CEO, Kathy Designs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="about-stats">
+    <div class="about-stat-item">
+      <span class="about-stat-number">500+</span>
+      <span class="about-stat-label">Happy Customers</span>
+    </div>
+    <div class="about-stat-item">
+      <span class="about-stat-number">10+</span>
+      <span class="about-stat-label">Years in Business</span>
+    </div>
+    <div class="about-stat-item">
+      <span class="about-stat-number">6</span>
+      <span class="about-stat-label">Product Categories</span>
+    </div>
+    <div class="about-stat-item">
+      <span class="about-stat-number">100%</span>
+      <span class="about-stat-label">Authentic African Fashion</span>
+    </div>
+  </div>
+
+  <!-- Values -->
+  <div class="about-values">
+    <div class="about-values-header">
+      <h2>What We Stand For</h2>
+      <p>The values that guide everything we do at Kathy Designs</p>
+    </div>
+    <div class="about-values-grid">
+      <div class="about-value-card">
+        <div class="about-value-icon"><i class="fas fa-heart"></i></div>
+        <h3>Cultural Pride</h3>
+        <p>We celebrate African heritage through every fabric we sell and every outfit we create. Culture is not just our inspiration — it is our identity.</p>
+      </div>
+      <div class="about-value-card">
+        <div class="about-value-icon"><i class="fas fa-star"></i></div>
+        <h3>Quality First</h3>
+        <p>We never compromise on quality. Every piece goes through careful selection to ensure our customers receive only the best — because they deserve nothing less.</p>
+      </div>
+      <div class="about-value-card">
+        <div class="about-value-icon"><i class="fas fa-users"></i></div>
+        <h3>Customer Love</h3>
+        <p>Our customers are the heart of our business. We are committed to delivering an experience that goes beyond the purchase — from browsing to your doorstep.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="about-cta">
+    <h2>Ready to Find Your Perfect Outfit?</h2>
+    <p>Browse our full collection of authentic African fashion for women, men, children and more.</p>
+    <div class="about-cta-buttons">
+      <a href="index.html" class="about-cta-primary">
+        <i class="fas fa-shopping-bag"></i> Shop Now
+      </a>
+      <a href="https://wa.me/233244510810" target="_blank" class="about-cta-secondary">
+        <i class="fab fa-whatsapp"></i> Chat with Us
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>Store Hours</h4>
+      <ul>
+        <li>Mon–Fri: 9AM – 6PM</li>
+        <li>Saturday: 10AM – 4PM</li>
+        <li>Sunday: Closed</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><i class="fas fa-phone"></i> +233 244 510 810</li>
+        <li><i class="fas fa-phone"></i> +233 244 506 796</li>
+        <li><i class="fas fa-envelope"></i> kathydesigns@gmail.com</li>
+        <li><i class="fas fa-map-marker-alt"></i> 40 SOS Street, Tema</li>
+        <li>
+          <a href="https://wa.me/233244510810" class="whatsapp-link" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="track-order.html">Track My Order</a></li>
+        <li><a href="wishlist.html">My Wishlist</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+      </div>
+      <div class="newsletter-wrap">
+        <p>Get exclusive deals in your inbox</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Your email address" id="newsletterEmail">
+          <button id="newsletterBtn">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Kathy Designs. All rights reserved.</p>
+    <p>Built by <strong>KyKal Technologies</strong></p>
+  </div>
+</footer>
+
+<a href="https://wa.me/233244510810" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+  <span class="whatsapp-tooltip">Chat with us</span>
+</a>
+
+<script src="js/cart.js"></script>
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const siteNav   = document.getElementById('siteNav');
+  if (hamburger && siteNav) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      siteNav.classList.toggle('open');
+    });
+  }
+
+  const newsletterBtn   = document.getElementById('newsletterBtn');
+  const newsletterEmail = document.getElementById('newsletterEmail');
+  if (newsletterBtn && newsletterEmail) {
+    newsletterBtn.addEventListener('click', () => {
+      const email = newsletterEmail.value.trim();
+      if (!email || !email.includes('@')) return;
+      newsletterEmail.value = '';
+      const note = document.getElementById('notification');
+      if (note) {
+        note.textContent = 'Thanks for subscribing! 🎉';
+        note.classList.add('show');
+        setTimeout(() => note.classList.remove('show'), 2500);
+      }
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track My Order – Kathy Designs</title>
+  <meta name="description" content="Track your Kathy Designs order status in real time.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    .track-main {
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+    }
+
+    .track-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .track-header .track-icon {
+      width: 70px; height: 70px;
+      background: var(--orange-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--orange);
+      margin: 0 auto 1.2rem;
+    }
+
+    .track-header h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--black);
+      margin-bottom: 0.5rem;
+    }
+
+    .track-header p {
+      color: #888;
+      font-size: 0.92rem;
+    }
+
+    /* Search box */
+    .track-search-box {
+      background: white;
+      border-radius: 14px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid #f0f0f0;
+      margin-bottom: 2rem;
+    }
+
+    .track-search-box label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #444;
+      margin-bottom: 0.6rem;
+    }
+
+    .track-input-row {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .track-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: inherit;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .track-input:focus { border-color: var(--orange); }
+
+    .track-input::placeholder {
+      text-transform: none;
+      letter-spacing: normal;
+      color: #bbb;
+    }
+
+    .track-btn {
+      padding: 0.75rem 1.5rem;
+      background: var(--orange);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(255,140,0,0.3);
+    }
+
+    .track-btn:hover {
+      background: var(--orange-dark);
+      transform: translateY(-1px);
+    }
+
+    .track-hint {
+      font-size: 0.78rem;
+      color: #aaa;
+      margin-top: 0.6rem;
+    }
+
+    /* Result card */
+    .track-result {
+      display: none;
+      background: white;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      border: 1px solid #f0f0f0;
+      overflow: hidden;
+      animation: slideUp 0.4s ease;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Result header */
+    .track-result-header {
+      background: var(--black);
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .track-result-id {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--orange);
+      letter-spacing: 0.05em;
+    }
+
+    .track-result-date {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* Status timeline */
+    .track-timeline {
+      padding: 2rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .track-timeline h3 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
+    }
+
+    .timeline-steps {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .timeline-steps::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      height: 2px;
+      background: #f0f0f0;
+      z-index: 0;
+    }
+
+    .timeline-progress {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      height: 2px;
+      background: var(--orange);
+      z-index: 1;
+      transition: width 1s ease;
+    }
+
+    .timeline-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      position: relative;
+      z-index: 2;
+      flex: 1;
+    }
+
+    .step-dot {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: #f0f0f0;
+      border: 2px solid #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: #ccc;
+      transition: all 0.4s ease;
+    }
+
+    .step-dot.active {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: white;
+      box-shadow: 0 4px 12px rgba(255,140,0,0.4);
+    }
+
+    .step-dot.done {
+      background: #4caf50;
+      border-color: #4caf50;
+      color: white;
+    }
+
+    .step-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #aaa;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .step-label.active { color: var(--orange); }
+    .step-label.done   { color: #4caf50; }
+
+    /* Order details */
+    .track-details {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #f0f0f0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .track-detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .detail-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #aaa;
+      font-weight: 600;
+    }
+
+    .detail-value {
+      font-size: 0.92rem;
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    /* Items */
+    .track-items {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .track-items h3 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+
+    .track-item-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #f9f9f9;
+    }
+
+    .track-item-row:last-child { border-bottom: none; }
+
+    .track-item-info {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      flex: 1;
+    }
+
+    .track-item-img {
+      width: 44px; height: 44px;
+      object-fit: cover;
+      border-radius: 8px;
+      background: #f5f5f5;
+      flex-shrink: 0;
+    }
+
+    .track-item-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    .track-item-qty {
+      font-size: 0.78rem;
+      color: #aaa;
+    }
+
+    .track-item-price {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--orange);
+    }
+
+    /* Total */
+    .track-total {
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fafafa;
+    }
+
+    .track-total span:first-child {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .track-total span:last-child {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--orange);
+    }
+
+    /* WhatsApp CTA */
+    .track-cta {
+      padding: 1.5rem 2rem;
+      text-align: center;
+      background: #fff9f0;
+      border-top: 1px solid #ffe0b2;
+    }
+
+    .track-cta p {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 0.8rem;
+    }
+
+    .track-wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      background: #25D366;
+      color: white;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .track-wa-btn:hover { background: #128C7E; }
+
+    /* Error state */
+    .track-error {
+      display: none;
+      text-align: center;
+      padding: 2.5rem;
+      background: white;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      border: 1px solid #f0f0f0;
+      animation: slideUp 0.4s ease;
+    }
+
+    .track-error i {
+      font-size: 3rem;
+      color: #f0f0f0;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .track-error h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 0.5rem;
+    }
+
+    .track-error p {
+      font-size: 0.88rem;
+      color: #888;
+      margin-bottom: 1.2rem;
+    }
+
+    /* Loading state */
+    .track-loading {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    .track-loading i { 
+      color: var(--orange); 
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .track-input-row { flex-direction: column; }
+      .track-details { grid-template-columns: 1fr; }
+      .timeline-step .step-label { font-size: 0.62rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="site-logo">
+      <div class="logo-circle">
+        <img src="banners/headers/1.jpg" alt="Kathy Designs">
+      </div>
+      <span class="logo-text">Kathy Designs</span>
+    </a>
+    <nav class="site-nav" id="siteNav">
+      <ul>
+        <li><a href="index.html">Women</a></li>
+        <li><a href="men.html">Men</a></li>
+        <li><a href="children.html">Children</a></li>
+        <li><a href="bags-shoes.html">Bags &amp; Shoes</a></li>
+        <li><a href="fabrics.html">Fabrics</a></li>
+        <li><a href="accessories.html">Accessories</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="cart.html" class="cart-link" aria-label="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-badge" id="cart-count">0</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="toast-notification" id="notification"></div>
+
+<!-- ===================== TRACK ORDER PAGE ===================== -->
+<main class="track-main">
+
+  <!-- Header -->
+  <div class="track-header">
+    <div class="track-icon"><i class="fas fa-box"></i></div>
+    <h1>Track My Order</h1>
+    <p>Enter your Order ID to see the latest status of your order</p>
+  </div>
+
+  <!-- Search -->
+  <div class="track-search-box">
+    <label for="orderIdInput">Order ID</label>
+    <div class="track-input-row">
+      <input type="text" id="orderIdInput" class="track-input"
+             placeholder="e.g. KD-123456" maxlength="12">
+      <button class="track-btn" id="trackBtn">
+        <i class="fas fa-search"></i> Track Order
+      </button>
+    </div>
+    <p class="track-hint">
+      <i class="fas fa-info-circle" style="color:var(--orange);"></i>
+      Your Order ID was shown on your confirmation page after checkout. It starts with KD-
+    </p>
+  </div>
+
+  <!-- Loading -->
+  <div class="track-loading" id="trackLoading">
+    <i class="fas fa-spinner fa-spin"></i>
+    Searching for your order...
+  </div>
+
+  <!-- Error -->
+  <div class="track-error" id="trackError">
+    <i class="fas fa-search"></i>
+    <h3>Order Not Found</h3>
+    <p>We couldn't find an order with that ID. Please check and try again, or contact us on WhatsApp for help.</p>
+    <a href="https://wa.me/233244510810" target="_blank" class="track-wa-btn">
+      <i class="fab fa-whatsapp"></i> Contact Us on WhatsApp
+    </a>
+  </div>
+
+  <!-- Result -->
+  <div class="track-result" id="trackResult">
+
+    <!-- Result header -->
+    <div class="track-result-header">
+      <div>
+        <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);margin-bottom:0.2rem;letter-spacing:0.1em;text-transform:uppercase;">Order ID</div>
+        <div class="track-result-id" id="resultOrderId"></div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);margin-bottom:0.2rem;letter-spacing:0.1em;text-transform:uppercase;">Date Placed</div>
+        <div class="track-result-date" id="resultDate"></div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="track-timeline">
+      <h3>Order Status</h3>
+      <div class="timeline-steps">
+        <div class="timeline-progress" id="timelineProgress"></div>
+
+        <div class="timeline-step">
+          <div class="step-dot" id="step-pending"><i class="fas fa-clock"></i></div>
+          <div class="step-label" id="label-pending">Order<br>Placed</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-dot" id="step-processing"><i class="fas fa-box-open"></i></div>
+          <div class="step-label" id="label-processing">Being<br>Prepared</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-dot" id="step-shipped"><i class="fas fa-truck"></i></div>
+          <div class="step-label" id="label-shipped">Out for<br>Delivery</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-dot" id="step-completed"><i class="fas fa-check"></i></div>
+          <div class="step-label" id="label-completed">Delivered</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Details -->
+    <div class="track-details">
+      <div class="track-detail-item">
+        <span class="detail-label">Customer Name</span>
+        <span class="detail-value" id="resultName"></span>
+      </div>
+      <div class="track-detail-item">
+        <span class="detail-label">Phone</span>
+        <span class="detail-value" id="resultPhone"></span>
+      </div>
+      <div class="track-detail-item">
+        <span class="detail-label">Delivery Address</span>
+        <span class="detail-value" id="resultAddress"></span>
+      </div>
+      <div class="track-detail-item">
+        <span class="detail-label">Payment Method</span>
+        <span class="detail-value" id="resultPayment"></span>
+      </div>
+      <div class="track-detail-item">
+        <span class="detail-label">Delivery Method</span>
+        <span class="detail-value" id="resultDelivery"></span>
+      </div>
+      <div class="track-detail-item">
+        <span class="detail-label">Current Status</span>
+        <span class="detail-value" id="resultStatus"></span>
+      </div>
+    </div>
+
+    <!-- Items -->
+    <div class="track-items">
+      <h3>Items Ordered</h3>
+      <div id="resultItems"></div>
+    </div>
+
+    <!-- Total -->
+    <div class="track-total">
+      <span>Total Paid</span>
+      <span>GHC <span id="resultTotal"></span></span>
+    </div>
+
+    <!-- WhatsApp CTA -->
+    <div class="track-cta">
+      <p>Have a question about your order? Chat with us directly.</p>
+      <a href="https://wa.me/233244510810" target="_blank" class="track-wa-btn">
+        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+      </a>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>Store Hours</h4>
+      <ul>
+        <li>Mon–Fri: 9AM – 6PM</li>
+        <li>Saturday: 10AM – 4PM</li>
+        <li>Sunday: Closed</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><i class="fas fa-phone"></i> +233 244 510 810</li>
+        <li><i class="fas fa-phone"></i> +233 244 506 796</li>
+        <li><i class="fas fa-envelope"></i> kathydesigns@gmail.com</li>
+        <li><i class="fas fa-map-marker-alt"></i> 40 SOS Street, Tema</li>
+        <li>
+          <a href="https://wa.me/233244510810" class="whatsapp-link" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns &amp; Exchanges</a></li>
+        <li><a href="track-order.html">Track My Order</a></li>
+        <li><a href="wishlist.html">My Wishlist</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+      </div>
+      <div class="newsletter-wrap">
+        <p>Get exclusive deals in your inbox</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Your email address" id="newsletterEmail">
+          <button id="newsletterBtn">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Kathy Designs. All rights reserved.</p>
+    <p>Built by <strong>KyKal Technologies</strong></p>
+  </div>
+</footer>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/233244510810" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+  <span class="whatsapp-tooltip">Chat with us</span>
+</a>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  const SUPABASE_URL  = 'https://hkrnxfylhvfnqovduxjc.supabase.co';
+  const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhrcm54ZnlsaHZmbnFvdmR1eGpjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4Nzk2OTEsImV4cCI6MjA5NDQ1NTY5MX0.zQKABL_eXWDtiEBDIsqN-sEoXsZR0Bc4NIRMO8kdJLw';
+
+  const { createClient } = supabase;
+  const db = createClient(SUPABASE_URL, SUPABASE_ANON);
+
+  const orderIdInput  = document.getElementById('orderIdInput');
+  const trackBtn      = document.getElementById('trackBtn');
+  const trackLoading  = document.getElementById('trackLoading');
+  const trackError    = document.getElementById('trackError');
+  const trackResult   = document.getElementById('trackResult');
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const siteNav   = document.getElementById('siteNav');
+  if (hamburger && siteNav) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      siteNav.classList.toggle('open');
+    });
+  }
+
+  function formatDate(dateStr) {
+    if (!dateStr) return '—';
+    return new Date(dateStr).toLocaleDateString('en-GB', {
+      day: '2-digit', month: 'long', year: 'numeric'
+    });
+  }
+
+  function setTimeline(status) {
+    const steps    = ['pending', 'processing', 'shipped', 'completed'];
+    const statusMap = {
+      'Pending':   0,
+      'Processing': 1,
+      'Shipped':   2,
+      'Completed': 3,
+      'Cancelled': -1
+    };
+
+    const activeIndex = statusMap[status] ?? 0;
+    const progress = ['0%', '33%', '66%', '100%'];
+
+    document.getElementById('timelineProgress').style.width =
+      activeIndex >= 0 ? progress[activeIndex] : '0%';
+
+    steps.forEach((step, i) => {
+      const dot   = document.getElementById(`step-${step}`);
+      const label = document.getElementById(`label-${step}`);
+
+      if (status === 'Cancelled') {
+        dot.style.background = '#f44336';
+        dot.style.borderColor = '#f44336';
+        dot.style.color = 'white';
+        label.style.color = '#f44336';
+        return;
+      }
+
+      if (i < activeIndex) {
+        dot.classList.add('done');
+        label.classList.add('done');
+      } else if (i === activeIndex) {
+        dot.classList.add('active');
+        label.classList.add('active');
+      }
+    });
+  }
+
+  function showResult(order) {
+    trackLoading.style.display = 'none';
+    trackError.style.display   = 'none';
+    trackResult.style.display  = 'block';
+
+    document.getElementById('resultOrderId').textContent  = order.order_id;
+    document.getElementById('resultDate').textContent     = formatDate(order.created_at);
+    document.getElementById('resultName').textContent     = order.customer_name || '—';
+    document.getElementById('resultPhone').textContent    = order.customer_phone || '—';
+    document.getElementById('resultAddress').textContent  = order.customer_address || '—';
+    document.getElementById('resultPayment').textContent  = order.payment_method || '—';
+    document.getElementById('resultDelivery').textContent = order.delivery_method || '—';
+    document.getElementById('resultTotal').textContent    = parseFloat(order.total || 0).toFixed(2);
+
+    // Status badge
+    const statusColors = {
+      'Pending': '#FF8C00', 'Processing': '#2196F3',
+      'Shipped': '#9C27B0', 'Completed': '#4CAF50', 'Cancelled': '#f44336'
+    };
+    const color = statusColors[order.status] || '#FF8C00';
+    document.getElementById('resultStatus').innerHTML =
+      `<span style="color:${color};font-weight:800;">${order.status || 'Pending'}</span>`;
+
+    // Timeline
+    setTimeline(order.status || 'Pending');
+
+    // Items
+    const itemsContainer = document.getElementById('resultItems');
+    itemsContainer.innerHTML = '';
+    const items = Array.isArray(order.items) ? order.items : [];
+
+    if (items.length === 0) {
+      itemsContainer.innerHTML = '<p style="color:#aaa;font-size:0.85rem;">No items found.</p>';
+    } else {
+      items.forEach(item => {
+        const qty   = item.quantity || 1;
+        const price = parseFloat(item.price || 0);
+        const row   = document.createElement('div');
+        row.className = 'track-item-row';
+        row.innerHTML = `
+          <div class="track-item-info">
+            <img src="${item.image || ''}" alt="${item.name}"
+                 class="track-item-img" onerror="this.style.display='none'">
+            <div>
+              <div class="track-item-name">${item.name}</div>
+              <div class="track-item-qty">Qty: ${qty}</div>
+            </div>
+          </div>
+          <div class="track-item-price">GHC ${(price * qty).toFixed(2)}</div>
+        `;
+        itemsContainer.appendChild(row);
+      });
+    }
+  }
+
+  async function trackOrder() {
+    const orderId = orderIdInput.value.trim().toUpperCase();
+
+    if (!orderId) {
+      orderIdInput.focus();
+      return;
+    }
+
+    // Reset
+    trackResult.style.display  = 'none';
+    trackError.style.display   = 'none';
+    trackLoading.style.display = 'block';
+
+    trackBtn.disabled = true;
+    trackBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
+
+    try {
+      const { data, error } = await db
+        .from('orders')
+        .select('*')
+        .eq('order_id', orderId)
+        .single();
+
+      if (error || !data) {
+        trackLoading.style.display = 'none';
+        trackError.style.display   = 'block';
+      } else {
+        showResult(data);
+      }
+    } catch(err) {
+      trackLoading.style.display = 'none';
+      trackError.style.display   = 'block';
+    }
+
+    trackBtn.disabled = false;
+    trackBtn.innerHTML = '<i class="fas fa-search"></i> Track Order';
+  }
+
+  trackBtn.addEventListener('click', trackOrder);
+  orderIdInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') trackOrder();
+  });
+
+  // Check if order ID passed in URL
+  const params = new URLSearchParams(window.location.search);
+  const urlOrderId = params.get('id');
+  if (urlOrderId) {
+    orderIdInput.value = urlOrderId;
+    trackOrder();
+  }
+
+  // Newsletter
+  const newsletterBtn   = document.getElementById('newsletterBtn');
+  const newsletterEmail = document.getElementById('newsletterEmail');
+  if (newsletterBtn && newsletterEmail) {
+    newsletterBtn.addEventListener('click', () => {
+      const email = newsletterEmail.value.trim();
+      if (!email || !email.includes('@')) return;
+      newsletterEmail.value = '';
+    });
+  }
+
+});
+</script>
+
+<script src="js/cart.js"></script>
+</body>
+</html>
