@@ -356,11 +356,104 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// Register Service Worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then(() => console.log('Kathy Designs PWA ready!'))
-      .catch(err => console.error('SW error:', err));
+/* =============================================
+   MOBILE SEARCH
+   ============================================= */
+(function() {
+  // Add mobile search button to header actions
+  const headerActions = document.querySelector('.header-actions');
+  if (!headerActions) return;
+
+  // Create mobile search button
+  const mobileSearchBtn = document.createElement('button');
+  mobileSearchBtn.className = 'mobile-search-btn';
+  mobileSearchBtn.setAttribute('aria-label', 'Search');
+  mobileSearchBtn.innerHTML = '<i class="fas fa-search"></i>';
+
+  // Insert before cart link
+  const cartLink = headerActions.querySelector('.cart-link');
+  if (cartLink) {
+    headerActions.insertBefore(mobileSearchBtn, cartLink);
+  } else {
+    headerActions.prepend(mobileSearchBtn);
+  }
+
+  // Create mobile search overlay
+  const overlay = document.createElement('div');
+  overlay.className = 'mobile-search-overlay';
+  overlay.innerHTML = `
+    <input type="text" id="mobileSearchInput" placeholder="Search products…" autocomplete="off">
+    <button class="mobile-search-close" id="mobileSearchClose">
+      <i class="fas fa-times"></i>
+    </button>
+  `;
+  document.body.appendChild(overlay);
+
+  // Create mobile search results
+  const mobileResults = document.createElement('div');
+  mobileResults.className = 'mobile-search-results';
+  mobileResults.id = 'mobileSearchResults';
+  document.body.appendChild(mobileResults);
+
+  const mobileInput = document.getElementById('mobileSearchInput');
+  const mobileClose = document.getElementById('mobileSearchClose');
+
+  // Open search overlay
+  mobileSearchBtn.addEventListener('click', () => {
+    overlay.classList.add('open');
+    setTimeout(() => mobileInput && mobileInput.focus(), 100);
   });
-}
+
+  // Close search overlay
+  if (mobileClose) {
+    mobileClose.addEventListener('click', () => {
+      overlay.classList.remove('open');
+      mobileResults.classList.remove('open');
+      if (mobileInput) mobileInput.value = '';
+    });
+  }
+
+  // Mobile search logic
+  if (mobileInput) {
+    mobileInput.addEventListener('input', () => {
+      const query = mobileInput.value.trim().toLowerCase();
+      mobileResults.innerHTML = '';
+
+      if (!query || typeof KATHY_ALL_PRODUCTS === 'undefined') {
+        mobileResults.classList.remove('open');
+        return;
+      }
+
+      const matches = KATHY_ALL_PRODUCTS.filter(p =>
+        p.name.toLowerCase().includes(query) ||
+        p.category.toLowerCase().includes(query)
+      ).slice(0, 6);
+
+      if (matches.length === 0) {
+        mobileResults.innerHTML = `<div class="search-no-results">No products found for "<strong>${query}</strong>"</div>`;
+      } else {
+        matches.forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'search-result-item';
+          div.innerHTML = `
+            <img src="${item.image}" alt="${item.name}" onerror="this.src=''">
+            <div>
+              <div class="search-result-name">${item.name}</div>
+              <div class="search-result-meta">
+                <span class="search-result-price">GHC ${item.price.toFixed(2)}</span>
+                <span class="search-result-cat">${item.category}</span>
+              </div>
+            </div>
+            <i class="fas fa-arrow-right search-result-arrow"></i>
+          `;
+          div.addEventListener('click', () => {
+            window.location.href = item.page + '#products';
+          });
+          mobileResults.appendChild(div);
+        });
+      }
+
+      mobileResults.classList.add('open');
+    });
+  }
+})();
