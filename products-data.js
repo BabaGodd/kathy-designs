@@ -57,31 +57,8 @@ const KATHY_ALL_PRODUCTS = [
   { id:'mprod23', name:'Kente Dashiki Set',         price:360, image:'productImages/mens23.PNG',  category:'Men', page:'men.html' },
   { id:'mprod24', name:'African Print Kaftan',      price:290, image:'productImages/mens24.PNG',  category:'Men', page:'men.html' },
 
-  /* ---- CHILDREN ---- */
-  { id:'kprod01', name:'Kids Kente Set',            price:150, image:'productImages/kids1.PNG',  category:'Children', page:'children.html' },
-  { id:'kprod02', name:'Ankara Kids Dress',         price:130, image:'productImages/kids2.PNG',  category:'Children', page:'children.html' },
-  { id:'kprod03', name:'Boys Dashiki',              price:120, image:'productImages/kids3.PNG',  category:'Children', page:'children.html' },
-  { id:'kprod04', name:'Girls Kaba Set',            price:160, image:'productImages/kids4.PNG',  category:'Children', page:'children.html' },
-  { id:'kprod05', name:'Kids African Print Top',    price:110, image:'productImages/kids5.PNG',  category:'Children', page:'children.html' },
-  { id:'kprod06', name:'Traditional Kids Wear',     price:140, image:'productImages/kids6.PNG',  category:'Children', page:'children.html' },
-  { id:'kprod07', name:'Kente Boys Suit',           price:180, image:'productImages/kids7.PNG',  category:'Children', page:'children.html' },
-  { id:'kprod08', name:'Girls Ankara Skirt',        price:100, image:'productImages/kids8.PNG',  category:'Children', page:'children.html' },
-  { id:'kprod09', name:'Kids Smock Outfit',         price:135, image:'productImages/kids9.PNG',  category:'Children', page:'children.html' },
-  { id:'kprod10', name:'Ankara Kids Jumpsuit',      price:145, image:'productImages/kids10.PNG', category:'Children', page:'children.html' },
-  { id:'kprod11', name:'Boys Kente Shirt',          price:95,  image:'productImages/kids11.PNG', category:'Children', page:'children.html' },
-  { id:'kprod12', name:'Girls GTP Dress',           price:120, image:'productImages/kids12.PNG', category:'Children', page:'children.html' },
-  { id:'kprod13', name:'Kids Kaba & Slit',          price:155, image:'productImages/kids13.PNG', category:'Children', page:'children.html' },
-  { id:'kprod14', name:'Boys Ankara Shorts Set',    price:115, image:'productImages/kids14.PNG', category:'Children', page:'children.html' },
-  { id:'kprod15', name:'Girls Batik Dress',         price:125, image:'productImages/kids15.PNG', category:'Children', page:'children.html' },
-  { id:'kprod16', name:'Kids Agbada Set',           price:200, image:'productImages/kids16.PNG', category:'Children', page:'children.html' },
-  { id:'kprod17', name:'Girls Lace Dress',          price:170, image:'productImages/kids17.PNG', category:'Children', page:'children.html' },
-  { id:'kprod18', name:'Boys Senator Outfit',       price:190, image:'productImages/kids18.PNG', category:'Children', page:'children.html' },
-  { id:'kprod19', name:'Girls Ankara Jumpsuit',     price:145, image:'productImages/kids19.PNG', category:'Children', page:'children.html' },
-  { id:'kprod20', name:'Kids Kente Trouser Set',    price:175, image:'productImages/kids20.PNG', category:'Children', page:'children.html' },
-  { id:'kprod21', name:'Kids African Gown',         price:160, image:'productImages/kids21.PNG', category:'Children', page:'children.html' },
-  { id:'kprod22', name:'Kids Ankara Party Dress',   price:185, image:'productImages/kids22.PNG', category:'Children', page:'children.html' },
-  { id:'kprod23', name:'Boys Kente Agbada',         price:210, image:'productImages/kids23.PNG', category:'Children', page:'children.html' },
-  { id:'kprod24', name:'Girls Smock Dress',         price:140, image:'productImages/kids24.PNG', category:'Children', page:'children.html' },
+  
+ 
 
   /* ---- BAGS & SHOES ---- */
   { id:'bsprod01', name:'Designer Tote Bag',        price:320, image:'productImages/WomensBAG1.PNG',       category:'Bags & Shoes', page:'bags-shoes.html' },
