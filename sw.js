@@ -1,14 +1,14 @@
 /* =============================================
    SERVICE WORKER — Kathy Designs PWA
+   v3 — Forces fresh cache, removes Children
    ============================================= */
 
-const CACHE_NAME = 'kathy-designs-v1';
+const CACHE_NAME = 'kathy-designs-v3';
 
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
   '/men.html',
-  '/children.html',
   '/bags-shoes.html',
   '/fabrics.html',
   '/accessories.html',
@@ -17,6 +17,7 @@ const ASSETS_TO_CACHE = [
   '/order-confirm.html',
   '/wishlist.html',
   '/about.html',
+  '/track-order.html',
   '/styles.css',
   '/script.js',
   '/cart-page.js',
@@ -31,16 +32,16 @@ const ASSETS_TO_CACHE = [
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];
 
-// Install — cache all assets
+// Install — cache fresh assets
 self.addEventListener('install', event => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => cache.addAll(ASSETS_TO_CACHE))
-      .then(() => self.skipWaiting())
   );
 });
 
-// Activate — clean up old caches
+// Activate — delete ALL old caches immediately
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -52,30 +53,20 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Fetch — serve from cache, fall back to network
+// Fetch — network first, fall back to cache
 self.addEventListener('fetch', event => {
-  // Skip non-GET requests and Supabase API calls
   if (event.request.method !== 'GET') return;
   if (event.request.url.includes('supabase.co')) return;
 
   event.respondWith(
-    caches.match(event.request)
-      .then(cached => {
-        if (cached) return cached;
-        return fetch(event.request).then(response => {
-          // Cache successful responses
-          if (response && response.status === 200) {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-          }
-          return response;
-        });
-      })
-      .catch(() => {
-        // Offline fallback for navigation requests
-        if (event.request.mode === 'navigate') {
-          return caches.match('/index.html');
+    fetch(event.request)
+      .then(response => {
+        if (response && response.status === 200) {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
         }
+        return response;
       })
+      .catch(() => caches.match(event.request))
   );
 });
