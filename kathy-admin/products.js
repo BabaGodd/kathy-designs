@@ -1,291 +1,263 @@
-// ===========================
-// KATHY DESIGNS - PRODUCTS JS
-// ===========================
+/* =============================================
+   PRODUCTS.JS — Kathy Designs Admin
+   Fixed: no blinking images, clean rendering
+   ============================================= */
 
-// ===== DATE =====
-const dateEl = document.getElementById('adminDate');
-if (dateEl) {
-  dateEl.textContent = new Date().toLocaleDateString('en-GB', {
-    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-  });
-}
+document.addEventListener('DOMContentLoaded', () => {
 
-// ===== LOAD PRODUCTS FROM LOCALSTORAGE OR USE DEFAULTS =====
-const defaultProducts = [
-  // WOMEN
-  { id: 1,  name: 'Floral Summer Dress',    category: 'women',      price: 150, stock: 'in-stock',    sizes: ['S','M','L','XL'], colors: ['Red','Orange','Green'], image: 'assets/Fendi-black.jpg' },
-  { id: 2,  name: 'Stylish Blouse',          category: 'women',      price: 100, stock: 'in-stock',    sizes: ['M','L'],          colors: ['Blue','White'],        image: 'assets/OrangeBag.JPG' },
-  { id: 3,  name: 'Kente Wrap Dress',        category: 'women',      price: 200, stock: 'in-stock',    sizes: ['S','M','L'],      colors: ['Gold','Green'],        image: 'assets/placeholder.jpg' },
-  { id: 4,  name: 'Ankara Maxi Dress',       category: 'women',      price: 180, stock: 'low-stock',   sizes: ['M','L','XL'],     colors: ['Blue','Yellow'],       image: 'assets/placeholder.jpg' },
-  { id: 5,  name: 'Lace Top',                category: 'women',      price: 120, stock: 'in-stock',    sizes: ['S','M'],          colors: ['White','Cream'],       image: 'assets/placeholder.jpg' },
-  { id: 6,  name: 'Silk Evening Gown',       category: 'women',      price: 350, stock: 'low-stock',   sizes: ['S','M','L'],      colors: ['Black','Gold'],        image: 'assets/placeholder.jpg' },
-  { id: 7,  name: 'Peplum Top',              category: 'women',      price: 90,  stock: 'in-stock',    sizes: ['XS','S','M'],     colors: ['Pink','Purple'],       image: 'assets/placeholder.jpg' },
+  /* ---- DOM refs ---- */
+  const productGrid     = document.getElementById('productGrid');
+  const searchInput     = document.getElementById('searchInput');
+  const categoryFilter  = document.getElementById('categoryFilter');
+  const addProductBtn   = document.getElementById('addProductBtn');
+  const productModal    = document.getElementById('productModal');
+  const productForm     = document.getElementById('productForm');
+  const closeModalBtn   = document.getElementById('closeModalBtn');
+  const cancelBtn       = document.getElementById('cancelBtn');
+  const deleteModal     = document.getElementById('deleteModal');
+  const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+  const confirmDeleteBtn= document.getElementById('confirmDeleteBtn');
+  const modalTitle      = document.getElementById('modalTitle');
+  const toast           = document.getElementById('toast');
+  const totalProducts   = document.getElementById('totalProducts');
+  const exportBtn       = document.getElementById('exportBtn');
 
-  // MEN
-  { id: 8,  name: 'Casual Cotton Shirt',     category: 'men',        price: 120, stock: 'in-stock',    sizes: ['M','L','XL'],     colors: ['White','Black'],       image: 'assets/placeholder.jpg' },
-  { id: 9,  name: 'Denim Jacket',            category: 'men',        price: 200, stock: 'in-stock',    sizes: ['L','XL'],         colors: ['Blue','Black'],        image: 'assets/placeholder.jpg' },
-  { id: 10, name: 'Kente Print Shirt',       category: 'men',        price: 160, stock: 'in-stock',    sizes: ['M','L','XL'],     colors: ['Multi'],               image: 'assets/placeholder.jpg' },
-  { id: 11, name: 'Slim Fit Chinos',         category: 'men',        price: 140, stock: 'low-stock',   sizes: ['32','34','36'],   colors: ['Khaki','Navy'],        image: 'assets/placeholder.jpg' },
-  { id: 12, name: 'Agbada Suit',             category: 'men',        price: 450, stock: 'in-stock',    sizes: ['L','XL','XXL'],   colors: ['White','Gold'],        image: 'assets/placeholder.jpg' },
+  let products    = JSON.parse(localStorage.getItem('kathyProducts')) || [];
+  let editIndex   = -1;
+  let deleteIndex = -1;
 
-  // CHILDREN
-  { id: 13, name: 'Kids Ankara Dress',       category: 'children',   price: 80,  stock: 'in-stock',    sizes: ['2Y','4Y','6Y'],   colors: ['Yellow','Green'],      image: 'assets/placeholder.jpg' },
-  { id: 14, name: 'Boys Kente Shirt',        category: 'children',   price: 70,  stock: 'in-stock',    sizes: ['4Y','6Y','8Y'],   colors: ['Multi'],               image: 'assets/placeholder.jpg' },
-  { id: 15, name: 'Girls Party Dress',       category: 'children',   price: 100, stock: 'low-stock',   sizes: ['3Y','5Y','7Y'],   colors: ['Pink','White'],        image: 'assets/placeholder.jpg' },
+  /* ---- Toast ---- */
+  function showToast(message, type = 'success') {
+    if (!toast) return;
+    toast.textContent = message;
+    toast.className = `toast show ${type}`;
+    setTimeout(() => { toast.className = 'toast'; }, 3000);
+  }
 
-  // BAGS & SHOES
-  { id: 16, name: 'Leopard Print Bag',       category: 'bags-shoes', price: 250, stock: 'in-stock',    sizes: ['One Size'],       colors: ['Brown','Black'],       image: 'assets/placeholder.jpg' },
-  { id: 17, name: 'Zebra Print Heels',       category: 'bags-shoes', price: 180, stock: 'in-stock',    sizes: ['37','38','39','40'], colors: ['Black','White'],    image: 'assets/placeholder.jpg' },
-  { id: 18, name: 'Office Leather Shoes',    category: 'bags-shoes', price: 220, stock: 'low-stock',   sizes: ['40','41','42'],   colors: ['Black','Brown'],       image: 'assets/placeholder.jpg' },
-  { id: 19, name: 'Butterfly Sandals',       category: 'bags-shoes', price: 150, stock: 'in-stock',    sizes: ['36','37','38'],   colors: ['Gold','Silver'],       image: 'assets/placeholder.jpg' },
+  /* ---- Save ---- */
+  function saveProducts() {
+    localStorage.setItem('kathyProducts', JSON.stringify(products));
+  }
 
-  // FABRICS
-  { id: 20, name: 'Kente Fabric (6 yards)',  category: 'fabrics',    price: 300, stock: 'in-stock',    sizes: ['6 yards'],        colors: ['Multi'],               image: 'assets/placeholder.jpg' },
-  { id: 21, name: 'GTP Ankara Print',        category: 'fabrics',    price: 120, stock: 'in-stock',    sizes: ['6 yards'],        colors: ['Blue','Red'],          image: 'assets/placeholder.jpg' },
-  { id: 22, name: 'Silk Fabric (per yard)',  category: 'fabrics',    price: 60,  stock: 'low-stock',   sizes: ['Per yard'],       colors: ['White','Cream'],       image: 'assets/placeholder.jpg' },
+  /* ---- Render ---- */
+  function renderProducts() {
+    if (!productGrid) return;
 
-  // ACCESSORIES
-  { id: 23, name: 'Gold Necklace Set',       category: 'accessories', price: 180, stock: 'in-stock',   sizes: ['One Size'],       colors: ['Gold'],                image: 'assets/placeholder.jpg' },
-  { id: 24, name: 'Beaded Bracelet',         category: 'accessories', price: 60,  stock: 'in-stock',   sizes: ['One Size'],       colors: ['Multi'],               image: 'assets/placeholder.jpg' },
-  { id: 25, name: 'Head Wrap Scarf',         category: 'accessories', price: 50,  stock: 'in-stock',   sizes: ['One Size'],       colors: ['Red','Blue','Green'],  image: 'assets/placeholder.jpg' },
-];
+    const search   = searchInput ? searchInput.value.trim().toLowerCase() : '';
+    const category = categoryFilter ? categoryFilter.value : 'all';
 
-let products = JSON.parse(localStorage.getItem('kathyProducts')) || defaultProducts;
-let editId = null;
+    const filtered = products.filter(p => {
+      const matchSearch   = !search || p.name.toLowerCase().includes(search) || (p.category||'').toLowerCase().includes(search);
+      const matchCategory = category === 'all' || p.category === category;
+      return matchSearch && matchCategory;
+    });
 
-// ===== CATEGORY CONFIG =====
-const categories = [
-  { key: 'women',      label: "Women's Collection",  icon: 'fa-female' },
-  { key: 'men',        label: "Men's Collection",     icon: 'fa-male' },
-  { key: 'children',   label: "Children's Collection",icon: 'fa-child' },
-  { key: 'bags-shoes', label: "Bags & Shoes",         icon: 'fa-shopping-bag' },
-  { key: 'fabrics',    label: "Fabrics",              icon: 'fa-scroll' },
-  { key: 'accessories',label: "Accessories",          icon: 'fa-gem' },
-];
+    if (totalProducts) totalProducts.textContent = filtered.length;
 
-// ===== SAVE TO LOCALSTORAGE =====
-function saveProducts() {
-  localStorage.setItem('kathyProducts', JSON.stringify(products));
-}
-
-// ===== RENDER ALL PRODUCTS =====
-function renderProducts(filter = 'all', search = '', stockFilter = 'all') {
-  const container = document.getElementById('productsContainer');
-  container.innerHTML = '';
-
-  categories.forEach(cat => {
-    if (filter !== 'all' && filter !== cat.key) return;
-
-    let filtered = products.filter(p => p.category === cat.key);
-
-    if (search) {
-      filtered = filtered.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
+    if (filtered.length === 0) {
+      productGrid.innerHTML = `
+        <div style="grid-column:1/-1;text-align:center;padding:3rem;color:#aaa;">
+          <i class="fas fa-box-open" style="font-size:2.5rem;margin-bottom:1rem;display:block;"></i>
+          <p>No products found.</p>
+        </div>`;
+      return;
     }
 
-    if (stockFilter !== 'all') {
-      filtered = filtered.filter(p => p.stock === stockFilter);
-    }
+    /* Build HTML in one go — avoids blinking */
+    const html = filtered.map((p, i) => {
+      const realIndex  = products.indexOf(p);
+      const stock      = parseInt(p.stock || 0);
+      const stockClass = stock === 0 ? 'out-of-stock' : stock <= 5 ? 'low-stock' : 'in-stock';
+      const stockLabel = stock === 0 ? 'Out of Stock' : stock <= 5 ? 'Low Stock' : 'In Stock';
 
-    if (filtered.length === 0) return;
-
-    // Category heading
-    const heading = document.createElement('div');
-    heading.className = 'category-heading';
-    heading.innerHTML = `
-      <i class="fas ${cat.icon}"></i>
-      <span>${cat.label}</span>
-      <span class="category-count">${filtered.length} item${filtered.length !== 1 ? 's' : ''}</span>
-    `;
-    container.appendChild(heading);
-
-    // Product grid
-    const grid = document.createElement('div');
-    grid.className = 'products-grid';
-
-    filtered.forEach(p => {
-      const stockClass = p.stock === 'in-stock' ? 'in-stock' : p.stock === 'low-stock' ? 'low-stock' : 'out-of-stock';
-      const stockLabel = p.stock.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-
-      const card = document.createElement('div');
-      card.className = 'product-card';
-      card.dataset.id = p.id;
-      card.innerHTML = `
-        <div class="product-card-img">
-          <img src="${p.image}" alt="${p.name}" onerror="this.src='assets/placeholder.jpg'">
-          <span class="stock-badge ${stockClass}">${stockLabel}</span>
-        </div>
-        <div class="product-card-body">
-          <h3>${p.name}</h3>
-          <p class="product-price">GHC ${parseFloat(p.price).toFixed(2)}</p>
-          <p class="product-meta"><i class="fas fa-ruler"></i> ${p.sizes.join(', ')}</p>
-          <p class="product-meta"><i class="fas fa-palette"></i> ${p.colors.join(', ')}</p>
-        </div>
-        <div class="product-card-actions">
-          <button class="btn-quickview" data-id="${p.id}" title="Quick View"><i class="fas fa-eye"></i></button>
-          <button class="btn-edit" data-id="${p.id}" title="Edit"><i class="fas fa-edit"></i></button>
-          <button class="btn-delete" data-id="${p.id}" title="Delete"><i class="fas fa-trash"></i></button>
+      return `
+        <div class="product-card">
+          <div class="product-card-img">
+            <img src="${p.image || ''}"
+                 alt="${p.name}"
+                 loading="lazy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="product-img-fallback" style="display:none;width:100%;height:100%;background:#f5f5f5;align-items:center;justify-content:center;flex-direction:column;gap:4px;">
+              <i class="fas fa-image" style="font-size:1.5rem;color:#ddd;"></i>
+              <span style="font-size:0.7rem;color:#ccc;">No Image</span>
+            </div>
+            <span class="stock-badge ${stockClass}">${stockLabel}</span>
+          </div>
+          <div class="product-card-body">
+            <h3 title="${p.name}">${p.name}</h3>
+            <p class="product-price">GHC ${parseFloat(p.price || 0).toFixed(2)}</p>
+            <p class="product-meta"><i class="fas fa-tag"></i> ${p.category || '—'}</p>
+            <p class="product-meta"><i class="fas fa-cubes"></i> Stock: ${stock}</p>
+          </div>
+          <div class="product-card-actions">
+            <button class="btn-edit" onclick="editProduct(${realIndex})">
+              <i class="fas fa-edit"></i> Edit
+            </button>
+            <button class="btn-delete" onclick="confirmDelete(${realIndex})">
+              <i class="fas fa-trash"></i> Delete
+            </button>
+          </div>
         </div>
       `;
-      grid.appendChild(card);
+    }).join('');
+
+    productGrid.innerHTML = html;
+  }
+
+  /* ---- Open Modal ---- */
+  function openModal(title = 'Add New Product') {
+    if (modalTitle) modalTitle.textContent = title;
+    if (productModal) productModal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (productModal) productModal.classList.remove('show');
+    document.body.style.overflow = '';
+    if (productForm) productForm.reset();
+    editIndex = -1;
+  }
+
+  /* ---- Add Product ---- */
+  if (addProductBtn) {
+    addProductBtn.addEventListener('click', () => {
+      editIndex = -1;
+      openModal('Add New Product');
     });
+  }
 
-    container.appendChild(grid);
-  });
+  if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+  if (cancelBtn)     cancelBtn.addEventListener('click', closeModal);
 
-  attachCardEvents();
-}
-
-// ===== ATTACH CARD EVENTS =====
-function attachCardEvents() {
-  // Quick View
-  document.querySelectorAll('.btn-quickview').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const p = products.find(p => p.id == btn.dataset.id);
-      if (!p) return;
-      document.getElementById('qvImage').src = p.image;
-      document.getElementById('qvName').textContent = p.name;
-      document.getElementById('qvPrice').textContent = `GHC ${parseFloat(p.price).toFixed(2)}`;
-      document.getElementById('qvStock').textContent = `Stock: ${p.stock.replace(/-/g, ' ')}`;
-      document.getElementById('qvSizes').textContent = `Sizes: ${p.sizes.join(', ')}`;
-      document.getElementById('qvColors').textContent = `Colors: ${p.colors.join(', ')}`;
-      document.getElementById('quickViewOverlay').classList.add('show');
+  if (productModal) {
+    productModal.addEventListener('click', e => {
+      if (e.target === productModal) closeModal();
     });
-  });
+  }
 
-  // Edit
-  document.querySelectorAll('.btn-edit').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const p = products.find(p => p.id == btn.dataset.id);
-      if (!p) return;
-      editId = p.id;
-      document.getElementById('modalTitle').textContent = 'Edit Product';
-      document.getElementById('productName').value = p.name;
-      document.getElementById('productCategory').value = p.category;
-      document.getElementById('productPrice').value = p.price;
-      document.getElementById('productStock').value = p.stock;
-      document.getElementById('productSizes').value = p.sizes.join(', ');
-      document.getElementById('productColors').value = p.colors.join(', ');
-      document.getElementById('productImage').value = p.image;
-      document.getElementById('productModalOverlay').classList.add('show');
-    });
-  });
+  /* ---- Form Submit ---- */
+  if (productForm) {
+    productForm.addEventListener('submit', e => {
+      e.preventDefault();
 
-  // Delete
-  document.querySelectorAll('.btn-delete').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (confirm('Are you sure you want to delete this product?')) {
-        products = products.filter(p => p.id != btn.dataset.id);
-        saveProducts();
-        renderProducts(
-          document.getElementById('categoryFilter').value,
-          document.getElementById('searchBar').value,
-          document.getElementById('stockFilter').value
-        );
-        showToast('Product deleted successfully!');
+      const product = {
+        name:        document.getElementById('productName').value.trim(),
+        price:       parseFloat(document.getElementById('productPrice').value) || 0,
+        category:    document.getElementById('productCategory').value,
+        image:       document.getElementById('productImage').value.trim(),
+        stock:       parseInt(document.getElementById('productStock').value) || 0,
+        description: document.getElementById('productDescription')?.value.trim() || '',
+        id:          editIndex >= 0 ? products[editIndex].id : Date.now()
+      };
+
+      if (!product.name) { showToast('Please enter a product name.', 'error'); return; }
+      if (!product.price) { showToast('Please enter a valid price.', 'error'); return; }
+      if (!product.category) { showToast('Please select a category.', 'error'); return; }
+
+      if (editIndex >= 0) {
+        products[editIndex] = product;
+        showToast('Product updated successfully!');
+      } else {
+        products.push(product);
+        showToast('Product added successfully!');
       }
+
+      saveProducts();
+      renderProducts();
+      closeModal();
     });
-  });
-}
-
-// ===== ADD PRODUCT BUTTON =====
-document.getElementById('addProductBtn').addEventListener('click', () => {
-  editId = null;
-  document.getElementById('modalTitle').textContent = 'Add New Product';
-  document.getElementById('productForm').reset();
-  document.getElementById('productModalOverlay').classList.add('show');
-});
-
-// ===== CANCEL MODAL =====
-document.getElementById('cancelModal').addEventListener('click', () => {
-  document.getElementById('productModalOverlay').classList.remove('show');
-});
-
-// Close quick view
-document.getElementById('closeQuickView').addEventListener('click', () => {
-  document.getElementById('quickViewOverlay').classList.remove('show');
-});
-
-// Close modals by clicking overlay
-document.getElementById('productModalOverlay').addEventListener('click', (e) => {
-  if (e.target === document.getElementById('productModalOverlay')) {
-    document.getElementById('productModalOverlay').classList.remove('show');
   }
-});
 
-document.getElementById('quickViewOverlay').addEventListener('click', (e) => {
-  if (e.target === document.getElementById('quickViewOverlay')) {
-    document.getElementById('quickViewOverlay').classList.remove('show');
-  }
-});
+  /* ---- Edit ---- */
+  window.editProduct = function(index) {
+    const p = products[index];
+    if (!p) return;
+    editIndex = index;
 
-// ===== FORM SUBMIT =====
-document.getElementById('productForm').addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  const name     = document.getElementById('productName').value.trim();
-  const category = document.getElementById('productCategory').value;
-  const price    = parseFloat(document.getElementById('productPrice').value);
-  const stock    = document.getElementById('productStock').value;
-  const sizes    = document.getElementById('productSizes').value.split(',').map(s => s.trim()).filter(Boolean);
-  const colors   = document.getElementById('productColors').value.split(',').map(c => c.trim()).filter(Boolean);
-  const image    = document.getElementById('productImage').value.trim() || 'assets/placeholder.jpg';
-
-  if (editId !== null) {
-    const idx = products.findIndex(p => p.id === editId);
-    if (idx !== -1) {
-      products[idx] = { id: editId, name, category, price, stock, sizes, colors, image };
-      showToast('Product updated successfully!');
+    document.getElementById('productName').value        = p.name || '';
+    document.getElementById('productPrice').value       = p.price || '';
+    document.getElementById('productCategory').value    = p.category || '';
+    document.getElementById('productImage').value       = p.image || '';
+    document.getElementById('productStock').value       = p.stock || '';
+    if (document.getElementById('productDescription')) {
+      document.getElementById('productDescription').value = p.description || '';
     }
-  } else {
-    const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
-    products.push({ id: newId, name, category, price, stock, sizes, colors, image });
-    showToast('Product added successfully!');
+
+    openModal('Edit Product');
+  };
+
+  /* ---- Delete ---- */
+  window.confirmDelete = function(index) {
+    deleteIndex = index;
+    if (deleteModal) deleteModal.classList.add('show');
+  };
+
+  if (cancelDeleteBtn) {
+    cancelDeleteBtn.addEventListener('click', () => {
+      if (deleteModal) deleteModal.classList.remove('show');
+      deleteIndex = -1;
+    });
   }
 
-  saveProducts();
-  document.getElementById('productModalOverlay').classList.remove('show');
-  renderProducts(
-    document.getElementById('categoryFilter').value,
-    document.getElementById('searchBar').value,
-    document.getElementById('stockFilter').value
-  );
+  if (confirmDeleteBtn) {
+    confirmDeleteBtn.addEventListener('click', () => {
+      if (deleteIndex >= 0) {
+        products.splice(deleteIndex, 1);
+        saveProducts();
+        renderProducts();
+        showToast('Product deleted.', 'error');
+      }
+      if (deleteModal) deleteModal.classList.remove('show');
+      deleteIndex = -1;
+    });
+  }
+
+  /* ---- Search & Filter ---- */
+  if (searchInput)  searchInput.addEventListener('input', renderProducts);
+  if (categoryFilter) categoryFilter.addEventListener('change', renderProducts);
+
+  /* ---- Export CSV ---- */
+  if (exportBtn) {
+    exportBtn.addEventListener('click', () => {
+      if (products.length === 0) { showToast('No products to export.', 'error'); return; }
+      const headers = ['Name', 'Price', 'Category', 'Stock', 'Image'];
+      const rows    = products.map(p => [
+        p.name, p.price, p.category, p.stock, p.image
+      ].map(v => `"${String(v||'').replace(/"/g,'""')}"`).join(','));
+      const csv  = [headers.join(','), ...rows].join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href = url;
+      a.download = `kathy-products-${new Date().toISOString().slice(0,10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Products exported!');
+    });
+  }
+
+  /* ---- Mobile sidebar ---- */
+  const mobileMenuBtn  = document.getElementById('mobileMenuBtn');
+  const adminSidebar   = document.getElementById('adminSidebar');
+  const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', () => {
+      adminSidebar.classList.add('open');
+      sidebarOverlay.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+
+  if (sidebarOverlay) {
+    sidebarOverlay.addEventListener('click', () => {
+      adminSidebar.classList.remove('open');
+      sidebarOverlay.classList.remove('show');
+      document.body.style.overflow = '';
+    });
+  }
+
+  /* ---- Init ---- */
+  renderProducts();
+
 });
-
-// ===== FILTERS =====
-document.getElementById('searchBar').addEventListener('input', () => {
-  renderProducts(
-    document.getElementById('categoryFilter').value,
-    document.getElementById('searchBar').value,
-    document.getElementById('stockFilter').value
-  );
-});
-
-document.getElementById('categoryFilter').addEventListener('change', () => {
-  renderProducts(
-    document.getElementById('categoryFilter').value,
-    document.getElementById('searchBar').value,
-    document.getElementById('stockFilter').value
-  );
-});
-
-document.getElementById('stockFilter').addEventListener('change', () => {
-  renderProducts(
-    document.getElementById('categoryFilter').value,
-    document.getElementById('searchBar').value,
-    document.getElementById('stockFilter').value
-  );
-});
-
-// ===== TOAST =====
-function showToast(message) {
-  const existing = document.querySelector('.toast');
-  if (existing) existing.remove();
-  const toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.textContent = message;
-  document.body.appendChild(toast);
-  setTimeout(() => toast.remove(), 3000);
-}
-
-// ===== INITIAL RENDER =====
-renderProducts();

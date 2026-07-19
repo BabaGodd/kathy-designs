@@ -3,252 +3,288 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kathy Designs – Admin Orders</title>
+  <title>Orders – Kathy Designs Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="admin.css" />
-  <link rel="stylesheet" href="orders.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
+<!-- Mobile Top Bar -->
+<div class="mobile-topbar">
+  <button class="mobile-menu-btn" id="mobileMenuBtn">
+    <i class="fas fa-bars"></i>
+  </button>
+  <div class="mobile-logo">
+    <i class="fas fa-crown"></i>
+    <span>Kathy Admin</span>
+  </div>
+  <div class="mobile-avatar">
+    <i class="fas fa-user-circle"></i>
+  </div>
+</div>
+
+<!-- Sidebar Overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 <!-- Sidebar -->
-<aside class="admin-sidebar">
+<aside class="admin-sidebar" id="adminSidebar">
   <div class="admin-logo">
-    <span class="logo-icon">✦</span>
+    <i class="fas fa-crown"></i>
     <span>Kathy Admin</span>
   </div>
   <nav>
     <ul>
-      <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-      <li><a href="products.html"><i class="fas fa-box"></i> Products</a></li>
-      <li class="active"><a href="orders.html"><i class="fas fa-shopping-bag"></i> Orders</a></li>
-      <li><a href="messages.html"><i class="fas fa-envelope"></i> Messages</a></li>
-      <li><a href="customers.html"><i class="fas fa-users"></i> Customers</a></li>
-      <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+      <li><a href="dashboard.html"><i class="fas fa-chart-line"></i><span>Dashboard</span></a></li>
+      <li><a href="products.html"><i class="fas fa-tshirt"></i><span>Products</span></a></li>
+      <li class="active"><a href="orders.html"><i class="fas fa-shopping-bag"></i><span>Orders</span></a></li>
+      <li><a href="customers.html"><i class="fas fa-users"></i><span>Customers</span></a></li>
+      <li><a href="messages.html"><i class="fas fa-envelope"></i><span>Messages</span></a></li>
+      <li><a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
     </ul>
   </nav>
+  <div class="sidebar-footer">
+    <a href="../index.html"><i class="fas fa-store"></i><span>View Store</span></a>
+  </div>
 </aside>
 
 <!-- Main Content -->
 <main class="admin-main">
 
-  <!-- Page Header -->
-  <div class="page-header">
+  <!-- Top Bar -->
+  <div class="admin-topbar">
+    <div class="admin-topbar-left">
+      <h1>Orders</h1>
+      <p class="admin-date">Manage and track all customer orders</p>
+    </div>
+    <div class="admin-topbar-right">
+      <div class="admin-avatar">
+        <i class="fas fa-user-circle"></i>
+        <span>Admin</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Cards -->
+  <section class="admin-cards" style="margin-bottom:16px;">
+    <div class="admin-card">
+      <div class="admin-card-icon" style="background:#fff3e0;color:#FF8C00;">
+        <i class="fas fa-list"></i>
+      </div>
+      <div class="admin-card-info">
+        <p class="admin-card-label">Total Orders</p>
+        <h2 class="admin-card-value" id="statTotal">0</h2>
+      </div>
+    </div>
+    <div class="admin-card">
+      <div class="admin-card-icon" style="background:#fff8e1;color:#f57f17;">
+        <i class="fas fa-clock"></i>
+      </div>
+      <div class="admin-card-info">
+        <p class="admin-card-label">Pending</p>
+        <h2 class="admin-card-value" id="statPending">0</h2>
+      </div>
+    </div>
+    <div class="admin-card">
+      <div class="admin-card-icon" style="background:#e3f2fd;color:#1565c0;">
+        <i class="fas fa-truck"></i>
+      </div>
+      <div class="admin-card-info">
+        <p class="admin-card-label">Shipped</p>
+        <h2 class="admin-card-value" id="statShipped">0</h2>
+      </div>
+    </div>
+    <div class="admin-card">
+      <div class="admin-card-icon" style="background:#e8f5e9;color:#2e7d32;">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <div class="admin-card-info">
+        <p class="admin-card-label">Completed</p>
+        <h2 class="admin-card-value" id="statCompleted">0</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- Revenue Card -->
+  <div class="admin-section" style="margin-bottom:16px;display:flex;align-items:center;gap:12px;">
+    <div class="admin-card-icon" style="background:#fff3e0;color:#FF8C00;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+      <i class="fas fa-coins"></i>
+    </div>
     <div>
-      <h1 class="page-title">Orders</h1>
-      <p class="page-subtitle">Track, manage and update all customer orders</p>
-    </div>
-    <button class="btn-export" id="exportBtn">
-      <i class="fas fa-download"></i> Export CSV
-    </button>
-  </div>
-
-  <!-- Summary Cards -->
-  <div class="orders-summary">
-    <div class="summary-card">
-      <div class="summary-icon icon-total"><i class="fas fa-shopping-bag"></i></div>
-      <div class="summary-info">
-        <span class="summary-label">Total Orders</span>
-        <span class="summary-value" id="statTotal">0</span>
-      </div>
-    </div>
-    <div class="summary-card">
-      <div class="summary-icon icon-pending"><i class="fas fa-clock"></i></div>
-      <div class="summary-info">
-        <span class="summary-label">Pending</span>
-        <span class="summary-value" id="statPending">0</span>
-      </div>
-    </div>
-    <div class="summary-card">
-      <div class="summary-icon icon-shipped"><i class="fas fa-truck"></i></div>
-      <div class="summary-info">
-        <span class="summary-label">Shipped</span>
-        <span class="summary-value" id="statShipped">0</span>
-      </div>
-    </div>
-    <div class="summary-card">
-      <div class="summary-icon icon-completed"><i class="fas fa-check-circle"></i></div>
-      <div class="summary-info">
-        <span class="summary-label">Completed</span>
-        <span class="summary-value" id="statCompleted">0</span>
-      </div>
-    </div>
-    <div class="summary-card">
-      <div class="summary-icon icon-revenue"><i class="fas fa-coins"></i></div>
-      <div class="summary-info">
-        <span class="summary-label">Total Revenue</span>
-        <span class="summary-value" id="statRevenue">GHC 0</span>
-      </div>
+      <p style="font-size:0.78rem;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Total Revenue</p>
+      <h2 style="font-size:1.4rem;font-weight:800;color:#1e1e2d;" id="statRevenue">GHC 0.00</h2>
     </div>
   </div>
 
-  <!-- Controls -->
-  <div class="orders-controls">
-    <div class="search-wrap">
-      <i class="fas fa-search search-icon"></i>
-      <input type="text" id="searchInput" placeholder="Search by Order ID or Customer Name…" />
-    </div>
-    <div class="filter-group">
-      <select id="statusFilter">
-        <option value="all">All Statuses</option>
-        <option value="Pending">Pending</option>
-        <option value="Shipped">Shipped</option>
-        <option value="Completed">Completed</option>
-        <option value="Cancelled">Cancelled</option>
-      </select>
-      <select id="dateFilter">
-        <option value="all">All Time</option>
-        <option value="today">Today</option>
-        <option value="week">This Week</option>
-        <option value="month">This Month</option>
-      </select>
-    </div>
-  </div>
-
-  <!-- Orders Count -->
-  <p class="results-count"><span id="resultsCount">0</span> orders found</p>
-
-  <!-- Table Wrapper -->
-  <div class="table-wrapper">
-    <table id="ordersTable">
-      <thead>
-        <tr>
-          <th>Order ID</th>
-          <th>Customer</th>
-          <th>Phone</th>
-          <th>Items</th>
-          <th>Total (GHC)</th>
-          <th>Status</th>
-          <th>Date</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody id="ordersTableBody"></tbody>
-    </table>
-
-    <!-- Empty State -->
-    <div class="empty-state" id="emptyState" style="display:none;">
-      <div class="empty-icon"><i class="fas fa-box-open"></i></div>
-      <h3>No orders found</h3>
-      <p>Try adjusting your search or filters, or wait for new orders to come in.</p>
-    </div>
-  </div>
-
-</main>
-
-<!-- ===================== ORDER DETAILS MODAL ===================== -->
-<div id="orderDetailsModal" class="modal-overlay" style="display:none;">
-  <div class="modal-box">
-
-    <div class="modal-header">
-      <div>
-        <h2 class="modal-title">Order <span id="modalOrderID"></span></h2>
-        <p class="modal-date">Placed on <span id="modalOrderDate"></span></p>
-      </div>
-      <button class="modal-close-btn" id="closeOrderModalBtn"><i class="fas fa-times"></i></button>
-    </div>
-
-    <div class="modal-body">
-
-      <!-- Customer Info -->
-      <div class="modal-section">
-        <h3 class="modal-section-title"><i class="fas fa-user"></i> Customer Details</h3>
-        <div class="info-grid">
-          <div class="info-item">
-            <span class="info-label">Name</span>
-            <span class="info-value" id="modalCustomerName"></span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Phone</span>
-            <span class="info-value" id="modalCustomerPhone"></span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Email</span>
-            <span class="info-value" id="modalCustomerEmail">—</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Address</span>
-            <span class="info-value" id="modalCustomerAddress">—</span>
-          </div>
+  <!-- Filters -->
+  <div class="admin-section" style="margin-bottom:16px;">
+    <div class="products-toolbar">
+      <div class="products-toolbar-left">
+        <div class="search-wrapper">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchInput" placeholder="Search by order ID or name…">
         </div>
-      </div>
-
-      <!-- Order Status -->
-      <div class="modal-section">
-        <h3 class="modal-section-title"><i class="fas fa-info-circle"></i> Order Status</h3>
-        <div class="info-grid">
-          <div class="info-item">
-            <span class="info-label">Current Status</span>
-            <span class="info-value" id="modalStatusBadge"></span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Payment Method</span>
-            <span class="info-value" id="modalPayment">—</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Delivery Method</span>
-            <span class="info-value" id="modalDelivery">—</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Notes</span>
-            <span class="info-value" id="modalNotes">—</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Items -->
-      <div class="modal-section">
-        <h3 class="modal-section-title"><i class="fas fa-list"></i> Items Ordered</h3>
-        <div class="modal-items-list" id="modalOrderItems"></div>
-      </div>
-
-      <!-- Total -->
-      <div class="modal-total-row">
-        <span>Order Total</span>
-        <span class="modal-total-value">GHC <span id="modalOrderTotal"></span></span>
-      </div>
-
-    </div>
-
-    <!-- Modal Footer -->
-    <div class="modal-footer">
-      <div class="modal-status-update">
-        <label for="modalStatusSelect">Update Status:</label>
-        <select id="modalStatusSelect">
+        <select id="statusFilter">
+          <option value="all">All Statuses</option>
           <option value="Pending">Pending</option>
           <option value="Shipped">Shipped</option>
           <option value="Completed">Completed</option>
           <option value="Cancelled">Cancelled</option>
         </select>
-        <button id="saveStatusBtn" class="btn-save-status">
-          <i class="fas fa-check"></i> Save
-        </button>
+        <select id="dateFilter">
+          <option value="all">All Time</option>
+          <option value="today">Today</option>
+          <option value="week">This Week</option>
+          <option value="month">This Month</option>
+        </select>
+        <span style="font-size:0.85rem;color:#888;">
+          <strong id="resultsCount">0</strong> orders
+        </span>
       </div>
-      <button id="deleteOrderBtn" class="btn-delete-order">
-        <i class="fas fa-trash"></i> Delete Order
+      <button class="admin-add-btn" id="exportBtn">
+        <i class="fas fa-download"></i> Export CSV
       </button>
     </div>
+  </div>
 
+  <!-- Orders Table -->
+  <div class="admin-section">
+    <div class="admin-table-wrapper">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Phone</th>
+            <th>Items</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="ordersTableBody">
+          <tr>
+            <td colspan="8" style="text-align:center;padding:2rem;color:#aaa;">
+              <i class="fas fa-spinner fa-spin"></i> Loading orders...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="emptyState" style="display:none;text-align:center;padding:3rem;color:#aaa;">
+      <i class="fas fa-inbox" style="font-size:2.5rem;margin-bottom:1rem;display:block;"></i>
+      <p>No orders found</p>
+    </div>
+  </div>
+
+</main>
+
+<!-- Order Details Modal -->
+<div class="order-modal-overlay" id="orderDetailsModal">
+  <div class="order-modal-panel">
+    <div class="order-modal-header">
+      <h2><i class="fas fa-receipt" style="color:#FF8C00;margin-right:8px;"></i> Order Details</h2>
+      <button class="order-modal-close" id="closeOrderModalBtn">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="order-modal-body">
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:8px;">
+        <div>
+          <p style="font-size:0.72rem;color:#aaa;text-transform:uppercase;letter-spacing:0.05em;">Order ID</p>
+          <p style="font-weight:800;color:#FF8C00;font-size:1rem;" id="modalOrderID"></p>
+        </div>
+        <div style="text-align:right;">
+          <p style="font-size:0.72rem;color:#aaa;text-transform:uppercase;letter-spacing:0.05em;">Date</p>
+          <p style="font-weight:600;color:#333;font-size:0.88rem;" id="modalOrderDate"></p>
+        </div>
+      </div>
+
+      <div id="modalStatusBadge" style="margin-bottom:1rem;"></div>
+
+      <div class="modal-info-grid" style="margin-bottom:1rem;">
+        <div class="modal-info-item">
+          <span class="modal-info-label">Customer Name</span>
+          <span class="modal-info-value" id="modalCustomerName"></span>
+        </div>
+        <div class="modal-info-item">
+          <span class="modal-info-label">Phone</span>
+          <span class="modal-info-value" id="modalCustomerPhone"></span>
+        </div>
+        <div class="modal-info-item">
+          <span class="modal-info-label">Email</span>
+          <span class="modal-info-value" id="modalCustomerEmail"></span>
+        </div>
+        <div class="modal-info-item">
+          <span class="modal-info-label">Address</span>
+          <span class="modal-info-value" id="modalCustomerAddress"></span>
+        </div>
+        <div class="modal-info-item">
+          <span class="modal-info-label">Payment</span>
+          <span class="modal-info-value" id="modalPayment"></span>
+        </div>
+        <div class="modal-info-item">
+          <span class="modal-info-label">Delivery</span>
+          <span class="modal-info-value" id="modalDelivery"></span>
+        </div>
+      </div>
+
+      <div style="margin-bottom:1rem;">
+        <p style="font-size:0.78rem;color:#aaa;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;">Notes</p>
+        <p style="font-size:0.88rem;color:#555;" id="modalNotes"></p>
+      </div>
+
+      <div style="margin-bottom:1rem;">
+        <p style="font-size:0.78rem;color:#aaa;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.8rem;">Items Ordered</p>
+        <div id="modalOrderItems"></div>
+      </div>
+
+      <div style="background:#f9f9f9;border-radius:10px;padding:1rem;margin-bottom:1.2rem;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-weight:700;color:#333;">Total Paid</span>
+        <span style="font-weight:800;color:#FF8C00;font-size:1.1rem;">GHC <span id="modalOrderTotal"></span></span>
+      </div>
+
+      <div style="margin-bottom:1rem;">
+        <label style="font-size:0.85rem;font-weight:600;color:#555;display:block;margin-bottom:6px;">Update Status</label>
+        <select id="modalStatusSelect" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:0.9rem;background:#fafafa;">
+          <option value="Pending">Pending</option>
+          <option value="Shipped">Shipped</option>
+          <option value="Completed">Completed</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+      </div>
+
+      <div style="display:flex;gap:10px;">
+        <button class="admin-add-btn" id="saveStatusBtn" style="flex:1;">
+          <i class="fas fa-save"></i> Save Status
+        </button>
+        <button id="deleteOrderBtn" style="flex:1;padding:8px 16px;background:#fce4ec;color:#c62828;border:none;border-radius:8px;font-size:0.85rem;font-weight:600;cursor:pointer;">
+          <i class="fas fa-trash"></i> Delete
+        </button>
+      </div>
+
+    </div>
   </div>
 </div>
 
 <!-- Delete Confirm Modal -->
-<div id="deleteConfirmModal" class="modal-overlay" style="display:none;">
-  <div class="modal-box confirm-box">
-    <div class="confirm-icon"><i class="fas fa-exclamation-triangle"></i></div>
-    <h3>Delete this order?</h3>
-    <p>This action cannot be undone. The order will be permanently removed.</p>
-    <div class="confirm-actions">
-      <button id="cancelDeleteBtn" class="btn-cancel-delete">Cancel</button>
-      <button id="confirmDeleteBtn" class="btn-confirm-delete">Yes, Delete</button>
+<div class="delete-modal" id="deleteConfirmModal">
+  <div class="delete-modal-box">
+    <i class="fas fa-trash" style="font-size:2.5rem;color:#e53935;margin-bottom:1rem;display:block;"></i>
+    <h3>Delete Order?</h3>
+    <p>This action cannot be undone.</p>
+    <div class="delete-modal-actions">
+      <button id="cancelDeleteBtn" style="background:#f0f0f0;color:#555;">Cancel</button>
+      <button id="confirmDeleteBtn" style="background:#e53935;color:white;">Delete</button>
     </div>
   </div>
 </div>
 
-<!-- Toast Notification -->
+<!-- Toast -->
 <div class="toast" id="toast"></div>
 
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="orders.js"></script>
 </body>
 </html>
