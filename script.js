@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ================================================
-     FEATURED CAROUSEL — Auto-scroll + manual arrows
+     FEATURED CAROUSEL — Smooth endless loop
   ================================================ */
   const track    = document.getElementById('featuredTrack');
   const prevBtn  = document.querySelector('.carousel-prev');
@@ -43,77 +43,35 @@ document.addEventListener('DOMContentLoaded', () => {
   const viewport = document.querySelector('.carousel-viewport');
 
   if (track && prevBtn && nextBtn) {
-    let currentIndex    = 0;
-    let autoScrollTimer = null;
-    const AUTO_INTERVAL = 3000; // slide every 3 seconds
+    const cards = Array.from(track.children);
+    const originalCards = cards.filter(card => !card.classList.contains('carousel-clone'));
 
-    function getVisibleCount() {
-      const w = window.innerWidth;
-      if (w < 480)  return 1;
-      if (w < 768)  return 2;
-      if (w < 1024) return 3;
-      return 4;
+    if (originalCards.length && !track.dataset.loopReady) {
+      originalCards.forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.classList.add('carousel-clone');
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
+      });
+      track.dataset.loopReady = 'true';
     }
 
-    function getCardWidth() {
-      const card = track.querySelector('.feat-card');
-      if (!card) return 0;
-      const gap = parseFloat(window.getComputedStyle(track).gap) || 19;
-      return card.offsetWidth + gap;
-    }
+    let isPaused = false;
 
-    function getMaxIndex() {
-      return Math.max(0, track.querySelectorAll('.feat-card').length - getVisibleCount());
-    }
-
-    function goToIndex(index) {
-      const maxIndex = getMaxIndex();
-      // Loop: past the end → back to start, before start → go to end
-      if (index > maxIndex) index = 0;
-      if (index < 0)        index = maxIndex;
-      currentIndex = index;
-      track.style.transform = `translateX(-${currentIndex * getCardWidth()}px)`;
-      prevBtn.style.opacity = currentIndex === 0 ? '0.4' : '1';
-      nextBtn.style.opacity = currentIndex >= maxIndex ? '0.4' : '1';
+    function stopAutoScroll() {
+      isPaused = true;
+      if (track) track.style.animationPlayState = 'paused';
     }
 
     function startAutoScroll() {
-      stopAutoScroll();
-      autoScrollTimer = setInterval(() => goToIndex(currentIndex + 1), AUTO_INTERVAL);
+      isPaused = false;
+      if (track) track.style.animationPlayState = 'running';
     }
 
-    function stopAutoScroll() {
-      if (autoScrollTimer) {
-        clearInterval(autoScrollTimer);
-        autoScrollTimer = null;
-      }
-    }
-
-    // Manual arrows — pause then resume after 2 intervals
-    prevBtn.addEventListener('click', () => {
-      goToIndex(currentIndex - 1);
-      stopAutoScroll();
-      setTimeout(startAutoScroll, AUTO_INTERVAL * 2);
-    });
-
-    nextBtn.addEventListener('click', () => {
-      goToIndex(currentIndex + 1);
-      stopAutoScroll();
-      setTimeout(startAutoScroll, AUTO_INTERVAL * 2);
-    });
-
-    // Pause on hover, resume on leave
     if (viewport) {
       viewport.addEventListener('mouseenter', stopAutoScroll);
       viewport.addEventListener('mouseleave', startAutoScroll);
     }
-
-    // Recalculate on resize
-    window.addEventListener('resize', () => goToIndex(currentIndex));
-
-    // Start
-    goToIndex(0);
-    startAutoScroll();
   }
 
   /* ================================================
