@@ -1,6 +1,9 @@
 /* =============================================
    PRODUCTS.JS — Kathy Designs Admin
    Fixed: no blinking images, clean rendering
+
+   NOTE: This file has been updated to use Supabase
+   instead of localStorage for data persistence.
    ============================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -22,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const totalProducts   = document.getElementById('totalProducts');
   const exportBtn       = document.getElementById('exportBtn');
 
-  let products    = JSON.parse(localStorage.getItem('kathyProducts')) || [];
+  let products    = []; // Will be loaded from Supabase
   let editIndex   = -1;
   let deleteIndex = -1;
 
@@ -34,9 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => { toast.className = 'toast'; }, 3000);
   }
 
-  /* ---- Save ---- */
+  /* ---- Save (No longer needed for localStorage) ---- */
+  // The new save function will call Supabase directly.
   function saveProducts() {
-    localStorage.setItem('kathyProducts', JSON.stringify(products));
+    // This function is now deprecated in favor of direct Supabase calls.
+    // For example: saveProductToSupabase(product)
+    console.warn('saveProducts() is deprecated.');
   }
 
   /* ---- Render ---- */
@@ -137,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---- Form Submit ---- */
   if (productForm) {
-    productForm.addEventListener('submit', e => {
+    productForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const product = {
@@ -154,17 +160,22 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!product.price) { showToast('Please enter a valid price.', 'error'); return; }
       if (!product.category) { showToast('Please select a category.', 'error'); return; }
 
+      let success = false;
       if (editIndex >= 0) {
-        products[editIndex] = product;
-        showToast('Product updated successfully!');
+        // Assumes an updateProductInSupabase function exists in supabase.js
+        success = await updateProductInSupabase(products[editIndex]._supabaseId, product);
+        if (success) showToast('Product updated successfully!');
       } else {
-        products.push(product);
-        showToast('Product added successfully!');
+        success = await saveProductToSupabase(product);
+        if (success) showToast('Product added successfully!');
       }
 
-      saveProducts();
-      renderProducts();
-      closeModal();
+      if (success) {
+        await loadAndRenderProducts(); // Reload data from Supabase
+        closeModal();
+      } else {
+        showToast('Failed to save product to the database.', 'error');
+      }
     });
   }
 
@@ -258,6 +269,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ---- Init ---- */
-  renderProducts();
+  async function loadAndRenderProducts() {
+    // Load products from Supabase on initial page load
+    products = await fetchAllProducts();
+    renderProducts();
+  }
+
+  loadAndRenderProducts();
 
 });
