@@ -1507,3 +1507,14 @@ button { font-family: inherit; cursor: pointer; }
   from { transform: translateY(-100%); opacity: 0; }
   to   { transform: translateY(0); opacity: 1; }
 }
+
+/* =============================================
+   FIX: Carousel Auto-Scroll on Mobile
+   ============================================= */
+
+/* Remove animation on mobile - use JS instead */
+@media (max-width: 768px) {
+  .carousel-track {
+    animation: none !important;
+  }
+}
