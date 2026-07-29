@@ -34,45 +34,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
   /* ================================================
-     FEATURED CAROUSEL — Smooth endless loop
-  ================================================ */
-  const track    = document.getElementById('featuredTrack');
-  const prevBtn  = document.querySelector('.carousel-prev');
-  const nextBtn  = document.querySelector('.carousel-next');
+   FEATURED CAROUSEL — Simple auto-scroll
+   (Uses CSS animation, just like brand carousel)
+================================================ */
+const track = document.getElementById('featuredTrack');
+
+if (track) {
+  // Duplicate the cards for seamless looping (just like brands)
+  const cards = Array.from(track.children);
+  cards.forEach(card => {
+    const clone = card.cloneNode(true);
+    track.appendChild(clone);
+  });
+
+  // Pause on hover (optional)
   const viewport = document.querySelector('.carousel-viewport');
-
-  if (track && prevBtn && nextBtn) {
-    const cards = Array.from(track.children);
-    const originalCards = cards.filter(card => !card.classList.contains('carousel-clone'));
-
-    if (originalCards.length && !track.dataset.loopReady) {
-      originalCards.forEach(card => {
-        const clone = card.cloneNode(true);
-        clone.classList.add('carousel-clone');
-        clone.setAttribute('aria-hidden', 'true');
-        track.appendChild(clone);
-      });
-      track.dataset.loopReady = 'true';
-    }
-
-    let isPaused = false;
-
-    function stopAutoScroll() {
-      isPaused = true;
-      if (track) track.style.animationPlayState = 'paused';
-    }
-
-    function startAutoScroll() {
-      isPaused = false;
-      if (track) track.style.animationPlayState = 'running';
-    }
-
-    if (viewport) {
-      viewport.addEventListener('mouseenter', stopAutoScroll);
-      viewport.addEventListener('mouseleave', startAutoScroll);
-    }
+  if (viewport) {
+    viewport.addEventListener('mouseenter', () => {
+      track.style.animationPlayState = 'paused';
+    });
+    viewport.addEventListener('mouseleave', () => {
+      track.style.animationPlayState = 'running';
+    });
+    
+    // For mobile touch
+    viewport.addEventListener('touchstart', () => {
+      track.style.animationPlayState = 'paused';
+    }, { passive: true });
+    
+    viewport.addEventListener('touchend', () => {
+      track.style.animationPlayState = 'running';
+    }, { passive: true });
   }
+}
+
+
 
   /* ================================================
      QUICK VIEW PANEL
