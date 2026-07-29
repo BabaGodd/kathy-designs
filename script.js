@@ -35,41 +35,36 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ================================================
-     FEATURED CAROUSEL — CSS Animation (Same as Brands)
-     Works on ALL devices including iPhone
+     FEATURED CAROUSEL — EXACTLY like Brands Carousel
+     (Uses CSS animation + duplicated content)
   ================================================ */
   const track = document.getElementById('featuredTrack');
   const viewport = document.querySelector('.carousel-viewport');
 
   if (track) {
-    // Duplicate the cards for seamless looping (like brands)
+    // Step 1: Duplicate all cards for seamless looping (just like brands)
     const cards = Array.from(track.children);
     cards.forEach(card => {
       const clone = card.cloneNode(true);
       track.appendChild(clone);
     });
 
-    // Pause on hover/touch
+    // Step 2: Pause on hover/touch (same as brands)
     if (viewport) {
-      // Desktop hover
       viewport.addEventListener('mouseenter', () => {
         track.style.animationPlayState = 'paused';
       });
       viewport.addEventListener('mouseleave', () => {
         track.style.animationPlayState = 'running';
       });
-      
-      // Mobile touch
       viewport.addEventListener('touchstart', () => {
         track.style.animationPlayState = 'paused';
       }, { passive: true });
-      
       viewport.addEventListener('touchend', () => {
         track.style.animationPlayState = 'running';
       }, { passive: true });
     }
   }
-
 
 
   /* ================================================
