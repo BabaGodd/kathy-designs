@@ -2966,3 +2966,406 @@ button { font-family: inherit; cursor: pointer; }
   border-radius: var(--radius) var(--radius) 0 0;
   overflow: hidden;
 }
+
+/* =============================================
+   MOBILE CAROUSEL OVERRIDES
+   ============================================= */
+
+@media (max-width: 768px) {
+  .carousel-viewport {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .carousel-viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-track {
+    animation: none !important;
+    width: max-content;
+    padding: 0 0.5rem;
+  }
+
+  .feat-card {
+    flex: 0 0 200px !important;
+    width: 200px !important;
+    scroll-snap-align: start;
+  }
+
+  .feat-card img {
+    height: 140px !important;
+  }
+
+  .carousel-arrows {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .feat-card {
+    flex: 0 0 160px !important;
+    width: 160px !important;
+  }
+
+  .feat-card img {
+    height: 120px !important;
+  }
+
+  .feat-card-info {
+    padding: 0.6rem 0.7rem !important;
+  }
+
+  .feat-card-info h3 {
+    font-size: 0.78rem !important;
+  }
+
+  .feat-price {
+    font-size: 0.82rem !important;
+  }
+
+  .carousel-track {
+    gap: 0.6rem !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .feat-card {
+    flex: 0 0 140px !important;
+    width: 140px !important;
+  }
+
+  .feat-card img {
+    height: 105px !important;
+  }
+}
+
+/* =============================================
+   FIX: Rounded Product Images
+   ============================================= */
+
+/* Featured carousel images */
+.feat-card img {
+  border-radius: 10px 10px 0 0; /* rounded top corners only */
+}
+
+/* Shop product grid images */
+.qe-product-image-wrapper img,
+.shop-product-image {
+  border-radius: 10px 10px 0 0; /* rounded top corners only */
+}
+
+/* Wishlist images */
+.wishlist-card-img-wrap img {
+  border-radius: 10px 10px 0 0; /* rounded top corners only */
+}
+
+/* Cart suggestion images */
+.cart-suggestions .qe-product-image-wrapper img {
+  border-radius: 10px 10px 0 0; /* rounded top corners only */
+}
+
+/* Quick view panel image */
+.qe-quickview-image {
+  border-radius: 12px 12px 0 0; /* rounded top corners only */
+}
+
+.feat-card img {
+  border-radius: 10px; /* all 4 corners rounded */
+}
+
+.qe-product-image-wrapper {
+  border-radius: 10px 10px 0 0;
+  overflow: hidden; /* this is key — clips the image to the wrapper */
+}
+
+/* =============================================
+   FORCE ROUNDED PRODUCT IMAGES - FIX
+   ============================================= */
+
+/* Fix all product image wrappers */
+.qe-product-image-wrapper {
+  border-radius: 10px 10px 0 0 !important;
+  overflow: hidden !important;
+}
+
+/* Fix the images inside */
+.qe-product-image-wrapper img,
+.shop-product-image {
+  border-radius: 0 !important; /* remove any border-radius on the image itself */
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* Featured carousel */
+.feat-card {
+  overflow: hidden !important;
+  border-radius: 10px !important;
+}
+
+.feat-card img {
+  border-radius: 0 !important;
+  width: 100% !important;
+  height: 160px !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* Wishlist images */
+.wishlist-card-img-wrap {
+  border-radius: 10px 10px 0 0 !important;
+  overflow: hidden !important;
+}
+
+.wishlist-card-img-wrap img {
+  border-radius: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* Quick view image */
+.qe-quickview-image {
+  border-radius: 12px 12px 0 0 !important;
+  width: 100% !important;
+  height: 200px !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* Sidebar top picks images */
+.top-picks-sidebar .qe-product-image-wrapper {
+  border-radius: 8px 8px 0 0 !important;
+  overflow: hidden !important;
+}
+
+.top-picks-sidebar .qe-product-image-wrapper img {
+  border-radius: 0 !important;
+  width: 100% !important;
+  height: 110px !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* =============================================
+   FIX: Rounded Product Images ONLY (No size changes)
+   ============================================= */
+
+/* Fix all product image wrappers - corners only */
+.qe-product-image-wrapper {
+  border-radius: 10px 10px 0 0 !important;
+  overflow: hidden !important;
+}
+
+/* Fix the images inside - corners only, keep original sizing */
+.qe-product-image-wrapper img,
+.shop-product-image {
+  border-radius: 0 !important;
+  /* NO width, height, or object-fit changes - keep original */
+}
+
+/* Featured carousel - corners only */
+.feat-card {
+  overflow: hidden !important;
+  border-radius: 10px !important;
+}
+
+.feat-card img {
+  border-radius: 0 !important;
+  /* NO height changes - keep original 160px from your CSS */
+}
+
+/* Wishlist images - corners only */
+.wishlist-card-img-wrap {
+  border-radius: 10px 10px 0 0 !important;
+  overflow: hidden !important;
+}
+
+.wishlist-card-img-wrap img {
+  border-radius: 0 !important;
+  /* NO size changes */
+}
+
+/* Quick view image - corners only */
+.qe-quickview-image {
+  border-radius: 12px 12px 0 0 !important;
+  /* NO size changes */
+}
+
+/* Sidebar top picks - corners only */
+.top-picks-sidebar .qe-product-image-wrapper {
+  border-radius: 8px 8px 0 0 !important;
+  overflow: hidden !important;
+}
+
+.top-picks-sidebar .qe-product-image-wrapper img {
+  border-radius: 0 !important;
+  /* NO size changes */
+}
+
+/* =============================================
+   FIX: Rounded Product Images ONLY 
+   (Preserves ALL original sizes)
+   ============================================= */
+
+/* Product grid images - corners only */
+.qe-product-image-wrapper {
+  border-radius: 10px 10px 0 0 !important;
+  overflow: hidden !important;
+}
+
+.qe-product-image-wrapper img {
+  border-radius: 0 !important;
+}
+
+/* Featured carousel images - corners only */
+.feat-card {
+  overflow: hidden !important;
+  border-radius: 10px !important;
+}
+
+.feat-card img {
+  border-radius: 0 !important;
+}
+
+/* Wishlist images - corners only */
+.wishlist-card-img-wrap {
+  border-radius: 10px 10px 0 0 !important;
+  overflow: hidden !important;
+}
+
+.wishlist-card-img-wrap img {
+  border-radius: 0 !important;
+}
+
+/* Quick view - corners only */
+.qe-quickview-image {
+  border-radius: 12px 12px 0 0 !important;
+}
+
+/* Sidebar top picks - corners only */
+.top-picks-sidebar .qe-product-image-wrapper {
+  border-radius: 8px 8px 0 0 !important;
+  overflow: hidden !important;
+}
+
+.top-picks-sidebar .qe-product-image-wrapper img {
+  border-radius: 0 !important;
+}
+
+/* Cart suggestions - corners only */
+.cart-suggestions .qe-product-image-wrapper {
+  border-radius: 10px 10px 0 0 !important;
+  overflow: hidden !important;
+}
+
+.cart-suggestions .qe-product-image-wrapper img {
+  border-radius: 0 !important;
+}
+/* =============================================
+   FIX: Rounded Product Images ONLY
+   ============================================= */
+
+.qe-product-image-wrapper {
+  border-radius: 10px 10px 0 0 !important;
+  overflow: hidden !important;
+}
+
+.qe-product-image-wrapper img {
+  border-radius: 0 !important;
+}
+
+.feat-card {
+  overflow: hidden !important;
+  border-radius: 10px !important;
+}
+
+.feat-card img {
+  border-radius: 0 !important;
+}
+
+.wishlist-card-img-wrap {
+  border-radius: 10px 10px 0 0 !important;
+  overflow: hidden !important;
+}
+
+.wishlist-card-img-wrap img {
+  border-radius: 0 !important;
+}
+
+.qe-quickview-image {
+  border-radius: 12px 12px 0 0 !important;
+}
+
+.top-picks-sidebar .qe-product-image-wrapper {
+  border-radius: 8px 8px 0 0 !important;
+  overflow: hidden !important;
+}
+
+.top-picks-sidebar .qe-product-image-wrapper img {
+  border-radius: 0 !important;
+}
+
+.cart-suggestions .qe-product-image-wrapper {
+  border-radius: 10px 10px 0 0 !important;
+  overflow: hidden !important;
+}
+
+.cart-suggestions .qe-product-image-wrapper img {
+  border-radius: 0 !important;
+}
+
+/* =============================================
+   FIX: Rounded Product Images ONLY
+   NO SIZE CHANGES
+   ============================================= */
+
+/* Product grid images */
+.qe-product-image-wrapper {
+  border-radius: 10px 10px 0 0 !important;
+  overflow: hidden !important;
+}
+
+.qe-product-image-wrapper img {
+  border-radius: 0 !important;
+}
+
+/* Featured carousel images */
+.feat-card {
+  overflow: hidden !important;
+  border-radius: 10px !important;
+}
+
+.feat-card img {
+  border-radius: 0 !important;
+}
+
+/* Wishlist images */
+.wishlist-card-img-wrap {
+  border-radius: 10px 10px 0 0 !important;
+  overflow: hidden !important;
+}
+
+.wishlist-card-img-wrap img {
+  border-radius: 0 !important;
+}
+
+/* Quick view image */
+.qe-quickview-image {
+  border-radius: 12px 12px 0 0 !important;
+}
+
+/* Sidebar top picks */
+.top-picks-sidebar .qe-product-image-wrapper {
+  border-radius: 8px 8px 0 0 !important;
+  overflow: hidden !important;
+}
+
+.top-picks-sidebar .qe-product-image-wrapper img {
+  border-radius: 0 !important;
+}
