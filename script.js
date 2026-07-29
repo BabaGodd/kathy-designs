@@ -35,75 +35,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ================================================
-     FEATURED CAROUSEL — Auto-scroll (Works on ALL devices)
+     FEATURED CAROUSEL — CSS Animation (Same as Brands)
+     Works on ALL devices including iPhone
   ================================================ */
   const track = document.getElementById('featuredTrack');
   const viewport = document.querySelector('.carousel-viewport');
 
-  if (track && viewport) {
-    let scrollInterval = null;
-    let isPaused = false;
-    let cardWidth = 0;
-
-    // Get width of one card + gap
-    function getCardScrollAmount() {
-      const firstCard = track.querySelector('.feat-card');
-      if (!firstCard) return 200;
-      const gap = 16; // gap between cards
-      return firstCard.offsetWidth + gap;
-    }
-
-    // Scroll to next card
-    function scrollToNext() {
-      if (isPaused) return;
-      const amount = getCardScrollAmount();
-      const maxScroll = track.scrollWidth - viewport.clientWidth;
-      
-      if (track.scrollLeft >= maxScroll - 10) {
-        track.scrollTo({ left: 0, behavior: 'smooth' });
-      } else {
-        track.scrollBy({ left: amount, behavior: 'smooth' });
-      }
-    }
-
-    // Start auto-scroll
-    function startAutoScroll() {
-      if (scrollInterval) clearInterval(scrollInterval);
-      scrollInterval = setInterval(scrollToNext, 3000);
-      isPaused = false;
-    }
-
-    // Stop auto-scroll
-    function stopAutoScroll() {
-      if (scrollInterval) {
-        clearInterval(scrollInterval);
-        scrollInterval = null;
-      }
-      isPaused = true;
-    }
-
-    // Desktop hover
-    viewport.addEventListener('mouseenter', stopAutoScroll);
-    viewport.addEventListener('mouseleave', startAutoScroll);
-
-    // Mobile touch
-    viewport.addEventListener('touchstart', stopAutoScroll, { passive: true });
-    viewport.addEventListener('touchend', startAutoScroll, { passive: true });
-
-    // Also stop when user manually scrolls
-    viewport.addEventListener('scroll', () => {
-      stopAutoScroll();
-      clearTimeout(window.scrollTimer);
-      window.scrollTimer = setTimeout(startAutoScroll, 4000);
-    }, { passive: true });
-
-    // Start auto-scroll
-    startAutoScroll();
-
-    // Handle resize
-    window.addEventListener('resize', () => {
-      cardWidth = getCardScrollAmount();
+  if (track) {
+    // Duplicate the cards for seamless looping (like brands)
+    const cards = Array.from(track.children);
+    cards.forEach(card => {
+      const clone = card.cloneNode(true);
+      track.appendChild(clone);
     });
+
+    // Pause on hover/touch
+    if (viewport) {
+      // Desktop hover
+      viewport.addEventListener('mouseenter', () => {
+        track.style.animationPlayState = 'paused';
+      });
+      viewport.addEventListener('mouseleave', () => {
+        track.style.animationPlayState = 'running';
+      });
+      
+      // Mobile touch
+      viewport.addEventListener('touchstart', () => {
+        track.style.animationPlayState = 'paused';
+      }, { passive: true });
+      
+      viewport.addEventListener('touchend', () => {
+        track.style.animationPlayState = 'running';
+      }, { passive: true });
+    }
   }
 
 

@@ -1509,12 +1509,33 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* =============================================
-   FIX: Carousel Auto-Scroll on Mobile
+   FIX: Featured Carousel Auto-Scroll (All Devices)
    ============================================= */
 
-/* Remove animation on mobile - use JS instead */
+/* Force the track to use CSS animation like the brands carousel */
+.carousel-track {
+  display: flex !important;
+  gap: 1.2rem !important;
+  width: max-content !important;
+  animation: carouselScroll 40s linear infinite !important;
+}
+
+/* Make sure viewport hides overflow */
+.carousel-viewport {
+  overflow: hidden !important;
+}
+
+/* Mobile - keep animation running */
 @media (max-width: 768px) {
   .carousel-track {
-    animation: none !important;
+    animation: carouselScroll 40s linear infinite !important;
+    gap: 0.8rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-track {
+    animation: carouselScroll 40s linear infinite !important;
+    gap: 0.6rem !important;
   }
 }
