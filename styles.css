@@ -2945,3 +2945,24 @@ button { font-family: inherit; cursor: pointer; }
     display: none;
   }
 }
+
+
+.qe-product-image-wrapper {
+  border-radius: var(--radius) var(--radius) 0 0;
+  overflow: hidden;
+}
+
+.qe-product-image-wrapper img,
+.shop-product-image {
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.wishlist-card-img-wrap {
+  border-radius: var(--radius) var(--radius) 0 0;
+  overflow: hidden;
+}
+
+.cart-suggestions .qe-product-image-wrapper {
+  border-radius: var(--radius) var(--radius) 0 0;
+  overflow: hidden;
+}
