@@ -34,38 +34,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ================================================
+     FEATURED CAROUSEL — Seamless Infinite Scroll
+     Works on ALL pages (index, fabrics, men, etc.)
+  ================================================ */
+  const track = document.getElementById('featuredTrack');
+  const viewport = document.querySelector('.carousel-viewport');
 
-
-/* ================================================
-   FEATURED CAROUSEL — EXACTLY like Brands Carousel
-   ================================================ */
-const track = document.getElementById('featuredTrack');
-const viewport = document.querySelector('.carousel-viewport');
-
-if (track) {
-  // Duplicate all cards once for seamless looping
-  const cards = Array.from(track.children);
-  cards.forEach(card => {
-    const clone = card.cloneNode(true);
-    track.appendChild(clone);
-  });
-
-  // Pause on hover/touch
-  if (viewport) {
-    viewport.addEventListener('mouseenter', () => {
-      track.style.animationPlayState = 'paused';
+  if (track && track.children.length > 0) {
+    // Clone ALL cards so there are exactly 2 full sets
+    const originalCards = Array.from(track.children);
+    originalCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      track.appendChild(clone);
     });
-    viewport.addEventListener('mouseleave', () => {
-      track.style.animationPlayState = 'running';
-    });
-    viewport.addEventListener('touchstart', () => {
-      track.style.animationPlayState = 'paused';
-    }, { passive: true });
-    viewport.addEventListener('touchend', () => {
-      track.style.animationPlayState = 'running';
-    }, { passive: true });
+
+    // Pause animation on hover/touch
+    if (viewport) {
+      viewport.addEventListener('mouseenter', () => {
+        track.style.animationPlayState = 'paused';
+      });
+      viewport.addEventListener('mouseleave', () => {
+        track.style.animationPlayState = 'running';
+      });
+      viewport.addEventListener('touchstart', () => {
+        track.style.animationPlayState = 'paused';
+      }, { passive: true });
+      viewport.addEventListener('touchend', () => {
+        track.style.animationPlayState = 'running';
+      }, { passive: true });
+    }
   }
-}
 
 
   /* ================================================
@@ -312,17 +311,14 @@ if (track) {
    MOBILE SEARCH
    ============================================= */
 (function() {
-  // Add mobile search button to header actions
   const headerActions = document.querySelector('.header-actions');
   if (!headerActions) return;
 
-  // Create mobile search button
   const mobileSearchBtn = document.createElement('button');
   mobileSearchBtn.className = 'mobile-search-btn';
   mobileSearchBtn.setAttribute('aria-label', 'Search');
   mobileSearchBtn.innerHTML = '<i class="fas fa-search"></i>';
 
-  // Insert before cart link
   const cartLink = headerActions.querySelector('.cart-link');
   if (cartLink) {
     headerActions.insertBefore(mobileSearchBtn, cartLink);
@@ -330,7 +326,6 @@ if (track) {
     headerActions.prepend(mobileSearchBtn);
   }
 
-  // Create mobile search overlay
   const overlay = document.createElement('div');
   overlay.className = 'mobile-search-overlay';
   overlay.innerHTML = `
@@ -341,7 +336,6 @@ if (track) {
   `;
   document.body.appendChild(overlay);
 
-  // Create mobile search results
   const mobileResults = document.createElement('div');
   mobileResults.className = 'mobile-search-results';
   mobileResults.id = 'mobileSearchResults';
@@ -350,13 +344,11 @@ if (track) {
   const mobileInput = document.getElementById('mobileSearchInput');
   const mobileClose = document.getElementById('mobileSearchClose');
 
-  // Open search overlay
   mobileSearchBtn.addEventListener('click', () => {
     overlay.classList.add('open');
     setTimeout(() => mobileInput && mobileInput.focus(), 100);
   });
 
-  // Close search overlay
   if (mobileClose) {
     mobileClose.addEventListener('click', () => {
       overlay.classList.remove('open');
@@ -365,7 +357,6 @@ if (track) {
     });
   }
 
-  // Mobile search logic
   if (mobileInput) {
     mobileInput.addEventListener('input', () => {
       const query = mobileInput.value.trim().toLowerCase();
