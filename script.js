@@ -34,37 +34,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ================================================
-     FEATURED CAROUSEL — EXACTLY like Brands Carousel
-     (Uses CSS animation + duplicated content)
-  ================================================ */
-  const track = document.getElementById('featuredTrack');
-  const viewport = document.querySelector('.carousel-viewport');
 
-  if (track) {
-    // Step 1: Duplicate all cards for seamless looping (just like brands)
-    const cards = Array.from(track.children);
-    cards.forEach(card => {
-      const clone = card.cloneNode(true);
-      track.appendChild(clone);
+
+/* ================================================
+   FEATURED CAROUSEL — EXACTLY like Brands Carousel
+   ================================================ */
+const track = document.getElementById('featuredTrack');
+const viewport = document.querySelector('.carousel-viewport');
+
+if (track) {
+  // Duplicate all cards once for seamless looping
+  const cards = Array.from(track.children);
+  cards.forEach(card => {
+    const clone = card.cloneNode(true);
+    track.appendChild(clone);
+  });
+
+  // Pause on hover/touch
+  if (viewport) {
+    viewport.addEventListener('mouseenter', () => {
+      track.style.animationPlayState = 'paused';
     });
-
-    // Step 2: Pause on hover/touch (same as brands)
-    if (viewport) {
-      viewport.addEventListener('mouseenter', () => {
-        track.style.animationPlayState = 'paused';
-      });
-      viewport.addEventListener('mouseleave', () => {
-        track.style.animationPlayState = 'running';
-      });
-      viewport.addEventListener('touchstart', () => {
-        track.style.animationPlayState = 'paused';
-      }, { passive: true });
-      viewport.addEventListener('touchend', () => {
-        track.style.animationPlayState = 'running';
-      }, { passive: true });
-    }
+    viewport.addEventListener('mouseleave', () => {
+      track.style.animationPlayState = 'running';
+    });
+    viewport.addEventListener('touchstart', () => {
+      track.style.animationPlayState = 'paused';
+    }, { passive: true });
+    viewport.addEventListener('touchend', () => {
+      track.style.animationPlayState = 'running';
+    }, { passive: true });
   }
+}
 
 
   /* ================================================
