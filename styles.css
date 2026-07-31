@@ -892,7 +892,7 @@ button { font-family: inherit; cursor: pointer; }
 
 @keyframes carouselScroll {
   0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(var(--scroll-distance, -50%)); }
 }
 
 /* =============================================
@@ -1356,9 +1356,7 @@ button { font-family: inherit; cursor: pointer; }
   .cart-link { width: 36px; height: 36px; font-size: 0.9rem; }
 
   .carousel-viewport {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    overflow: hidden;
   }
 
   .carousel-viewport::-webkit-scrollbar {

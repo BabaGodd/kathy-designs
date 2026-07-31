@@ -35,21 +35,37 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ================================================
-     FEATURED CAROUSEL — Seamless Infinite Scroll
-     Works on ALL pages (index, fabrics, men, etc.)
+     FEATURED CAROUSEL — Fixed Infinite Scroll
+     Calculates exact distance for seamless looping
   ================================================ */
   const track = document.getElementById('featuredTrack');
   const viewport = document.querySelector('.carousel-viewport');
 
   if (track && track.children.length > 0) {
-    // Clone ALL cards so there are exactly 2 full sets
     const originalCards = Array.from(track.children);
+    const totalOriginals = originalCards.length;
+
+    // Clone cards once for seamless loop
     originalCards.forEach(card => {
       const clone = card.cloneNode(true);
       track.appendChild(clone);
     });
 
-    // Pause animation on hover/touch
+    // Calculate exact scroll distance of one full set
+    function setScrollDistance() {
+      const firstCard = track.children[0];
+      const cardWidth = firstCard.offsetWidth;
+      const gap = parseFloat(getComputedStyle(track).gap) || 20;
+      const distance = totalOriginals * (cardWidth + gap);
+      track.style.setProperty('--scroll-distance', `-${distance}px`);
+    }
+
+    // Run after images load to get accurate widths
+    setScrollDistance();
+    window.addEventListener('load', setScrollDistance);
+    window.addEventListener('resize', setScrollDistance);
+
+    // Pause on hover/touch
     if (viewport) {
       viewport.addEventListener('mouseenter', () => {
         track.style.animationPlayState = 'paused';
