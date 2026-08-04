@@ -39,9 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (totalEl)    totalEl.textContent    = total.toFixed(2);
   }
 
-  // Run on load and watch for storage changes (when cart.js updates)
+  // Run on load and watch for cart updates
   updateSummary();
   window.addEventListener('storage', updateSummary);
+  window.addEventListener('cart:updated', updateSummary);
 
   // Re-run after cart.js renders items (slight delay to let cart.js finish)
   setTimeout(updateSummary, 300);

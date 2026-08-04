@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function saveCart() {
     localStorage.setItem('kathyCart', JSON.stringify({ items: cart.items, total: cart.total }));
     updateCartCount();
+    window.dispatchEvent(new Event('cart:updated'));
   }
 
   function recalcTotal() {
@@ -102,10 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (cart.items.length === 0) {
       cartItemsCon.innerHTML = `
-        <div style="text-align:center;padding:3rem 1rem;">
-          <i class="fas fa-shopping-bag" style="font-size:3rem;color:#ddd;display:block;margin-bottom:1rem;"></i>
+        <div class="empty-cart-card">
+          <i class="fas fa-shopping-bag"></i>
           <p class="kathy-empty">Your cart is empty.</p>
-          <a href="index.html" style="display:inline-block;margin-top:1rem;padding:0.7rem 1.5rem;background:#FF8C00;color:white;border-radius:8px;font-weight:700;text-decoration:none;">Continue Shopping</a>
+          <a href="index.html" class="cart-continue-link empty-cart-link">Continue Shopping</a>
         </div>
       `;
       if (cartTotalEl) cartTotalEl.textContent = '0.00';
@@ -117,19 +118,27 @@ document.addEventListener('DOMContentLoaded', () => {
       const div = document.createElement('div');
       div.className = 'kathy-cart-item';
       div.innerHTML = `
-        <img src="${item.image}" class="kathy-cart-img" alt="${item.name}" onerror="this.src='productImages/placeholder.png'">
+        <div class="kathy-cart-image-wrap">
+          <img src="${item.image}" class="kathy-cart-img" alt="${item.name}" onerror="this.src='productImages/placeholder.png'">
+        </div>
         <div class="kathy-cart-info">
-          <h3>${item.name}</h3>
-          <p>Price: <strong>GHC ${item.price.toFixed(2)}</strong></p>
-          <div class="kathy-cart-qty">
-            <button class="kathy-qty-btn" data-index="${index}" data-action="decrease">−</button>
-            <span style="font-weight:700;min-width:24px;text-align:center;">${item.quantity}</span>
-            <button class="kathy-qty-btn" data-index="${index}" data-action="increase">+</button>
+          <div class="kathy-cart-top">
+            <div>
+              <h3>${item.name}</h3>
+              <p>Price: <strong>GHC ${item.price.toFixed(2)}</strong></p>
+            </div>
+            <button class="kathy-remove-btn" data-index="${index}">
+              <i class="fas fa-trash-alt"></i> Remove
+            </button>
           </div>
-          <p>Subtotal: <strong style="color:#FF8C00;">GHC ${subtotal.toFixed(2)}</strong></p>
-          <button class="kathy-remove-btn" data-index="${index}">
-            <i class="fas fa-trash-alt"></i> Remove
-          </button>
+          <div class="kathy-cart-meta">
+            <div class="kathy-cart-qty">
+              <button class="kathy-qty-btn" data-index="${index}" data-action="decrease">−</button>
+              <span>${item.quantity}</span>
+              <button class="kathy-qty-btn" data-index="${index}" data-action="increase">+</button>
+            </div>
+            <div class="kathy-cart-price">Subtotal: GHC ${subtotal.toFixed(2)}</div>
+          </div>
         </div>
       `;
       cartItemsCon.appendChild(div);
