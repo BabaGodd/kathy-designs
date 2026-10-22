@@ -14,20 +14,20 @@
 </head>
 <body>
 
+<div id="kd-splash">
+  <div class="kd-splash__brand-card">
+    <h1 class="kd-splash__title">Kathy Designs</h1>
+    <p class="kd-splash__subtitle">Authentic African Fashion</p>
+    
+    <!-- Single Clean Loading Bar -->
+    <div class="kd-splash__loader">
+      <div class="kd-splash__loader-fill"></div>
+      <div class="kd-splash__loader-shimmer"></div>
+    </div>
+  </div>
 
-
-  <!-- Add immediately after the opening <body> tag.
-     Keep all of your existing website HTML below this block. -->
-<div id="kd-splash" role="dialog" aria-label="Kathy Designs introduction">
-  <img class="kd-splash__art"
-       src="images/Kathy Designs Luxury Splash Screen.png"
-       alt="Kathy Designs — Luxury African Fashion, Tema Ghana">
-  <div class="kd-splash__glow" aria-hidden="true"></div>
-  <button class="kd-splash__skip-hitbox"
-          type="button"
-          aria-label="Skip splash screen"></button>
+  <button type="button" class="kd-splash__skip">Skip</button>
 </div>
-
 
 
 
@@ -864,39 +864,31 @@
 </a>
 
 
-
-<!-- Add immediately before the closing </body> tag.
-Do not remove any of your existing script tags. -->
 <script>
-(function () {
-  "use strict";
-  var splash = document.getElementById("kd-splash");
-  if (!splash) return;
+  window.addEventListener('load', () => {
+    const splash = document.getElementById('kd-splash');
+    if (!splash) return;
 
-  var skip = splash.querySelector(".kd-splash__skip-hitbox");
-  var finished = false;
-  var timer;
+    // Function to smoothly hide and remove the splash screen
+    const dismissSplash = () => {
+      splash.classList.add('kd-splash--leaving');
+      // Matches the 0.5s CSS transition duration, then deletes it from the DOM
+      setTimeout(() => splash.remove(), 500);
+    };
 
-  function closeSplash() {
-    if (finished) return;
-    finished = true;
-    window.clearTimeout(timer);
-    splash.classList.add("kd-splash--leaving");
-    window.setTimeout(function () {
-      if (splash.parentNode) splash.parentNode.removeChild(splash);
-    }, 800);
-  }
+    // 1. Automatic timer: Dismisses after 5 seconds to match the progress bar animation
+    const autoDismissTimer = setTimeout(dismissSplash, 5000);
 
-  if (skip) skip.addEventListener("click", closeSplash);
-  timer = window.setTimeout(closeSplash, 4500);
-}());
+    // 2. Skip button: Allows manual bypassing
+    const skipBtn = splash.querySelector('.kd-splash__skip');
+    if (skipBtn) {
+      skipBtn.addEventListener('click', () => {
+        clearTimeout(autoDismissTimer); // Prevents the timer from double-firing
+        dismissSplash();
+      });
+    }
+  });
 </script>
-
-
-
-
-
-
 
 </body>
 </html>
