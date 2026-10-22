@@ -15,6 +15,22 @@
 <body>
 
 
+
+  <!-- Add immediately after the opening <body> tag.
+     Keep all of your existing website HTML below this block. -->
+<div id="kd-splash" role="dialog" aria-label="Kathy Designs introduction">
+  <img class="kd-splash__art"
+       src="images/Kathy Designs Luxury Splash Screen.png"
+       alt="Kathy Designs — Luxury African Fashion, Tema Ghana">
+  <div class="kd-splash__glow" aria-hidden="true"></div>
+  <button class="kd-splash__skip-hitbox"
+          type="button"
+          aria-label="Skip splash screen"></button>
+</div>
+
+
+
+
   
 <!-- ===================== HEADER ===================== -->
 <header class="site-header">
@@ -846,6 +862,41 @@
   <i class="fab fa-whatsapp"></i>
   <span class="whatsapp-tooltip">Chat with us</span>
 </a>
+
+
+
+<!-- Add immediately before the closing </body> tag.
+Do not remove any of your existing script tags. -->
+<script>
+(function () {
+  "use strict";
+  var splash = document.getElementById("kd-splash");
+  if (!splash) return;
+
+  var skip = splash.querySelector(".kd-splash__skip-hitbox");
+  var finished = false;
+  var timer;
+
+  function closeSplash() {
+    if (finished) return;
+    finished = true;
+    window.clearTimeout(timer);
+    splash.classList.add("kd-splash--leaving");
+    window.setTimeout(function () {
+      if (splash.parentNode) splash.parentNode.removeChild(splash);
+    }, 800);
+  }
+
+  if (skip) skip.addEventListener("click", closeSplash);
+  timer = window.setTimeout(closeSplash, 4500);
+}());
+</script>
+
+
+
+
+
+
 
 </body>
 </html>
